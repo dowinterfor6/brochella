@@ -7,6 +7,8 @@ const User = require('../../models/User');
 const jwt = require('jsonwebtoken');
 // Import keys from keys.js
 const keys = require('../../config/keys');
+// Import passport
+const passport = require('passport');
 // Import validators
 // const validateRegisterInput = require('../../validation/register');
 // const validateLoginInput = require('../../validation/login');
@@ -116,5 +118,13 @@ router.post('/login', (req, res) => {
         })
     })
 })
+
+router.get('/current', passport.authenticate('jwt', {session: false}), (req, res) => {
+  res.json({
+    id: req.user.id,
+    username: req.user.username,
+    email: req.user.email
+  });
+});
 
 module.exports = router;

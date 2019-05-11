@@ -12,6 +12,8 @@ const db = require('./config/keys').mongoURI;
 // Import routes
 const users = require("./routes/api/users");
 const tweets = require("./routes/api/tweets");
+// Import passport
+const passport = require('passport');
 
 // Connect to MongoDB using Mongoose
 mongoose
@@ -23,11 +25,14 @@ mongoose
   // IMP! Must be above routes
   app.use(bodyParser.urlencoded({ extended: false}));
   app.use(bodyParser.json());
+
+  // In place of hello world
+  app.use(passport.initialize());
+  require('./config/passport')(passport);
   
   // Tell Express to use the imported routes
   app.use("/api/users", users);
   app.use("/api/tweets", tweets);
-  app.get("/", (req, res) => res.send("Hello Was"));
 
 
 app.listen(port, () => console.log(`Server is running on port ${port}`));
