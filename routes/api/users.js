@@ -10,8 +10,8 @@ const keys = require('../../config/keys');
 // Import passport
 const passport = require('passport');
 // Import validators
-// const validateRegisterInput = require('../../validation/register');
-// const validateLoginInput = require('../../validation/login');
+const validateRegisterInput = require('../../validation/register');
+const validateLoginInput = require('../../validation/login');
 
 // TESTING:
 router.get("/test", (req, res) => res.json({ msg: "This is the users route" }));
@@ -19,14 +19,14 @@ router.get("/test", (req, res) => res.json({ msg: "This is the users route" }));
 // Register route
 router.post('/register', (req, res) => {
   // TODO: Once we get there lol
-  // const { errors, isValid } = validateRegisterInput(req.body);
+  const { errors, isValid } = validateRegisterInput(req.body);
 
-  // if (!isValid) {
-  //   return res.status(400).json(errors);
-  // }
+  if (!isValid) {
+    return res.status(400).json(errors);
+  }
 
   // TODO: TEMPORARY
-  let errors = { username: "", password: ""};
+  // let errors = { username: "", password: ""};
 
   // Find by username instead of email
   User.findOne({ username: req.body.username })
@@ -75,11 +75,11 @@ router.post('/register', (req, res) => {
 // Login route
 router.post('/login', (req, res) => {
   //TODO: Once we get there lol
-  // const { errors, isValid } = validateLoginInput(req.body);
+  const { errors, isValid } = validateLoginInput(req.body);
 
-  // if (!isValid) {
-  //   return res.status(400).json(errors);
-  // }
+  if (!isValid) {
+    return res.status(400).json(errors);
+  }
 
   const username = req.body.username;
   const password = req.body.password;
