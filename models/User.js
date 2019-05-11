@@ -9,10 +9,10 @@ const UserSchema = new Schema({
     type: String,
     required: true
   },
+  // TODO: Change this to optional at a later date maybe
   email: {
     type: String,
-    // TODO: Or just not have this at all
-    required: false
+    required: true
   },
   password: {
     type: String,
@@ -25,4 +25,4 @@ const UserSchema = new Schema({
 });
 
 // Export module
-module.exxports = User = mongoose.model('users', UserSchema);
+module.exports = User = mongoose.model('users', UserSchema);
