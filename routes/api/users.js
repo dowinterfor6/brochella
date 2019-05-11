@@ -3,22 +3,40 @@ const router = express.Router();
 // Import bcrypt and user model for registration
 const bcrypt = require('bcryptjs');
 const User = require('../../models/User');
+// Import webtoken to access protected routes
+const jwt = require('jsonwebtoken');
+// Import keys from keys.js
+const keys = require('../../config/keys');
+// Import validators
+// const validateRegisterInput = require('../../validation/register');
+// const validateLoginInput = require('../../validation/login');
 
 // TESTING:
 router.get("/test", (req, res) => res.json({ msg: "This is the users route" }));
 
 // Register route
 router.post('/register', (req, res) => {
-  User.findOne({ email: req.body.email })
+  // TODO: Once we get there lol
+  // const { errors, isValid } = validateRegisterInput(req.body);
+
+  // if (!isValid) {
+  //   return res.status(400).json(errors);
+  // }
+
+  // TODO: TEMPORARY
+  let errors = { username: "", password: ""};
+
+  // Find by username instead of email
+  User.findOne({ username: req.body.username })
     .then((user) => {
       if (user) {
+        errors.username = "User already exists";
         // Throw status 400 error
-        return res.status(400).json({ email: "Email already has an associated account"})
+        return res.status(400).json(errors)
       } else {
-        console.log('hi');
         // Create a new user
         const newUser = new User({
-          handle: req.body.handle,
+          username: req.body.username,
           email: req.body.email,
           password: req.body.password
         });
@@ -27,13 +45,75 @@ router.post('/register', (req, res) => {
           bcrypt.hash(newUser.password, salt, (err, hash) => {
             if (err) throw err;
             newUser.password = hash;
-            newUser.save()
+            newUser
+              .save()
               // TODO: Update if user model changes (unlikely)
-              .then((user) => res.json(user))
+              .then((user) => {
+                const payload = { id: user.id, username: user.username };
+
+                jwt.sign(
+                  payload, 
+                  keys.secretOrKey, 
+                  {expiresIn: 3600},
+                  (err, token) => {
+                    res.json({
+                      success: true,
+                      token: 'Bearer ' + token
+                    });
+                  }
+                )
+              })
               .catch((err) => console.log(err));
           })
         })
       }
+    })
+})
+
+// Login route
+router.post('/login', (req, res) => {
+  //TODO: Once we get there lol
+  // const { errors, isValid } = validateLoginInput(req.body);
+
+  // if (!isValid) {
+  //   return res.status(400).json(errors);
+  // }
+
+  const username = req.body.username;
+  const password = req.body.password;
+
+  User.findOne({ username })
+    .then((user) => {
+      // If user not found by username
+      if (!user) {
+        errors.username = "This user does not exist";
+        return res.status(404).json(errors);
+      }
+
+      // If user found by email
+      bcrypt.compare(password, user.password)
+        .then((isMatch) => {
+          if (isMatch) {
+            // Setup payload
+            const payload = {id: user.id, username: user.username};
+            
+            jwt.sign(
+              payload,
+              keys.secretOrKey,
+              // Expire key in one hour
+              {expiresIn: 3600},
+              (err, token) => {
+                res.json({
+                  success: true,
+                  token: 'Bearer ' + token
+                });
+              }
+            );
+          } else {
+            errors.password = "Incorrect password";
+            return res.status(400).json(errors);
+          }
+        })
     })
 })
 
