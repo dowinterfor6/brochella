@@ -13,9 +13,6 @@ const passport = require('passport');
 const validateRegisterInput = require('../../validation/register');
 const validateLoginInput = require('../../validation/login');
 
-// TESTING:
-router.get("/test", (req, res) => res.json({ msg: "This is the users route" }));
-
 // Register route
 router.post('/register', (req, res) => {
   // TODO: Once we get there lol
