@@ -71,7 +71,7 @@ router.post('/register', (req, res) => {
 
 // Login route
 router.post('/login', (req, res) => {
-  //TODO: Once we get there lol
+  debugger
   const { errors, isValid } = validateLoginInput(req.body);
 
   if (!isValid) {

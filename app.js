@@ -15,12 +15,15 @@ const tweets = require("./routes/api/tweets");
 // Import passport
 const passport = require('passport');
 
+const cors = require('cors');
+
 // Connect to MongoDB using Mongoose
 mongoose
   .connect(db, {useNewUrlParser: true})
   .then(() => console.log("Connected to MongoDB successfully"))
   .catch((err) => console.log(err));
 
+  app.use(cors());
   // Middleware for body parser
   // IMP! Must be above routes
   app.use(bodyParser.urlencoded({ extended: false}));
