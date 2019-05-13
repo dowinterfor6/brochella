@@ -46,3 +46,14 @@ table {
 	border-collapse: collapse;
 	border-spacing: 0;
 }
+
+/* CUSTOM RESET */
+a {
+	color: black;
+	text-decoration: none;
+}
+
+a:hover {
+	color: grey;
+	text-decoration: underline;
+}

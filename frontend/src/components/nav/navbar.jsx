@@ -1,5 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import '../../assets/stylesheets/reset.css';
+import '../../assets/stylesheets/navbar.css';
 
 class NavBar extends React.Component {
   constructor(props) {
@@ -27,13 +29,13 @@ class NavBar extends React.Component {
             <Link to={'/new_tweet'}>Write a Tweet</Link>
           </li>
           <li>
-            <button onClick={this.logoutUser}>Logout</button>
+            <Link to={'/tweets'} onClick={this.logoutUser}>Logout</Link>
           </li>
         </ul>
       );
     } else {
       return (
-        <ul className='nav-bar-items-container'>
+        <ul className='nav-bar-items-before-login'>
           <li>
             <Link to={'/signup'}>Signup</Link>
           </li>
