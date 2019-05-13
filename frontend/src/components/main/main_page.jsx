@@ -6,7 +6,7 @@ class MainPage extends React.Component {
   render() {
     return (
       <div>
-        <h1>BRO-CHELLA</h1>
+        {/* <h1>BRO-CHELLA</h1> */}
       </div>
     )
   }

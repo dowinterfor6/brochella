@@ -18,9 +18,6 @@ class LoginForm extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    console.log(this.props);
-    console.log(nextProps);
-    console.log(this.state);
     if (nextProps.currentUser === true) {
       this.props.history.push('/tweets');
     }
@@ -43,7 +40,6 @@ class LoginForm extends React.Component {
       username: this.state.username,
       password: this.state.password
     }
-    // this.props.login(user);
     this.props.login(user);
   }
 
@@ -61,30 +57,28 @@ class LoginForm extends React.Component {
 
   render() {
     return (
-      <div className="session-form-container">
-        <div className="session-form-modal">
-          <h1>Login</h1>
-          {this.renderErrors()}
-          <form onSubmit={this.handleSubmit}>
-            <label>
-              Username
-              <input 
-                type="text" 
-                value={this.state.username} 
-                onChange={this.update('username')}
-              />
-            </label>
-            <label>
-              Password 
-              <input 
-                type="password"
-                value={this.state.password}
-                onChange={this.update('password')}
-              />
-            </label>
-            <button>Submit</button>
-          </form>
-        </div>
+      <div className="session-form-modal fadeInDown" onClick={(e) => e.stopPropagation()}>
+        <h1>Login</h1>
+        {this.renderErrors()}
+        <form onSubmit={this.handleSubmit}>
+          <label>
+            Username
+            <input 
+              type="text" 
+              value={this.state.username} 
+              onChange={this.update('username')}
+            />
+          </label>
+          <label>
+            Password 
+            <input 
+              type="password"
+              value={this.state.password}
+              onChange={this.update('password')}
+            />
+          </label>
+          <button>Submit</button>
+        </form>
       </div>
     )
   }
