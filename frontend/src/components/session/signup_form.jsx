@@ -19,11 +19,12 @@ class SignupForm extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if (nextProps.signedIn === true) {
-      this.props.history.push('/login');
-    }
+    this.setState({ errors: nextProps.errors })
+  }
 
-    this.setState({ errors: nextProps.errors });
+  componentWillUnmount() {
+    this.props.deleteErrors();
+    this.props.closeModal()
   }
 
   update(field) {
@@ -41,7 +42,6 @@ class SignupForm extends React.Component {
       password2: this.state.password2
     };
     this.props.signup(user, this.props.history)
-      .then(() => this.props.closeModal())
       .then(() => {
         if (this.props.match.path.url === '/tweets') {
           return this.props.history.push('/tweets');

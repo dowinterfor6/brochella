@@ -19,11 +19,12 @@ class LoginForm extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if (nextProps.currentUser === true) {
-      this.props.history.push('/tweets');
-    }
-
     this.setState({ errors: nextProps.errors })
+  }
+
+  componentWillUnmount() {
+    this.props.deleteErrors();
+    this.props.closeModal()
   }
 
   update(field) {
@@ -41,8 +42,7 @@ class LoginForm extends React.Component {
       username: this.state.username,
       password: this.state.password
     }
-    this.props.login(user)
-      
+    this.props.login(user)  
       .then(() => {
         if (this.props.match.path.url === '/tweets') {
           return this.props.history.push('/tweets');
