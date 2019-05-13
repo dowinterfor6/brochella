@@ -14,13 +14,11 @@ class LoginForm extends React.Component {
     };
 
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleDemoLogin = this.handleDemoLogin.bind(this);
     this.renderErrors = this.renderErrors.bind(this);
   }
 
   componentWillReceiveProps(nextProps) {
-    console.log(this.props);
-    console.log(nextProps);
-    console.log(this.state);
     if (nextProps.currentUser === true) {
       this.props.history.push('/tweets');
     }
@@ -43,8 +41,27 @@ class LoginForm extends React.Component {
       username: this.state.username,
       password: this.state.password
     }
-    // this.props.login(user);
-    this.props.login(user);
+    this.props.login(user)
+      
+      .then(() => {
+        if (this.props.match.path.url === '/tweets') {
+          return this.props.history.push('/tweets');
+        }
+      });
+  }
+
+  handleDemoLogin(e) {
+    const demoUser = {
+      username: 'demo_user',
+      password: 'password'
+    };
+    this.props.login(demoUser)
+      .then(() => this.props.closeModal())
+      .then(() => {
+        if (this.props.match.path.url === '/tweets') {
+          return this.props.history.push('/tweets');
+        }
+      });
   }
 
   renderErrors() {
@@ -61,30 +78,29 @@ class LoginForm extends React.Component {
 
   render() {
     return (
-      <div className="session-form-container">
-        <div className="session-form-modal">
-          <h1>Login</h1>
-          {this.renderErrors()}
-          <form onSubmit={this.handleSubmit}>
-            <label>
-              Username
-              <input 
-                type="text" 
-                value={this.state.username} 
-                onChange={this.update('username')}
-              />
-            </label>
-            <label>
-              Password 
-              <input 
-                type="password"
-                value={this.state.password}
-                onChange={this.update('password')}
-              />
-            </label>
-            <button>Submit</button>
-          </form>
-        </div>
+      <div className="session-form-modal fadeInDown" onClick={(e) => e.stopPropagation()}>
+        <h1>Login</h1>
+        {this.renderErrors()}
+        <form onSubmit={this.handleSubmit}>
+          <label>
+            Username
+            <input 
+              type="text" 
+              value={this.state.username} 
+              onChange={this.update('username')}
+            />
+          </label>
+          <label>
+            Password 
+            <input 
+              type="password"
+              value={this.state.password}
+              onChange={this.update('password')}
+            />
+          </label>
+          <a onClick={this.handleDemoLogin}>Demo Login</a>
+          <button>Submit</button>
+        </form>
       </div>
     )
   }
