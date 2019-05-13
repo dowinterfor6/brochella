@@ -1,5 +1,5 @@
 .nav-bar-container {
-  height: 75px;
+  height: 100px;
   width: 100vw;
   margin: 50px auto;
   padding: 10px 50px;
@@ -10,10 +10,15 @@
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  position: absolute;
   /* TODO: TEMPORARY */
+  position: absolute;
   z-index: 25;
   background-color: white;
+}
+
+.nav-bar-container h1 {
+  box-sizing: border-box;
+  margin-bottom: 10px;
 }
 
 .nav-bar-items-before-login {
@@ -26,7 +31,7 @@
   margin: 0 10px;
 }
 
-.nav-bar-items-container {
+.nav-bar-items-after-login {
   width: 100%;
   display: flex;
   justify-content: space-between;

@@ -18,7 +18,7 @@ class NavBar extends React.Component {
   getLinks() {
     if (this.props.loggedIn) {
       return (
-        <ul className='nav-bar-items-container'>
+        <ul className='nav-bar-items-after-login'>
           <li>
             <Link to={'/tweets'}>All Tweets</Link>
           </li>
@@ -50,7 +50,7 @@ class NavBar extends React.Component {
   render() {
     return (
       <nav className="nav-bar-container">
-        <h1>NAVBAR SHIT some banner image maybe</h1>
+        <h1>Bro-chella</h1>
         { this.getLinks() }
       </nav>
     )
