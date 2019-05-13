@@ -4,7 +4,7 @@ export const RECEIVE_OWN_GROUPS = 'RECEIVE_GROUPS';
 export const RECEIVE_GROUP = 'RECEIVE_GROUP';
 export const REMOVE_GROUP = 'REMOVE_GROUP';
 
-export const receiveOwnGroups = (payload) = ({
+export const receiveOwnGroups = (payload) => ({
   type: RECEIVE_OWN_GROUPS, 
   payload
 });

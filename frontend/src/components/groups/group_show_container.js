@@ -5,7 +5,7 @@ import GroupShow from './group_show';
 
 const mapStateToProps = (state, ownProps) = {
   return ({
-    // group: state.entities.groups[ownProps.match.params.groupId]
+    // group: state.groups[ownProps.match.params.groupId]
   })
 };
 
