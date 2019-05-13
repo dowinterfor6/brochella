@@ -1,6 +1,6 @@
 import React from 'react';
 
-class GroupShow extends React.Compoennt {
+class GroupShow extends React.Component {
   componentDidMount() {
     this.props.fetchGroup(this.props.match.params.groupId);
   }
@@ -19,7 +19,7 @@ class GroupShow extends React.Compoennt {
           Edit Group Details 
         </button>
 
-        <button onClick={() => props.deleteGroup(props.group.id)}>
+        <button onClick={() => this.props.deleteGroup(this.props.group.id)}>
           Delete Group
         </button>
 
