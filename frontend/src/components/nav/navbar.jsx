@@ -15,13 +15,13 @@ class NavBar extends React.Component {
       return (
         <ul className='nav-bar-items-after-login'>
           <li>
-            <Link to={'/tweets'}>All Tweets</Link>
+            <Link to={'/discover'}>Discover</Link>
+          </li>
+          <li>
+            <Link to={'/new_group'}>New group</Link>
           </li>
           <li>
             <Link to={'/profile'}>Profile</Link>
-          </li>
-          <li>
-            <Link to={'/new_tweet'}>Write a Tweet</Link>
           </li>
           <li>
             <Link to={'/'} onClick={this.props.logout}>Logout</Link>
@@ -32,18 +32,18 @@ class NavBar extends React.Component {
       return (
         <ul className='nav-bar-items-before-login'>
           <li>
-            <Link to={'/tweets'}
+            <a
               onClick={() => this.props.openModal('signup')}
             >
               Signup
-            </Link>
+            </a>
           </li>
           <li>
-            <Link to={'/tweets'}
+            <a
               onClick={() => this.props.openModal('login')}
             >
             Login
-            </Link>
+            </a>
           </li>
         </ul>
       );

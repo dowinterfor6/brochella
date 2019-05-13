@@ -4,7 +4,7 @@ export const fetchOwnGroups = (id) => {
   return axios.get(`/api/users/${id}/groups`)
 };
 
-export const fetchGroup = id => {
+export const fetchGroup = (id) => {
   return axios.get(`/api/groups/user/${id}`)
 };
 
