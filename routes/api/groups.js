@@ -9,6 +9,12 @@ router.get('/test', (req, res) => {
     res.json({ msg: 'This is the groups route' })
 });
 
+router.get('/user/:user_id', (req, res) => {
+    Group.find({ user: req.params.user_id })
+      .then((groups) => res.json(groups))
+      .catch((err) => res.status(404).json({ notweetsfound: 'No groups found for this user.' }));
+  });
+
 router.get('/:id', (req, res) => {
     Group.findById(req.params.id )
         .then((group) => res.json(group))
@@ -28,19 +34,19 @@ router.post('/', passport.authenticate('jwt', { session: false }), (req, res) =>
         members: [req.user.id]
     });
 
-    newGroup.save().then((group) => res.json(group));
+    newGroup.save().then((group) => res.json(group)).then(() => owner.groups.push(newGroup));
 });
 
-// router.post('/', passport.authenticate('jwt', { session: false }), (req, res) => {
-//     const { errors, isValid } = validateGroupInput(req.body);
+router.delete('/:id', passport.authenticate('jwt', { session: false }), (req, res) => {
+    const { errors, isValid } = validateGroupInput(req.body);
 
-//     if(!isValid) {
-//         return res.status(400).json(errors);
-//     }
+    if(!isValid) {
+        return res.status(400).json(errors);
+    }
 
-//     const newGroup = Group.find({ Group: req.params.id })
-
-//     newGroup.save().then((group) => res.json(group));
-// });
+    Group.findByIdAndDelete(req.params.id)
+        .then((docs) => res.status(200).send({docs}))
+        .catch((err) => res.status(400))
+});
 
 module.exports = router;
