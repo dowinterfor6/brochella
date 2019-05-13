@@ -16,29 +16,41 @@ class NavBar extends React.Component {
   getLinks() {
     if (this.props.loggedIn) {
       return (
-        <div>
-          <Link to={'/tweets'}>All Tweets</Link>
-          <Link to={'/profile'}>Profile</Link>
-          <Link to={'/new_tweet'}>Write a Tweet</Link>
-          <button onClick={this.logoutUser}>Logout</button>
-        </div>
+        <ul className='nav-bar-items-container'>
+          <li>
+            <Link to={'/tweets'}>All Tweets</Link>
+          </li>
+          <li>
+            <Link to={'/profile'}>Profile</Link>
+          </li>
+          <li>
+            <Link to={'/new_tweet'}>Write a Tweet</Link>
+          </li>
+          <li>
+            <button onClick={this.logoutUser}>Logout</button>
+          </li>
+        </ul>
       );
     } else {
       return (
-        <div>
-          <Link to={'/signup'}>Signup</Link>
-          <Link to={'/login'}>Login</Link>
-        </div>
+        <ul className='nav-bar-items-container'>
+          <li>
+            <Link to={'/signup'}>Signup</Link>
+          </li>
+          <li>
+            <Link to={'/login'}>Login</Link>
+          </li>
+        </ul>
       );
     }
   }
 
   render() {
     return (
-      <div>
-        <h1>NAVBAR SHIT</h1>
+      <nav className="nav-bar-container">
+        <h1>NAVBAR SHIT some banner image maybe</h1>
         { this.getLinks() }
-      </div>
+      </nav>
     )
   }
 }
