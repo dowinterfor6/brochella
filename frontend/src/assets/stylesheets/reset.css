@@ -57,3 +57,17 @@ a:hover {
 	color: grey;
 	text-decoration: underline;
 }
+
+#root {
+	height: 100vh;
+	width: 100vw;
+	position: absolute;
+}
+
+h1 {
+	font-size: 32px;
+}
+
+h2 {
+	font-size: 24px;
+}

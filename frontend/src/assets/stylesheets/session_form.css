@@ -1,0 +1,72 @@
+.session-form-container {
+  height: 100vh;
+  width: 100vw;
+  box-sizing: border-box;
+  position: absolute;
+  z-index: 15;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.session-form-modal {
+  height: 400px;
+  width: 400px;
+  box-sizing: border-box;
+  padding: 25px;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border-radius: 5px;
+  border: 1px solid black;
+  background-color: white;
+}
+
+.session-form-modal form {
+  height: 300px;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto;
+  justify-content: flex-start;
+  align-items: flex-end;
+}
+
+.session-form-modal label {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.session-form-modal label input {
+  height: 30px;
+  margin-top: 10px;
+  box-sizing: border-box;
+  padding: 0 5px;
+  border: 1px solid black;
+}
+
+.session-form-modal label input:hover {
+  border: 1px solid rgb(45, 68, 170);
+}
+
+.session-form-modal label input:focus {
+  outline: none;
+  border: 1px solid rgb(136, 163, 219);
+}
+
+.session-form-modal button {
+  height: 35px;
+  cursor: pointer;
+  outline: none;
+  border: none;
+  border-radius: 2.5px;
+}
+
+.session-form-modal button:hover {
+  background-color: rgb(172, 172, 172);
+  border-radius: 5px;
+}
