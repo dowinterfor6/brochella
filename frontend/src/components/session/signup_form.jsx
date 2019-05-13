@@ -1,5 +1,7 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
+import '../../assets/stylesheets/reset.css';
+import '../../assets/stylesheets/session_form.css';
 
 class SignupForm extends React.Component {
   constructor(props) {
@@ -55,48 +57,46 @@ class SignupForm extends React.Component {
 
   render() {
     return (
-      <div>
-        <h1>SIGN UP</h1>
-        <form onSubmit={this.handleSubmit}>
-          <label>
-            Username
-            <input
-              type="text"
-              value={this.state.username}
-              onChange={this.update('username')}
-              placeholder="Username"
-            />
-          </label>
-          <label>
-            Email
-            <input
-              type="email"
-              value={this.state.email}
-              onChange={this.update('email')}
-              placeholder="Email"
-            />
-          </label>
-          <label>
-            Password
-            <input
-              type="password"
-              value={this.state.password}
-              onChange={this.update('password')}
-              placeholder="Password"
-            />
-          </label>
-          <label>
-            Confirm Password
-            <input
-              type="password"
-              value={this.state.password2}
-              onChange={this.update('password2')}
-              placeholder="Confirm password"
-            />
-          </label>
-          <button>Submit</button>
+      <div className="session-form-container">
+        <div className="session-form-modal">
+          <h1>Sign up</h1>
           {this.renderErrors()}
-        </form>
+          <form onSubmit={this.handleSubmit}>
+            <label>
+              Username
+            <input
+                type="text"
+                value={this.state.username}
+                onChange={this.update('username')}
+              />
+            </label>
+            <label>
+              Email
+            <input
+                type="email"
+                value={this.state.email}
+                onChange={this.update('email')}
+              />
+            </label>
+            <label>
+              Password
+            <input
+                type="password"
+                value={this.state.password}
+                onChange={this.update('password')}
+              />
+            </label>
+            <label>
+              Confirm Password
+            <input
+                type="password"
+                value={this.state.password2}
+                onChange={this.update('password2')}
+              />
+            </label>
+            <button>Submit</button>
+          </form>
+        </div>
       </div>
     )
   }
