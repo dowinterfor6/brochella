@@ -34,7 +34,7 @@ module.exports = function validateRegisterInput(data) {
   }
 
   if (Validator.isEmpty(data.password2)) {
-    errors.password2 = "Confirm Password field can't be blank";
+    errors.password2 = "Please retype password";
   }
 
   if (!Validator.equals(data.password, data.password2)) {
