@@ -64,14 +64,16 @@ router.delete('/:id', passport.authenticate('jwt', { session: false }), (req, re
         .catch((err) => res.status(400))
 });
 
-router.put('/:id', (req, res) => (
-    Group.findOneAndUpdate(req.params.id), {
-        $set: {
-            name: req.body.name
-        }
-    }
-    .then((group) => res.json(group))
-    .catch((err) => res.status(400).json(err))
-));
+router.put('/:id', (req, res) => {
+    Group.findByIdAndUpdate({_id: req.params.id},req.body)
+        .then(() => Group.findOne({_id: req.params.id}))
+        .then((group) => res.send(group))
+});
+
+// router.get('./:id/acts', (req, res) => {
+//     res.json({
+//         acts: req.group.acts
+//     })
+// })
 
 module.exports = router;
