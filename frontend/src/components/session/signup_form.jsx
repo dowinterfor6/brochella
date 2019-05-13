@@ -57,18 +57,6 @@ class SignupForm extends React.Component {
       });
   }
 
-  renderErrors() {
-    return (
-      <ul>
-        {Object.values(this.state.errors).map((error, idx) => (
-          <li key={`error-${idx}`}>
-            {error}
-          </li>
-        ))}
-      </ul>
-    );
-  }
-
   render() {
     return (
       <div
@@ -80,10 +68,10 @@ class SignupForm extends React.Component {
         }}
       >
         <h1>Sign up</h1>
-        {this.renderErrors()}
         <form onSubmit={this.handleSubmit}>
           <label>
-            Username
+            Username 
+            {this.props.errors.username ? ` - ${this.props.errors.username}` : ''}
           <input
               type="text"
               value={this.state.username}
@@ -92,6 +80,7 @@ class SignupForm extends React.Component {
           </label>
           <label>
             Email
+            {this.props.errors.email ? ` - ${this.props.errors.email}` : ''}
           <input
               type="email"
               value={this.state.email}
@@ -100,6 +89,7 @@ class SignupForm extends React.Component {
           </label>
           <label>
             Password
+            {this.props.errors.password ? ` - ${this.props.errors.password}` : ''}
           <input
               type="password"
               value={this.state.password}
@@ -108,6 +98,7 @@ class SignupForm extends React.Component {
           </label>
           <label>
             Confirm Password
+            {this.props.errors.password2 ? ` - ${this.props.errors.password2}` : ''}
           <input
               type="password"
               value={this.state.password2}

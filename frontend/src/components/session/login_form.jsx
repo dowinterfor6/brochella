@@ -95,10 +95,10 @@ class LoginForm extends React.Component {
         }}
       >
         <h1>Login</h1>
-        {this.renderErrors()}
         <form onSubmit={this.handleSubmit}>
           <label>
             Username
+            {this.props.errors.username ? ` - ${this.props.errors.username}` : ''}
             <input 
               type="text" 
               value={this.state.username} 
@@ -106,7 +106,8 @@ class LoginForm extends React.Component {
             />
           </label>
           <label>
-            Password 
+            Password
+            {this.props.errors.password ? ` - ${this.props.errors.password}` : ''}
             <input 
               type="password"
               value={this.state.password}
