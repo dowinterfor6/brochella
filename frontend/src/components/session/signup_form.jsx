@@ -18,6 +18,11 @@ class SignupForm extends React.Component {
     this.clearedErrors = false;
   }
 
+  componentDidMount() {
+    let component = document.getElementsByClassName('session-form-modal')[0];
+    component.classList.add('fadeInDown');
+  }
+
   componentWillReceiveProps(nextProps) {
     this.setState({ errors: nextProps.errors })
   }
@@ -46,6 +51,9 @@ class SignupForm extends React.Component {
         if (this.props.match.path.url === '/tweets') {
           return this.props.history.push('/tweets');
         }
+
+        let component = document.getElementsByClassName('session-form-modal')[0];
+        component.classList.add('shake');
       });
   }
 
@@ -63,7 +71,14 @@ class SignupForm extends React.Component {
 
   render() {
     return (
-      <div className="session-form-modal fadeInDown" onClick={(e) => e.stopPropagation()}>
+      <div
+        className="session-form-modal"
+        onClick={(e) => e.stopPropagation()}
+        onAnimationEnd={(e) => {
+          e.currentTarget.classList.remove('fadeInDown');
+          e.currentTarget.classList.remove('shake');
+        }}
+      >
         <h1>Sign up</h1>
         {this.renderErrors()}
         <form onSubmit={this.handleSubmit}>
