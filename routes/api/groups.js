@@ -10,7 +10,7 @@ router.get('/test', (req, res) => {
 });
 
 router.get('/:id', (req, res) => {
-    Group.find({ group: req.params.id })
+    Group.findById(req.params.id )
         .then((group) => res.json(group))
         .catch((err) => res.status(404).json({ nogroupfound: "That group does not exist." }))
 });
@@ -30,5 +30,17 @@ router.post('/', passport.authenticate('jwt', { session: false }), (req, res) =>
 
     newGroup.save().then((group) => res.json(group));
 });
+
+// router.post('/', passport.authenticate('jwt', { session: false }), (req, res) => {
+//     const { errors, isValid } = validateGroupInput(req.body);
+
+//     if(!isValid) {
+//         return res.status(400).json(errors);
+//     }
+
+//     const newGroup = Group.find({ Group: req.params.id })
+
+//     newGroup.save().then((group) => res.json(group));
+// });
 
 module.exports = router;
