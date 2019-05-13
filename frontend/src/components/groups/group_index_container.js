@@ -1,6 +1,7 @@
 import { connect } from 'react-redux';
 import { fetchOwnGroups } from '../../actions/group_actions';
 import { logout } from '../../actions/session_actions';
+import GroupIndex from './group_index';
 
 const mapStateToProps = (state) => {
   return {
@@ -19,4 +20,4 @@ const mapDispatchToProps = (dispatch) => {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(UserIndex);
+)(GroupIndex);
