@@ -47,7 +47,7 @@ Things Accomplished Over the Weekend
 
 Group Members and Work Breakdown
 - Monday:
-  - Andrew: Splash Page, Navbar, Modal CSS
+  - Andrew: UserAuth Backend/Frontend; Splash Page, Navbar, Modal CSS
   - Kevin: Models, Routes, Modal Backend/Frontend
   - Karen: Dashboard Backend/Frontend
 - Tuesday: 
