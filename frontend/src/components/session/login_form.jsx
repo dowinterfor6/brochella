@@ -24,7 +24,7 @@ class LoginForm extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    this.setState({ errors: nextProps.errors })
+    this.setState({ errors: nextProps.errors });
   }
 
   componentWillUnmount() {
@@ -49,18 +49,18 @@ class LoginForm extends React.Component {
     }
     this.props.login(user)  
       .then(() => {
-        if (this.props.match.path.url === '/tweets') {
-          return this.props.history.push('/tweets');
-        }
-
-        let component = document.getElementsByClassName('session-form-modal')[0];
-        component.classList.add('shake');
-
-        let form = document.querySelector('form');
-        if (!form.classList.value.includes('error')) {
-          form.classList.add('error');
+        if (this.props.errors.length === 0) {
+          this.props.closeModal();
+        } else {
+          let component = document.getElementsByClassName('session-form-modal')[0];
+          component.classList.add('shake');
+  
+          let form = document.querySelector('form');
+          if (!form.classList.value.includes('error')) {
+            form.classList.add('error');
+          };
         };
-      })
+      });
   }
 
   handleDemoLogin(e) {
@@ -69,11 +69,10 @@ class LoginForm extends React.Component {
       password: 'password'
     };
     this.props.login(demoUser)
-      .then(() => this.props.closeModal())
       .then(() => {
-        if (this.props.match.path.url === '/tweets') {
-          return this.props.history.push('/tweets');
-        }
+        if (this.props.errors.length === 0) {
+          this.props.closeModal();
+        };
       });
   }
 
