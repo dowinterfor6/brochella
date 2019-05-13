@@ -77,6 +77,22 @@
 
 /* ANIMATIONS */
 
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+.fadeIn {
+  -webkit-animation-name: fadeIn;
+  animation-name: fadeIn;
+  animation-duration: 0.25s;
+}
+
 @keyframes fadeInDown {
   from {
     opacity: 0;
@@ -94,5 +110,5 @@
 .fadeInDown {
   -webkit-animation-name: fadeInDown;
   animation-name: fadeInDown;
-  animation-duration: 0.2s;
+  animation-duration: 0.25s;
 }

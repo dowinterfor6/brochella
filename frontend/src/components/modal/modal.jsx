@@ -1,6 +1,7 @@
 import React from 'react';
 import SignupFormContainer from '../session/signup_form_container';
 import LoginFormContainer from '../session/login_form_container';
+import '../../assets/stylesheets/session_form.css';
 
 class Modal extends React.Component {
   render() {
@@ -20,7 +21,7 @@ class Modal extends React.Component {
     }
 
     return (
-      <div className="modal-background" onClick={this.props.closeModal}>
+      <div className="modal-background fadeIn" onClick={this.props.closeModal}>
         {component}
       </div>
     )

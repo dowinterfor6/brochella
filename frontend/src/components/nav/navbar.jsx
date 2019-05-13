@@ -24,7 +24,7 @@ class NavBar extends React.Component {
             <Link to={'/new_tweet'}>Write a Tweet</Link>
           </li>
           <li>
-            <Link to={'/tweets'} onClick={this.props.logoutUser}>Logout</Link>
+            <Link to={'/tweets'} onClick={this.props.logout()}>Logout</Link>
           </li>
         </ul>
       );
