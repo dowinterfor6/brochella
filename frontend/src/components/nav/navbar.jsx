@@ -2,17 +2,12 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import '../../assets/stylesheets/reset.css';
 import '../../assets/stylesheets/navbar.css';
+import ModalContainer from '../modal/modal_container';
 
 class NavBar extends React.Component {
   constructor(props) {
     super(props);
-    this.logoutUser = this.logoutUser.bind(this);
     this.getLinks = this.getLinks.bind(this);
-  }
-
-  logoutUser(e) {
-    e.preventDefault();
-    this.props.logout();
   }
 
   getLinks() {
@@ -29,7 +24,7 @@ class NavBar extends React.Component {
             <Link to={'/new_tweet'}>Write a Tweet</Link>
           </li>
           <li>
-            <Link to={'/tweets'} onClick={this.logoutUser}>Logout</Link>
+            <Link to={'/'} onClick={this.props.logout}>Logout</Link>
           </li>
         </ul>
       );
@@ -37,10 +32,18 @@ class NavBar extends React.Component {
       return (
         <ul className='nav-bar-items-before-login'>
           <li>
-            <Link to={'/signup'}>Signup</Link>
+            <Link to={'/tweets'}
+              onClick={() => this.props.openModal('signup')}
+            >
+              Signup
+            </Link>
           </li>
           <li>
-            <Link to={'/login'}>Login</Link>
+            <Link to={'/tweets'}
+              onClick={() => this.props.openModal('login')}
+            >
+            Login
+            </Link>
           </li>
         </ul>
       );
@@ -52,6 +55,7 @@ class NavBar extends React.Component {
       <nav className="nav-bar-container">
         <h1>Bro-chella</h1>
         { this.getLinks() }
+        <ModalContainer />
       </nav>
     )
   }
