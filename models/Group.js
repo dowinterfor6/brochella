@@ -16,6 +16,11 @@ const GroupSchema = new Schema({
     members: {
         type: Array,
         required: true
+    }, 
+
+    acts: {
+        type: Array,
+        default: []
     }
 });
 
