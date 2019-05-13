@@ -1,5 +1,7 @@
+import React from 'react';
+
 const GroupIndexItem = (props) => {
-  reuturn (
+  return (
     <div> 
       <div> {this.props.group.name} </div>
       <div>{this.props.group.owner}</div>

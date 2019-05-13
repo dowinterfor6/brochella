@@ -1,25 +1,25 @@
 import React from 'react';
-import UserGroupIndexItem from './group_index_item';
+import GroupIndexItem from './group_index_item';
 
 
 class GroupIndex extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
-  compoenntDidMount() {
-    this.props.fetchOwnGroups();
+  componentDidMount() {
+    console.log(this.props.currentUser.id);
+    this.props.fetchOwnGroups(this.props.currentUser.id);
   }
 
   render() {
-    let groups = this.props.users.groups.map(group => {
-      return (
-        <UserGroupIndexItem
-          key={group.id}
-          group={group}
-        />
-      )
-    });
+    let groups = [];
+    if (this.props.users) {
+      groups = this.props.users.groups.map(group => {
+        return (
+          <GroupIndexItem
+            key={group.id}
+            group={group}
+          />
+        )
+      });
+    };
 
     return (
       <div> 

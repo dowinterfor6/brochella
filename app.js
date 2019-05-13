@@ -11,7 +11,6 @@ const bodyParser = require('body-parser');
 const db = require('./config/keys').mongoURI;
 // Import routes
 const users = require("./routes/api/users");
-const tweets = require("./routes/api/tweets");
 const acts = require("./routes/api/acts");
 const groups = require("./routes/api/groups");
 // Import passport
@@ -23,21 +22,20 @@ mongoose
   .then(() => console.log("Connected to MongoDB successfully"))
   .catch((err) => console.log(err));
   
-  // Middleware for body parser
-  // IMP! Must be above routes
-  app.use(bodyParser.urlencoded({ extended: false}));
-  app.use(bodyParser.json());
+// Middleware for body parser
+// IMP! Must be above routes
+app.use(bodyParser.urlencoded({ extended: false}));
+app.use(bodyParser.json());
 
-  // In place of hello world
-  app.use(passport.initialize());
-  require('./config/passport')(passport);
-  
-  // Tell Express to use the imported routes
-  app.use("/api/users", users);
-  app.use("/api/tweets", tweets);
-  app.use("/api/groups", groups);
+// In place of hello world
+app.use(passport.initialize());
+require('./config/passport')(passport);
 
-  app.use('/api/acts', acts);
+// Tell Express to use the imported routes
+app.use("/api/users", users);
+app.use("/api/groups", groups);
+
+app.use('/api/acts', acts);
 
 
 app.listen(port, () => console.log(`Server is running on port ${port}`));

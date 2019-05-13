@@ -13,7 +13,7 @@ router.get('/test', (req, res) => {
 router.get('/user/:user_id', (req, res) => {
     Group.find({ user: req.params.user_id })
       .then((groups) => res.json(groups))
-      .catch((err) => res.status(404).json({ notweetsfound: 'No groups found for this user.' }));
+      .catch((err) => res.status(404).json({ nouserfound: 'No groups found for this user.' }));
   });
 
 router.get('/:id', (req, res) => {

@@ -7,7 +7,7 @@ const groupsReducer = (state={}, action) => {
 
   switch (action.type) {
     case RECEIVE_OWN_GROUPS:
-      return action.payload.groups;
+      return action.user.groups;
     case RECEIVE_GROUP:
       nextState = merge({}, state, { [action.group.id]: action.group })
       return nextState;

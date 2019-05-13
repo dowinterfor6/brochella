@@ -6,6 +6,7 @@ import GroupIndex from './group_index';
 const mapStateToProps = (state) => {
   return {
     posts: Object.keys(state.groups).map(id => state.groups[id]),
+    currentUser: state.session.user
   };
 };
 
