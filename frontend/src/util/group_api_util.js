@@ -1,11 +1,7 @@
 import axios from 'axios';
 
-export const fetchOwnGroups = (userId) => {
-  return axios.get(`/api/groups/user/${userId}`)
-};
-
 export const fetchGroup = (groupId) => {
-  return axios.get(`/api/group/${groupId}`)
+  return axios.get(`/api/groups/${groupId}`)
 };
 
 export const createGroup = (group) => {
