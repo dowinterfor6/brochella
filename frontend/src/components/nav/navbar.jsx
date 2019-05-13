@@ -24,7 +24,7 @@ class NavBar extends React.Component {
             <Link to={'/new_tweet'}>Write a Tweet</Link>
           </li>
           <li>
-            <Link to={'/tweets'} onClick={this.props.logout()}>Logout</Link>
+            <Link to={'/'} onClick={this.props.logout}>Logout</Link>
           </li>
         </ul>
       );
@@ -32,18 +32,18 @@ class NavBar extends React.Component {
       return (
         <ul className='nav-bar-items-before-login'>
           <li>
-            <div 
+            <Link to={'/tweets'}
               onClick={() => this.props.openModal('signup')}
             >
               Signup
-            </div>
+            </Link>
           </li>
           <li>
-            <div 
+            <Link to={'/tweets'}
               onClick={() => this.props.openModal('login')}
             >
             Login
-            </div>
+            </Link>
           </li>
         </ul>
       );

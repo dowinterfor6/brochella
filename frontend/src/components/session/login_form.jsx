@@ -41,7 +41,12 @@ class LoginForm extends React.Component {
       password: this.state.password
     }
     this.props.login(user)
-      .then(() => this.props.closeModal);
+      .then(() => this.props.closeModal())
+      .then(() => {
+        if (this.props.match.path.url === '/tweets') {
+          return this.props.history.push('/tweets');
+        }
+      })
   }
 
   renderErrors() {
