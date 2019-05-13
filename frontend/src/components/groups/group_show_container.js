@@ -11,9 +11,9 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = (dispatch) => { 
   return ({
-    fetchGroup: (id) => dispatch(fetchGroup(id)),
+    fetchGroup: (groupId) => dispatch(fetchGroup(groupId)),
     updateGroup: (group) => dispatch(updateGroup(group)),
-    deleteGroup: (groupId) => dispatch(deleteGroup(groupId)), 
+    deleteGroup: (id) => dispatch(deleteGroup(id)), 
     openModal: (modalType) => dispatch(openModal(modalType))
   })
 }

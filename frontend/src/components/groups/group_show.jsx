@@ -9,15 +9,16 @@ class GroupShow extends React.Component {
     return(
       <div> 
         
-        <div> group name </div>
-        <div> group acts </div>
-        <div> group admin </div>
-        <div> group members </div>
+        <div> {this.props.group.name} </div>
+        <div> {this.props.group.owner} </div>
+        <div> {this.props.group.members} </div>
+        <div> {this.props.group.acts} </div>
         <div> discover related acts </div>
 
-        <button onClick={() => this.props.openModal('Edit Group')}>
-          Edit Group Details 
-        </button>
+        {/* comment in when Edit Group Form Modal is done */}
+        {/* <button onClick={() => this.props.openModal('Edit Group')}>
+          Edit Group Details
+        </button> */}
 
         <button onClick={() => this.props.deleteGroup(this.props.group.id)}>
           Delete Group
