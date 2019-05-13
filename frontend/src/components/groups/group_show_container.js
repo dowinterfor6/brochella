@@ -3,9 +3,9 @@ import { fetchGroup, updateGroup, deleteGroup } from '../../actions/group_action
 import { openModal } from '../../actions/modal_actions';
 import GroupShow from './group_show';
 
-const mapStateToProps = (state, ownProps) = {
+const mapStateToProps = (state, ownProps) => {
   return ({
-    // group: state.groups[ownProps.match.params.groupId]
+    group: state.groups[ownProps.match.params.groupId]
   })
 };
 

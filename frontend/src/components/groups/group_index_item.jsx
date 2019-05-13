@@ -1,11 +1,10 @@
 const GroupIndexItem = (props) => {
   reuturn (
     <div> 
-      <div> Group details brief</div>
-      <div>title</div>
-      <div>Admin</div>
-      <div>members</div>
-      
+      <div> {this.props.group.name} </div>
+      <div>{this.props.group.owner}</div>
+      <div>{this.props.group.members}</div>
+      <div>{this.props.group.acts}</div>
     </div>
   )
 };
