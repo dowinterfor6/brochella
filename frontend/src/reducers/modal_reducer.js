@@ -9,7 +9,7 @@ const modalReducer = (state = null, action) => {
       return null;
     default:
       return state;
-  };
+  }
 };
 
 export default modalReducer;
