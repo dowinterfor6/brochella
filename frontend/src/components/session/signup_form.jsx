@@ -54,6 +54,11 @@ class SignupForm extends React.Component {
 
         let component = document.getElementsByClassName('session-form-modal')[0];
         component.classList.add('shake');
+
+        let form = document.querySelector('form');
+        if (!form.classList.value.includes('error')) {
+          form.classList.add('error');
+        };
       });
   }
 

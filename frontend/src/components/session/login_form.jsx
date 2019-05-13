@@ -55,6 +55,11 @@ class LoginForm extends React.Component {
 
         let component = document.getElementsByClassName('session-form-modal')[0];
         component.classList.add('shake');
+
+        let form = document.querySelector('form');
+        if (!form.classList.value.includes('error')) {
+          form.classList.add('error');
+        };
       })
   }
 
@@ -122,7 +127,7 @@ class LoginForm extends React.Component {
               onChange={this.update('password')}
             />
           </label>
-          <a onClick={this.handleDemoLogin}>Demo Login</a>
+          <a onClick={this.handleDemoLogin}>Forgot your password? (Demo Login)</a>
           <button>Submit</button>
         </form>
       </div>
