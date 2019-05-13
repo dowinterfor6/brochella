@@ -33,4 +33,5 @@ document.addEventListener('DOMContentLoaded', () => {
   //TESTING
   window.login = sessionApiUtil.login;
   window.signup = sessionApiUtil.signup;
+  window.getState = store.getState;
 });
