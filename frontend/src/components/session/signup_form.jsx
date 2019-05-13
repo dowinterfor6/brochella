@@ -40,7 +40,13 @@ class SignupForm extends React.Component {
       password: this.state.password,
       password2: this.state.password2
     };
-    this.props.signup(user, this.props.history);
+    this.props.signup(user, this.props.history)
+      .then(() => this.props.closeModal())
+      .then(() => {
+        if (this.props.match.path.url === '/tweets') {
+          return this.props.history.push('/tweets');
+        }
+      });
   }
 
   renderErrors() {
@@ -57,46 +63,44 @@ class SignupForm extends React.Component {
 
   render() {
     return (
-      <div className="session-form-container">
-        <div className="session-form-modal">
-          <h1>Sign up</h1>
-          {this.renderErrors()}
-          <form onSubmit={this.handleSubmit}>
-            <label>
-              Username
-            <input
-                type="text"
-                value={this.state.username}
-                onChange={this.update('username')}
-              />
-            </label>
-            <label>
-              Email
-            <input
-                type="email"
-                value={this.state.email}
-                onChange={this.update('email')}
-              />
-            </label>
-            <label>
-              Password
-            <input
-                type="password"
-                value={this.state.password}
-                onChange={this.update('password')}
-              />
-            </label>
-            <label>
-              Confirm Password
-            <input
-                type="password"
-                value={this.state.password2}
-                onChange={this.update('password2')}
-              />
-            </label>
-            <button>Submit</button>
-          </form>
-        </div>
+      <div className="session-form-modal fadeInDown" onClick={(e) => e.stopPropagation()}>
+        <h1>Sign up</h1>
+        {this.renderErrors()}
+        <form onSubmit={this.handleSubmit}>
+          <label>
+            Username
+          <input
+              type="text"
+              value={this.state.username}
+              onChange={this.update('username')}
+            />
+          </label>
+          <label>
+            Email
+          <input
+              type="email"
+              value={this.state.email}
+              onChange={this.update('email')}
+            />
+          </label>
+          <label>
+            Password
+          <input
+              type="password"
+              value={this.state.password}
+              onChange={this.update('password')}
+            />
+          </label>
+          <label>
+            Confirm Password
+          <input
+              type="password"
+              value={this.state.password2}
+              onChange={this.update('password2')}
+            />
+          </label>
+          <button>Submit</button>
+        </form>
       </div>
     )
   }
