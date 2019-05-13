@@ -125,4 +125,10 @@ router.get('/current', passport.authenticate('jwt', {session: false}), (req, res
   });
 });
 
+router.get('/:user_id/groups', passport.authenticate('jwt', {session: false}), (req, res) => {
+  res.json({
+    groups: req.user.groups
+  });
+});
+
 module.exports = router;
