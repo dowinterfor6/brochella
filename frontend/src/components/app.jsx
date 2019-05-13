@@ -10,7 +10,7 @@ const App = () => (
   <div>
     <NavBarContainer />
     <Switch>
-      <ProtectedRoute exact path='/groups' component={GroupIndexContainer} />
+      <ProtectedRoute exact path='/dashboard' component={GroupIndexContainer} />
       <AuthRoute exact path='/' component={MainPage} />
     </Switch>
   </div>
