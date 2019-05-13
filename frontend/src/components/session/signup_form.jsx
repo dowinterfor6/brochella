@@ -41,7 +41,12 @@ class SignupForm extends React.Component {
       password2: this.state.password2
     };
     this.props.signup(user, this.props.history)
-      .then(() => this.props.closeModal());
+      .then(() => this.props.closeModal())
+      .then(() => {
+        if (this.props.match.path.url === '/tweets') {
+          return this.props.history.push('/tweets');
+        }
+      });
   }
 
   renderErrors() {

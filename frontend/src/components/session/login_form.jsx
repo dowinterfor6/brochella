@@ -14,6 +14,7 @@ class LoginForm extends React.Component {
     };
 
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleDemoLogin = this.handleDemoLogin.bind(this);
     this.renderErrors = this.renderErrors.bind(this);
   }
 
@@ -41,12 +42,26 @@ class LoginForm extends React.Component {
       password: this.state.password
     }
     this.props.login(user)
+      
+      .then(() => {
+        if (this.props.match.path.url === '/tweets') {
+          return this.props.history.push('/tweets');
+        }
+      });
+  }
+
+  handleDemoLogin(e) {
+    const demoUser = {
+      username: 'demo_user',
+      password: 'password'
+    };
+    this.props.login(demoUser)
       .then(() => this.props.closeModal())
       .then(() => {
         if (this.props.match.path.url === '/tweets') {
           return this.props.history.push('/tweets');
         }
-      })
+      });
   }
 
   renderErrors() {
@@ -83,6 +98,7 @@ class LoginForm extends React.Component {
               onChange={this.update('password')}
             />
           </label>
+          <a onClick={this.handleDemoLogin}>Demo Login</a>
           <button>Submit</button>
         </form>
       </div>
