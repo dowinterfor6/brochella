@@ -12,6 +12,7 @@ const db = require('./config/keys').mongoURI;
 // Import routes
 const users = require("./routes/api/users");
 const tweets = require("./routes/api/tweets");
+const acts = require("./routes/api/acts");
 const groups = require("./routes/api/groups");
 // Import passport
 const passport = require('passport');
@@ -35,6 +36,8 @@ mongoose
   app.use("/api/users", users);
   app.use("/api/tweets", tweets);
   app.use("/api/groups", groups);
+
+  app.use('/api/acts', acts);
 
 
 app.listen(port, () => console.log(`Server is running on port ${port}`));

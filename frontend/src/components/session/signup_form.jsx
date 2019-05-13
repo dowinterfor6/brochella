@@ -18,12 +18,18 @@ class SignupForm extends React.Component {
     this.clearedErrors = false;
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.signedIn === true) {
-      this.props.history.push('/login');
-    }
+  componentDidMount() {
+    let component = document.getElementsByClassName('session-form-modal')[0];
+    component.classList.add('fadeInDown');
+  }
 
-    this.setState({ errors: nextProps.errors });
+  componentWillReceiveProps(nextProps) {
+    this.setState({ errors: nextProps.errors })
+  }
+
+  componentWillUnmount() {
+    this.props.deleteErrors();
+    this.props.closeModal()
   }
 
   update(field) {
@@ -41,34 +47,40 @@ class SignupForm extends React.Component {
       password2: this.state.password2
     };
     this.props.signup(user, this.props.history)
-      .then(() => this.props.closeModal())
       .then(() => {
         if (this.props.match.path.url === '/tweets') {
           return this.props.history.push('/tweets');
         }
-      });
-  }
 
-  renderErrors() {
-    return (
-      <ul>
-        {Object.values(this.state.errors).map((error, idx) => (
-          <li key={`error-${idx}`}>
-            {error}
-          </li>
-        ))}
-      </ul>
-    );
+        let component = document.getElementsByClassName('session-form-modal')[0];
+        component.classList.add('shake');
+
+        let form = document.querySelector('form');
+        if (!form.classList.value.includes('error')) {
+          form.classList.add('error');
+        };
+      });
   }
 
   render() {
     return (
-      <div className="session-form-modal fadeInDown" onClick={(e) => e.stopPropagation()}>
+      <div
+        className="session-form-modal"
+        onClick={(e) => e.stopPropagation()}
+        onAnimationEnd={(e) => {
+          e.currentTarget.classList.remove('fadeInDown');
+          e.currentTarget.classList.remove('shake');
+        }}
+      >
         <h1>Sign up</h1>
-        {this.renderErrors()}
         <form onSubmit={this.handleSubmit}>
           <label>
-            Username
+            <div className="label-message-container">
+              Username &nbsp;
+              <div className="error-message">
+                {this.props.errors.username ? ` - ${this.props.errors.username}` : ''}
+              </div>
+            </div>
           <input
               type="text"
               value={this.state.username}
@@ -76,7 +88,12 @@ class SignupForm extends React.Component {
             />
           </label>
           <label>
-            Email
+            <div className="label-message-container">
+              Email &nbsp;
+              <div className="error-message">
+                {this.props.errors.email ? ` - ${this.props.errors.email}` : ''}
+              </div>
+            </div>
           <input
               type="email"
               value={this.state.email}
@@ -84,7 +101,12 @@ class SignupForm extends React.Component {
             />
           </label>
           <label>
-            Password
+            <div className="label-message-container">
+              Password &nbsp;
+              <div className="error-message">
+                {this.props.errors.password ? ` - ${this.props.errors.password}` : ''}
+              </div>
+            </div>
           <input
               type="password"
               value={this.state.password}
@@ -92,7 +114,12 @@ class SignupForm extends React.Component {
             />
           </label>
           <label>
-            Confirm Password
+            <div className="label-message-container">
+              Confirm Password &nbsp;
+              <div className="error-message">
+                {this.props.errors.password2 ? ` - ${this.props.errors.password2}` : ''}
+              </div>
+            </div>
           <input
               type="password"
               value={this.state.password2}
