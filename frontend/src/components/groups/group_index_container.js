@@ -5,8 +5,7 @@ import GroupIndex from './group_index';
 
 const mapStateToProps = (state) => {
   return {
-    // currentUser: , 
-    // posts: Object.keys(state.groups).map(id => state.groups[id])
+    posts: Object.keys(state.groups).map(id => state.groups[id]),
   };
 };
 
