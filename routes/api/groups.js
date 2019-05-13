@@ -45,7 +45,7 @@ router.delete('/:id', passport.authenticate('jwt', { session: false }), (req, re
     }
 
     Group.findByIdAndDelete(req.params.id)
-        .then((docs) => res.status(200).send({docs}))
+        .then((docs) => res.status(200).json({ msg: "That group does not exist." }))
         .catch((err) => res.status(400))
 });
 
