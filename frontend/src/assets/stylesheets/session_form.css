@@ -112,3 +112,34 @@
   animation-name: fadeInDown;
   animation-duration: 0.25s;
 }
+
+@keyframes shake {
+  from,
+  to {
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+  }
+
+  10%,
+  30%,
+  50%,
+  70%,
+  90% {
+    -webkit-transform: translate3d(-2.5px, 0, 0);
+    transform: translate3d(-2.5px, 0, 0);
+  }
+
+  20%,
+  40%,
+  60%,
+  80% {
+    -webkit-transform: translate3d(2.5px, 0, 0);
+    transform: translate3d(2.5px, 0, 0);
+  }
+}
+
+.shake {
+  -webkit-animation-name: shake;
+  animation-name: shake;
+  animation-duration: 0.25s;
+}
