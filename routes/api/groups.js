@@ -4,6 +4,7 @@ const passport = require('passport');
 
 const Group = require('../../models/Group');
 const validateGroupInput = require('../../validation/group');
+const User = require('../../models/User');
 
 router.get('/test', (req, res) => {
     res.json({ msg: 'This is the groups route' })
@@ -34,7 +35,21 @@ router.post('/', passport.authenticate('jwt', { session: false }), (req, res) =>
         members: [req.user.id]
     });
 
-    newGroup.save().then((group) => res.json(group)).then(() => owner.groups.push(newGroup));
+    newGroup.save()
+        .then((group) => group.populate('owner').execPopulate())
+        .then((group) => {
+            group.owner.groups.push(group)
+            return group.owner.save()
+            .then(() => {
+                return group
+            })
+        })
+        //async await???
+        .then((group) => {
+            const { name, owner } = group
+            res.json({ name: name, owner: owner.id });
+        })
+
 });
 
 router.delete('/:id', passport.authenticate('jwt', { session: false }), (req, res) => {
@@ -48,5 +63,15 @@ router.delete('/:id', passport.authenticate('jwt', { session: false }), (req, re
         .then((docs) => res.status(200).json({ msg: "That group does not exist." }))
         .catch((err) => res.status(400))
 });
+
+router.put('/:id', (req, res) => (
+    Group.findOneAndUpdate(req.params.id), {
+        $set: {
+            name: req.body.name
+        }
+    }
+    .then((group) => res.json(group))
+    .catch((err) => res.status(400).json(err))
+));
 
 module.exports = router;
