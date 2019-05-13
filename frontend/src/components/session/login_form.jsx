@@ -18,12 +18,18 @@ class LoginForm extends React.Component {
     this.renderErrors = this.renderErrors.bind(this);
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.currentUser === true) {
-      this.props.history.push('/tweets');
-    }
+  componentDidMount() {
+    let component = document.getElementsByClassName('session-form-modal')[0];
+    component.classList.add('fadeInDown');
+  }
 
+  componentWillReceiveProps(nextProps) {
     this.setState({ errors: nextProps.errors })
+  }
+
+  componentWillUnmount() {
+    this.props.deleteErrors();
+    this.props.closeModal()
   }
 
   update(field) {
@@ -41,13 +47,20 @@ class LoginForm extends React.Component {
       username: this.state.username,
       password: this.state.password
     }
-    this.props.login(user)
-      
+    this.props.login(user)  
       .then(() => {
         if (this.props.match.path.url === '/tweets') {
           return this.props.history.push('/tweets');
         }
-      });
+
+        let component = document.getElementsByClassName('session-form-modal')[0];
+        component.classList.add('shake');
+
+        let form = document.querySelector('form');
+        if (!form.classList.value.includes('error')) {
+          form.classList.add('error');
+        };
+      })
   }
 
   handleDemoLogin(e) {
@@ -78,12 +91,23 @@ class LoginForm extends React.Component {
 
   render() {
     return (
-      <div className="session-form-modal fadeInDown" onClick={(e) => e.stopPropagation()}>
+      <div 
+        className="session-form-modal" 
+        onClick={(e) => e.stopPropagation()}
+        onAnimationEnd={(e) => {
+          e.currentTarget.classList.remove('fadeInDown');
+          e.currentTarget.classList.remove('shake');
+        }}
+      >
         <h1>Login</h1>
-        {this.renderErrors()}
         <form onSubmit={this.handleSubmit}>
           <label>
-            Username
+            <div className="label-message-container">
+              Username &nbsp;
+              <div className="error-message">
+                {this.props.errors.username ? ` - ${this.props.errors.username}` : ''}
+              </div>
+            </div>
             <input 
               type="text" 
               value={this.state.username} 
@@ -91,14 +115,19 @@ class LoginForm extends React.Component {
             />
           </label>
           <label>
-            Password 
+            <div className="label-message-container">
+              Password &nbsp;
+              <div className="error-message">
+                {this.props.errors.password ? ` - ${this.props.errors.password}` : ''}
+              </div>
+            </div>
             <input 
               type="password"
               value={this.state.password}
               onChange={this.update('password')}
             />
           </label>
-          <a onClick={this.handleDemoLogin}>Demo Login</a>
+          <a onClick={this.handleDemoLogin}>Forgot your password? (Demo Login)</a>
           <button>Submit</button>
         </form>
       </div>

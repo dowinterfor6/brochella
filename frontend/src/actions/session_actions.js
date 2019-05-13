@@ -53,3 +53,7 @@ export const login = (user) => (dispatch) => (
       dispatch(receiveErrors(err.response.data));
     })
 )
+
+export const deleteErrors = () => (dispatch) => (
+  dispatch(receiveErrors([]))
+);
