@@ -70,8 +70,12 @@ class SignupForm extends React.Component {
         <h1>Sign up</h1>
         <form onSubmit={this.handleSubmit}>
           <label>
-            Username 
-            {this.props.errors.username ? ` - ${this.props.errors.username}` : ''}
+            <div className="label-message-container">
+              Username &nbsp;
+              <div className="error-message">
+                {this.props.errors.username ? ` - ${this.props.errors.username}` : ''}
+              </div>
+            </div>
           <input
               type="text"
               value={this.state.username}
@@ -79,8 +83,12 @@ class SignupForm extends React.Component {
             />
           </label>
           <label>
-            Email
-            {this.props.errors.email ? ` - ${this.props.errors.email}` : ''}
+            <div className="label-message-container">
+              Email &nbsp;
+              <div className="error-message">
+                {this.props.errors.email ? ` - ${this.props.errors.email}` : ''}
+              </div>
+            </div>
           <input
               type="email"
               value={this.state.email}
@@ -88,8 +96,12 @@ class SignupForm extends React.Component {
             />
           </label>
           <label>
-            Password
-            {this.props.errors.password ? ` - ${this.props.errors.password}` : ''}
+            <div className="label-message-container">
+              Password &nbsp;
+              <div className="error-message">
+                {this.props.errors.password ? ` - ${this.props.errors.password}` : ''}
+              </div>
+            </div>
           <input
               type="password"
               value={this.state.password}
@@ -97,8 +109,12 @@ class SignupForm extends React.Component {
             />
           </label>
           <label>
-            Confirm Password
-            {this.props.errors.password2 ? ` - ${this.props.errors.password2}` : ''}
+            <div className="label-message-container">
+              Confirm Password &nbsp;
+              <div className="error-message">
+                {this.props.errors.password2 ? ` - ${this.props.errors.password2}` : ''}
+              </div>
+            </div>
           <input
               type="password"
               value={this.state.password2}

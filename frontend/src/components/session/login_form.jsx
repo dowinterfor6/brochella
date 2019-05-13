@@ -97,8 +97,12 @@ class LoginForm extends React.Component {
         <h1>Login</h1>
         <form onSubmit={this.handleSubmit}>
           <label>
-            Username
-            {this.props.errors.username ? ` - ${this.props.errors.username}` : ''}
+            <div className="label-message-container">
+              Username &nbsp;
+              <div className="error-message">
+                {this.props.errors.username ? ` - ${this.props.errors.username}` : ''}
+              </div>
+            </div>
             <input 
               type="text" 
               value={this.state.username} 
@@ -106,8 +110,12 @@ class LoginForm extends React.Component {
             />
           </label>
           <label>
-            Password
-            {this.props.errors.password ? ` - ${this.props.errors.password}` : ''}
+            <div className="label-message-container">
+              Password &nbsp;
+              <div className="error-message">
+                {this.props.errors.password ? ` - ${this.props.errors.password}` : ''}
+              </div>
+            </div>
             <input 
               type="password"
               value={this.state.password}
