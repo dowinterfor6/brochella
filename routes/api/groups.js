@@ -18,9 +18,18 @@ router.get('/user/:user_id', (req, res) => {
 
 router.get('/:id', (req, res) => {
     Group.findById(req.params.id )
-        .then((group) => res.json(group))
+        .then((group) => {
+                // const users = group.members.map((member) => User.findById(member))
+                // debugger
+                res.json({
+                members: users,
+                owner: group.owner,
+                name: group.name
+            })
+        })
         .catch((err) => res.status(404).json({ nogroupfound: "That group does not exist." }))
 });
+
 
 router.post('/', passport.authenticate('jwt', { session: false }), (req, res) => {
     const { errors, isValid } = validateGroupInput(req.body);
@@ -88,3 +97,6 @@ module.exports = router;
 //         // }))
 //         .then((group) => res.send(group))
 // });
+
+// 5cd9e058a551963435c33528
+// 5cda15da6139f92544c0075c
