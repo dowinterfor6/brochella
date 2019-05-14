@@ -25,7 +25,7 @@ class GroupIndex extends React.Component {
           ));
           // Emulate long loading screen
           // window.setTimeout(() => (this.setState({ loading: false })), 2000); 
-          this.setState({ loading: false })
+          this.setState({ loading: false });
         }
       )
   }
@@ -45,6 +45,7 @@ class GroupIndex extends React.Component {
             />
           )
         }
+        return undefined;
       });
     } 
 
