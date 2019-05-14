@@ -10,6 +10,11 @@ const ActSchema = new Schema({
     time: {
         type: Date,
         required: true
+    },
+
+    url: {
+        type: String,
+        required: true
     }
 });
 
