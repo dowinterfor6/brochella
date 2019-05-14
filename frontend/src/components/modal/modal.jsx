@@ -2,6 +2,8 @@ import React from 'react';
 import SignupFormContainer from '../session/signup_form_container';
 import LoginFormContainer from '../session/login_form_container';
 import '../../assets/stylesheets/session_form.css';
+import CreateGroupContainer from '../groups/group_form/create_group_container';
+import EditGroupContainer from '../groups/group_form/edit_group_container';
 
 
 //reminder to:
@@ -20,6 +22,12 @@ class Modal extends React.Component {
       break;
       case 'login':
       component = <LoginFormContainer />
+      break;
+      case 'Create Group':
+      component = <CreateGroupContainer />
+      break;
+      case 'Edit Group':
+      component = <EditGroupContainer />
       break;
       default:
       return null;
