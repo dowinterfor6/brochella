@@ -21,6 +21,12 @@ class Modal extends React.Component {
       case 'login':
       component = <LoginFormContainer />
       break;
+      // case 'Create Group':
+      // component = <CreateGroupContainer />
+      // break;
+      // case 'Edit Group':
+      // component = <EditGroupContainer />
+      // break;
       default:
       return null;
     }

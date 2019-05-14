@@ -5,7 +5,7 @@ import GroupIndexItem from './group_index_item';
 class GroupIndex extends React.Component {
   componentDidMount() {
     console.log(this.props.currentUser.id);
-    this.props.fetchOwnGroups(this.props.currentUser.id);
+    // this.props.fetchOwnGroups(this.props.currentUser.id);
   }
 
   render() {
@@ -20,6 +20,7 @@ class GroupIndex extends React.Component {
         )
       });
     };
+
 
     return (
       <div> 
