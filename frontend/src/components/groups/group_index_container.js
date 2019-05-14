@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
-import { fetchOwnGroups } from '../../actions/group_actions';
 import { logout } from '../../actions/session_actions';
 import GroupIndex from './group_index';
+import { fetchUserGroups } from '../../actions/user_actions';
 
 const mapStateToProps = (state) => {
   return {
@@ -12,8 +12,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    fetchOwnGroups: (userId) => dispatch(fetchOwnGroups(userId)), 
     logout: () => dispatch(logout()),
+    fetchUserGroups: (userId) => dispatch(fetchUserGroups(userId))
   };
 };
 
