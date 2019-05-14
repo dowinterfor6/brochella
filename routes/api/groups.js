@@ -79,6 +79,8 @@ router.put('/:id', (req, res) => {
 module.exports = router;
 
 
+// convaluted workaround - unnecessary but works (ALMOST!)
+
 // router.put('/:id', (req, res) => {
 //     Group.findByIdAndUpdate({_id: req.params.id},req.body)
 //         .then(() => Group.findOne({_id: req.params.id}))
