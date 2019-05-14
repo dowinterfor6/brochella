@@ -182,6 +182,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  user-select: none;
 }
 
 /* ANIMATIONS */
@@ -198,7 +199,7 @@
 .fadeIn {
   -webkit-animation-name: fadeIn;
   animation-name: fadeIn;
-  animation-duration: 0.25s;
+  animation-duration: 0.5s;
 }
 
 @keyframes loader {
