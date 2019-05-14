@@ -15,9 +15,6 @@ class GroupIndex extends React.Component {
     this.props.fetchUserGroups(this.props.currentUser.id)
       .then(
         (res) => {
-          // res.groups.map((group) => (
-          //   this.setState({ [group._id]: group })
-          // ))
           Object.values(res.groups).map((groupId) => (
             this.props.fetchGroup(groupId).then(
               (res) => {
@@ -59,7 +56,7 @@ class GroupIndex extends React.Component {
       <div className='group-index-container'>
         { loading }
         <div className='in-focus-display'>
-          <div className="in-focus-header">
+          <div className="in-focus-header" onAnimationEnd={(e) => e.currentTarget.classList.remove('fadeIn')}>
             Browse through your groups and click to show details! 
             Or, check out the discover page and
             create your own to get started!
