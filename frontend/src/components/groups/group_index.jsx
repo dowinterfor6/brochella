@@ -22,7 +22,7 @@ class GroupIndex extends React.Component {
 
   render() {
     let groups = [];
-    let loading = '';
+    let loading;
     if (Object.values(this.state).length !==0) {
       groups = Object.values(this.state).map((group) => {
         return (
@@ -33,16 +33,18 @@ class GroupIndex extends React.Component {
         )
       });
     } else {
-      loading = 'LOADING';
+      loading = (
+        <div className='loading-screen'>
+          <div className="loading-status">
+            LOADING
+          </div>
+        </div>
+      )
     };
 
     return (
       <div className='group-index-container'>
-        <div className='loading-screen'>
-          <div className="loading-status">
-            { loading }
-          </div>
-        </div>
+        { loading }
         <div className='in-focus-display'>
         
         </div>
