@@ -5,7 +5,7 @@ import { fetchGroup, updateGroup } from '../../../actions/group_actions';
 
 class EditGroupForm extends React.Component {
   componentDidMount() {
-    this.props.updateGroup(this.props.match.params.groupId)
+    this.props.fetchGroup(this.props.match.params.groupId)
   }
 
   render() {
@@ -15,6 +15,7 @@ class EditGroupForm extends React.Component {
         group={group}
         formType={formType}
         updateGroup={updateGroup}
+        closeModal={closeModal}
       />
     );
   }

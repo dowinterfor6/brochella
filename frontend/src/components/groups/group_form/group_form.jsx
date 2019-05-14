@@ -26,7 +26,7 @@ class GroupForm extends React.Component {
   handleSubmit(e) {
     e.preventDefault();
     this.props.createGroup(this.state);
-  }
+  };
 
   render() {
     return (
@@ -37,10 +37,10 @@ class GroupForm extends React.Component {
             Name ya Group: 
             <input type="text" value={this.state.name} onChange={this.update("name")} />
           </label>
-          <label>
+          {/* <label>
             Add some buds:
             <input type="text" value={this.state.members} onChange={this.update("members")} />
-          </label>
+          </label> */}
           {/* <label>
             Acts y'all are attending:
             <input type="text" value={this.state.acts} onChange={this.update("acts")} />

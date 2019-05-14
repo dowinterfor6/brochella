@@ -6,7 +6,7 @@ const mapStateToProps = (state) => {
   return {
     group: {
       name: '',
-      members: [],
+      // members: [],
       acts: []
     },
     formType: 'Create Group', 
