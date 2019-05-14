@@ -15,6 +15,8 @@ const acts = require("./routes/api/acts");
 const groups = require("./routes/api/groups");
 // Import passport
 const passport = require('passport');
+// Path for heroku
+const path = require('path');
 
 // Connect to MongoDB using Mongoose
 mongoose
@@ -22,6 +24,13 @@ mongoose
   .then(() => console.log("Connected to MongoDB successfully"))
   .catch((err) => console.log(err));
   
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static('frontend/build'));
+  app.get('/', (req, res) => {
+    res.sendFile(path.resolve(__dirname, 'frontend', 'build', 'index.html'));
+  })
+}
+
 // Middleware for body parser
 // IMP! Must be above routes
 app.use(bodyParser.urlencoded({ extended: false}));
