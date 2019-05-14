@@ -2,20 +2,14 @@ import React from 'react';
 
 class GroupShow extends React.Component {
   componentDidMount() {
-    this.props.fetchGroup(this.props.match.params.groupId);
+    this.props.fetchGroup(this.props.match.params.id);
   }
 
   render() {
+
     return(
       <div> 
-        
-        <div> {this.props.group.name} </div>
-        <div> {this.props.group.owner} </div>
-        <div> {this.props.group.members} </div>
-        <div> {this.props.group.acts} </div>
-        <div> Discover related acts </div>
-
-        {/* comment in when Edit Group Form Modal is done */}
+      
         <button onClick={() => this.props.openModal('Edit Group')}>
           Edit Group
         </button>
@@ -24,6 +18,7 @@ class GroupShow extends React.Component {
           Delete Group
         </button>
 
+        <div> Discover related acts </div>
       </div>
     );
   }
