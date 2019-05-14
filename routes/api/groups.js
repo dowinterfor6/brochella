@@ -19,12 +19,10 @@ router.get('/user/:user_id', (req, res) => {
 router.get('/:id', (req, res) => {
     Group.findById(req.params.id )
         .then((group) => {
-                // const users = group.members.map((member) => User.findById(member))
-                // debugger
-                res.json({
-                members: users,
-                owner: group.owner,
-                name: group.name
+            res.json({
+            members: group.members,
+            owner: group.owner,
+            name: group.name
             })
         })
         .catch((err) => res.status(404).json({ nogroupfound: "That group does not exist." }))
