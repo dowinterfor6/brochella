@@ -5,13 +5,13 @@ import GroupShow from './group_show';
 
 const mapStateToProps = (state, ownProps) => {
   return ({
-    group: state.groups[ownProps.match.params.groupId]
+    group: state.groups.data,
   })
 };
 
 const mapDispatchToProps = (dispatch) => { 
   return ({
-    fetchGroup: (groupId) => dispatch(fetchGroup(groupId)),
+    fetchGroup: (id) => dispatch(fetchGroup(id)),
     updateGroup: (group) => dispatch(updateGroup(group)),
     deleteGroup: (id) => dispatch(deleteGroup(id)), 
     openModal: (modal) => dispatch(openModal(modal))

@@ -1,6 +1,6 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
-
+//file still needs to render errors
 class GroupForm extends React.Component {
   constructor(props) {
     super(props);
@@ -30,8 +30,15 @@ class GroupForm extends React.Component {
 
   render() {
     return (
-      <div>
-        Hey Hi Ho ~this is the group form :p 
+      <div className="session-form-modal"
+        onClick={(e) => e.stopPropagation()}
+        onAnimationEnd={(e) => {
+          e.currentTarget.classList.remove('fadeInDown');
+          e.currentTarget.classList.remove('shake');
+        }}
+      >
+
+        Hey Hi Ho ~this is the Group form :p 
         <form onSubmit={this.handleSubmit}>
           <label>
             Name ya Group: 

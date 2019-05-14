@@ -6,13 +6,17 @@ import GroupForm from './group_form';
 
 class EditGroupForm extends React.Component {
   componentDidMount() {
-    this.props.fetchGroup(this.props.match.params.groupId)
+    this.props.fetchGroup(this.props.group.id)
   }
+
+  // componentDidUpdate() {
+
+  // }
 
   render() {
     const { group, formType, updateGroup } = this.props;
     return (
-      <GroupForm
+      <GroupForm  
         group={group}
         formType={formType}
         updateGroup={updateGroup}
@@ -24,7 +28,7 @@ class EditGroupForm extends React.Component {
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    group: state.groups[ownProps.match.params.groupId],
+    group: state.groups.data,
     formType: 'Edit Group',
     //add key-value to show errors
   };
