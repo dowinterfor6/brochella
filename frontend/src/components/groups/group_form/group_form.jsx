@@ -31,7 +31,7 @@ class GroupForm extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    
+
   }
 
   render() {
@@ -49,6 +49,7 @@ class GroupForm extends React.Component {
     return (
       <div>
         Hey Hi Ho ~this is the group form :p 
+    
         {owner}
       </div>
     )
