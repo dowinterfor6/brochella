@@ -1,4 +1,5 @@
 import React from 'react';
+import Map from '../map/map';
 
 class GroupShow extends React.Component {
   componentDidMount() {
@@ -9,7 +10,8 @@ class GroupShow extends React.Component {
 
     return(
       <div> 
-      
+        <Map />
+
         <button onClick={() => this.props.openModal('Edit Group')}>
           Edit Group
         </button>
