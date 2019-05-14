@@ -21,14 +21,18 @@ router.get('/:id', (req, res) => {
         .catch((err) => res.status(404).json({ noactsfound: 'No acts found.' }))
 });
 
-// router.post('/', passport.authenticate('jwt', { session: false }), (req, res) => {
+router.post('/', passport.authenticate('jwt', { session: false }), (req, res) => {
   
-//     const newAct = new Act({
-//       name: req.body.name,
-//       time: Date.now()
-//     });
+    const newAct = new Act({
+      name: req.body.name,
+      stage: req.body.stage,
+      start_time: req.body.start_time,
+      duration: req.body.duration,
+      date: req.body.date,
+      url: req.body.url
+    });
   
-//     newAct.save().then((act) => res.json(act));
-//   });
+    newAct.save().then((act) => res.json(act));
+  });
 
 module.exports = router;

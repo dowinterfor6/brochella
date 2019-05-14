@@ -7,7 +7,22 @@ const ActSchema = new Schema({
         required: true
     },
 
-    time: {
+    stage: {
+        type: String,
+        required: true
+    },
+
+    start_time: {
+        type: Number,
+        required: true
+    },
+
+    duration: {
+        type: Number,
+        required: true
+    },
+
+    date: {
         type: Date,
         required: true
     },
