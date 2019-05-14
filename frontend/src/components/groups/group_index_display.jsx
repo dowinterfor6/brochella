@@ -16,7 +16,7 @@ class GroupIndexDisplay extends React.Component {
   render() {
     let display = (
       <div className='in-focus-display'>
-        <div className="in-focus-header" onAnimationEnd={(e) => e.currentTarget.classList.remove('fadeIn')}>
+        <div className="in-focus-header fadeIn" onAnimationEnd={(e) => e.currentTarget.classList.remove('fadeIn')}>
           Browse through your groups and click to show details!
           Or, check out the discover page and
           create your own to get started!
