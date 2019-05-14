@@ -4,18 +4,11 @@ import { withRouter } from 'react-router-dom';
 class GroupForm extends React.Component {
   constructor(props) {
     super(props);
-
-    this.state = {
-      name: '',
-      owner: this.props.currentUser, //may not need this?? hmm
-      members: [], 
-      acts: []
-    }
-
+    this.state = this.props.group;
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   componentDidMount() {
-
   }
 
   componentWillUnmount() {
@@ -31,26 +24,28 @@ class GroupForm extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
-
+    this.props.createGroup(this.state);
   }
 
   render() {
-    let owner;
-    if (this.props.formType === "Create Group") {
-      owner = <label>
-        Owner of Group: 
-        <input type="text"
-          value={this.state.owner}
-          onChange={this.update('owner')}
-          />
-        </label> 
-    };
-
     return (
       <div>
         Hey Hi Ho ~this is the group form :p 
-    
-        {owner}
+        <form onSubmit={this.handleSubmit}>
+          <label>
+            Name ya Group: 
+            <input type="text" value={this.state.name} onChange={this.update("name")} />
+          </label>
+          <label>
+            Add some buds:
+            <input type="text" value={this.state.members} onChange={this.update("members")} />
+          </label>
+          {/* <label>
+            Acts y'all are attending:
+            <input type="text" value={this.state.acts} onChange={this.update("acts")} />
+          </label> */}
+          <input type="submit" value="Submit Group" />
+        </form>
       </div>
     )
   }

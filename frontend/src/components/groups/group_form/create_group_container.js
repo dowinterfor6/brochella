@@ -4,10 +4,13 @@ import { createGroup } from '../../../actions/group_actions';
 
 const mapStateToProps = (state) => {
   return {
+    group: {
+      name: '',
+      members: [],
+      acts: []
+    },
     formType: 'Create Group', 
-    currentUser: state.session.user.username,
     //add key-value to show errors
-
   };
 };
 
