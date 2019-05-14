@@ -44,9 +44,22 @@ class GroupIndex extends React.Component {
     } 
     if (this.state.loading) {
       loading = (
-        <div className='loading-screen'>
-          <div className="loading-status">
-            LOADING
+        <div className="loading-screen">
+          <div className="loader">
+            <div className="loader--dot">
+            </div>
+            <div className="loader--dot">
+            </div>
+            <div className="loader--dot">
+            </div>
+            <div className="loader--dot">
+            </div>
+            <div className="loader--dot">
+            </div>
+            <div className="loader--dot">
+            </div>
+            <div className="loader--text">
+            </div>
           </div>
         </div>
       )
