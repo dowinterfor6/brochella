@@ -47,7 +47,14 @@ class GroupIndex extends React.Component {
       <div className='group-index-container'>
         { loading }
         <div className='in-focus-display'>
-        
+          <div className="in-focus-header">
+            Browse through your groups and click to show details! 
+            Or, check out the discover page and
+            create your own to get started!
+          </div>
+          <div className="in-focus-act">
+          
+          </div>
         </div>
         <ul className='group-index-viewer'> 
           { groups.reverse() }

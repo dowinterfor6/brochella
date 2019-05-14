@@ -8,7 +8,7 @@ class GroupIndexItem extends React.Component {
   }
 
   handleDisplay(e) {
-    let inFocusDisplay = document.getElementsByClassName('in-focus-display')[0];
+    let inFocusDisplay = document.getElementsByClassName('in-focus-header')[0];
     let groupName = e.currentTarget.childNodes[0].innerHTML;
     if (!inFocusDisplay.innerHTML.includes(groupName)) {
       inFocusDisplay.innerHTML = '';
