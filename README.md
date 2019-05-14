@@ -48,10 +48,17 @@ Things Accomplished Over the Weekend
 Group Members and Work Breakdown
 - Monday:
   - Andrew: UserAuth Backend/Frontend; Splash Page, Navbar, Modal CSS
-  - Kevin: Models, Routes, Modal Backend/Frontend
-  - Karen: Dashboard Backend/Frontend
+  - Kevin: Models, Routes, Modal Backend
+  - Karen: Dashboard Frontend, Group Show, Create/Edit Group Forms; 
+
+  ---Push to Heroku---
+
 - Tuesday: 
-    TBA
+  - Andrew: Group Index and Show page CSS; Check Routes;
+  - Kevin: Seed Everything including Acts, Discovery Page; BE/FE routes are matching; (BE location column for event)
+  - Karen: Group Show CSS, Google Maps API(FE); 
+- Wednesday:
+  - Production README, Push to Heroku (seeded database)
 
 Plan for getting users and reviews 
 

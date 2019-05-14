@@ -4,16 +4,17 @@ import { withRouter } from 'react-router-dom';
 class GroupForm extends React.Component {
   constructor(props) {
     super(props);
-    this.state = this.props.group;
+    this.state = {};
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   componentDidMount() {
+    this.setState({ group: this.props.group }); 
   }
 
   componentWillUnmount() {
     //delete errors
-    this.props.closeModal()
+    this.props.closeModal();
   }
 
   update(field) {

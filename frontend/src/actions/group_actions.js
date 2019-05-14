@@ -13,13 +13,6 @@ const removeGroup = (groupId) => ({
   groupId
 });
 
-<<<<<<< HEAD
-// export const fetchOwnGroups = (userId) => (dispatch)  => (
-//   GroupAPIUtil.fetchOwnGroups(userId).then(groups => dispatch(receiveOwnGroups(groups)))
-// );
-
-=======
->>>>>>> master
 export const fetchGroup = (id) => (dispatch) => (
   GroupAPIUtil.fetchGroup(id).then(group => dispatch(receiveGroup(group)))
 );
