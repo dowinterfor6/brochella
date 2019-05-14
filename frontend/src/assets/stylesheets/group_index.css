@@ -1,0 +1,77 @@
+.group-index-container {
+  width: 100vw;
+  height: calc(100vh - 200px);
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.loading-screen {
+  position: absolute;
+  top: 0;
+}
+
+.in-focus-display {
+  height: 450px;
+  width: 728px;
+  box-sizing: border-box;
+  margin: 0 auto;
+  border: 1px solid red;
+}
+
+.group-index-viewer {
+  width: 80%;
+  box-sizing: border-box;
+  margin: auto;
+  display: flex;
+  overflow: auto;
+  overflow-y: auto;
+}
+
+/* width */
+.group-index-viewer::-webkit-scrollbar {
+  position: relative;
+  width: 10px;
+  background: transparent;
+}
+
+/* Track */
+.group-index-viewer::-webkit-scrollbar-track {
+  background: transparent; 
+}
+
+/* Handle */
+.group-index-viewer::-webkit-scrollbar-thumb {
+  cursor: pointer;
+  background: rgb(165, 165, 165); 
+  border-radius: 5px;
+}
+
+.group-index-viewer::-webkit-scrollbar-thumb:hover {
+  background: rgb(95, 95, 95);
+}
+
+.group-index-item {
+  height: 100px;
+  min-width: 200px;
+  margin: 0px 10px;
+  padding: 10px;
+  box-sizing: border-box;
+  cursor: pointer;
+  background-color: rgba(205, 205, 205, 0.25);
+}
+
+.group-index-item:hover {
+  background-color: rgb(205, 205, 205, 0.1);
+}
+
+.group-index-item:first-of-type {
+  margin-left: 0;
+}
+
+.group-index-name {
+  font-family: 'Raleway', sans-serif;
+  text-align: center;
+  margin: 5px;
+}
