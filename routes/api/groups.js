@@ -20,6 +20,7 @@ router.get('/:id', (req, res) => {
     Group.findById(req.params.id )
         .then((group) => {
             res.json({
+            id: group._id,
             members: group.members,
             owner: group.owner,
             name: group.name,
