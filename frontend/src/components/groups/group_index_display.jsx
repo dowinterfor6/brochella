@@ -1,11 +1,20 @@
 import React from 'react';
 
 class GroupIndexDisplay extends React.Component {
-  
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      acts: {}
+    }
+  }
+
+  componentWillReceiveProps(nextProps) {
+    document.getElementsByClassName('in-focus-header')[0].classList.add('fadeIn');
+  }
 
   render() {
-
-    return (
+    let display = (
       <div className='in-focus-display'>
         <div className="in-focus-header" onAnimationEnd={(e) => e.currentTarget.classList.remove('fadeIn')}>
           Browse through your groups and click to show details!
@@ -16,6 +25,23 @@ class GroupIndexDisplay extends React.Component {
 
         </div>
       </div>
+    );
+
+    if (this.props.activeGroup) {
+      display = (
+        <div className='in-focus-display'>
+          <div className="in-focus-header fadeIn" onAnimationEnd={(e) => e.currentTarget.classList.remove('fadeIn')}>
+            {this.props.activeGroup.name}
+          </div>
+          <div className="in-focus-act">
+            {this.props.activeGroup.acts}
+          </div>
+        </div>
+      )
+    }
+
+    return (
+      display
     )
   }
 }

@@ -34,8 +34,10 @@ class GroupIndex extends React.Component {
   }
 
   handleDisplay(e) {
-    console.log(e.currentTarget.innerHTML);
-    console.log(e.currentTarget.classList[1]);
+    let clickedGroupId = e.currentTarget.classList[1];
+    if (this.state.activePanel !== clickedGroupId) {
+      this.setState({ activePanel: clickedGroupId });
+    };
   }
 
   render() {
@@ -62,7 +64,7 @@ class GroupIndex extends React.Component {
 
     return (
       <div className='group-index-container'>
-        <GroupIndexDisplay />
+        <GroupIndexDisplay activeGroup={this.state[this.state.activePanel]}/>
         <ul className='group-index-viewer'> 
           { groups.reverse() }
         </ul>
