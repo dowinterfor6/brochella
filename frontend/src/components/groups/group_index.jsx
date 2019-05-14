@@ -1,6 +1,7 @@
 import React from 'react';
 import GroupIndexItem from './group_index_item';
-
+import '../../assets/stylesheets/reset.css';
+import '../../assets/stylesheets/group_index.css';
 
 class GroupIndex extends React.Component {
   constructor(props) {
@@ -21,7 +22,7 @@ class GroupIndex extends React.Component {
 
   render() {
     let groups = [];
-    let loading = '';
+    let loading;
     if (Object.values(this.state).length !==0) {
       groups = Object.values(this.state).map((group) => {
         return (
@@ -32,16 +33,23 @@ class GroupIndex extends React.Component {
         )
       });
     } else {
-      loading = 'LOADING';
+      loading = (
+        <div className='loading-screen'>
+          <div className="loading-status">
+            LOADING
+          </div>
+        </div>
+      )
     };
 
 
     return (
-      <div>
-        <div className="loading-screen">
-          { loading }
+      <div className='group-index-container'>
+        { loading }
+        <div className='in-focus-display'>
+        
         </div>
-        <ul> 
+        <ul className='group-index-viewer'> 
           { groups.reverse() }
         </ul>
       </div>

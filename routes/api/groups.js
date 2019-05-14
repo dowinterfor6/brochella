@@ -38,7 +38,7 @@ router.post('/', passport.authenticate('jwt', { session: false }), (req, res) =>
     newGroup.save()
         .then((group) => group.populate('owner').execPopulate())
         .then((group) => {
-            group.owner.groups.push(group)
+            group.owner.groups.push(group.id)
             return group.owner.save()
             .then(() => {
                 return group
@@ -71,3 +71,20 @@ router.put('/:id', (req, res) => {
 // })
 
 module.exports = router;
+
+
+// convaluted workaround - unnecessary but works (ALMOST!)
+
+// router.put('/:id', (req, res) => {
+//     Group.findByIdAndUpdate({_id: req.params.id},req.body)
+//         .then(() => Group.findOne({_id: req.params.id}))
+//         // .then((group) => group.members.forEach((member) => {
+//         //     User.findOne({_id: member})
+//         //         .then((user) => {
+//         //             user.groups.findByIdAndUpdate({_id: req.params.id}, req.body)
+//         //         })
+//         //     // member.groups.findByIdAndUpdate({_id: req.params.id}, req.body)
+//         //     // .then(() => Group.findOne({_id: req.params.id}))
+//         // }))
+//         .then((group) => res.send(group))
+// });
