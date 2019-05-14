@@ -1,15 +1,18 @@
 import React from 'react';
-import GroupIndexItem from './group_index_item';
 import '../../assets/stylesheets/reset.css';
 import '../../assets/stylesheets/group_index.css';
 import Loading from '../loading/loading';
+import GroupIndexDisplay from './group_index_display';
 
 class GroupIndex extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      loading: true
-    }
+      loading: true,
+      activePanel: null
+    };
+
+    this.handleDisplay = this.handleDisplay.bind(this);
   }
 
   componentDidMount() {
@@ -30,19 +33,27 @@ class GroupIndex extends React.Component {
       )
   }
 
+  handleDisplay(e) {
+    console.log(e.currentTarget.innerHTML);
+    console.log(e.currentTarget.classList[1]);
+  }
+
   render() {
     if (this.state.loading) {
       return <Loading />
     };
     let groups = [];
-    if (Object.values(this.state).length !==1) {
+    if (Object.values(this.state).length > 2) {
       groups = Object.keys(this.state).map((group_id) => {
-        if (group_id !== 'loading') {
+        if (group_id !== 'loading' && group_id !=='activePanel') {
           return (
-            <GroupIndexItem
-              key={group_id}
-              group={this.state[group_id]}
-            />
+            <li 
+              key={group_id} 
+              className={`group-index-item ${group_id}`}
+              onClick={this.handleDisplay}
+            > 
+              {this.state[group_id].name}
+            </li>
           )
         }
         return undefined;
@@ -51,16 +62,7 @@ class GroupIndex extends React.Component {
 
     return (
       <div className='group-index-container'>
-        <div className='in-focus-display'>
-          <div className="in-focus-header" onAnimationEnd={(e) => e.currentTarget.classList.remove('fadeIn')}>
-            Browse through your groups and click to show details! 
-            Or, check out the discover page and
-            create your own to get started!
-          </div>
-          <div className="in-focus-act">
-          
-          </div>
-        </div>
+        <GroupIndexDisplay />
         <ul className='group-index-viewer'> 
           { groups.reverse() }
         </ul>
