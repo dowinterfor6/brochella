@@ -3,28 +3,47 @@ import GroupIndexItem from './group_index_item';
 
 
 class GroupIndex extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {}
+  }
+
   componentDidMount() {
-    console.log(this.props.currentUser.id);
-    // this.props.fetchOwnGroups(this.props.currentUser.id);
+    this.props.fetchUserGroups(this.props.currentUser.id)
+      .then(
+        (res) => {
+          res.groups.map((group) => (
+            this.setState({ [group._id]: group })
+          ))
+        }
+      )
   }
 
   render() {
     let groups = [];
-    if (this.props.users) {
-      groups = this.props.users.groups.map(group => {
+    let loading = '';
+    if (Object.values(this.state).length !==0) {
+      groups = Object.values(this.state).map((group) => {
         return (
           <GroupIndexItem
-            key={group.id}
+            key={group._id}
             group={group}
           />
         )
       });
+    } else {
+      loading = 'LOADING';
     };
 
 
     return (
-      <div> 
-      { groups.reverse() }
+      <div>
+        <div className="loading-screen">
+          { loading }
+        </div>
+        <ul> 
+          { groups.reverse() }
+        </ul>
       </div>
     )
   }

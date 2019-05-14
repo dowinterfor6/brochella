@@ -15,10 +15,10 @@ class NavBar extends React.Component {
       return (
         <ul className='nav-bar-items-after-login'>
           <li>
-            <Link to={'/discover'}>Discover</Link>
+            <Link to={'/dashboard'}>Dashboard</Link>
           </li>
           <li>
-            <Link to={'/new_group'}>New group</Link>
+            <Link to={'/discover'}>Discover</Link>
           </li>
           <li>
             <Link to={'/profile'}>Profile</Link>
