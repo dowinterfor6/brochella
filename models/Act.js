@@ -12,11 +12,6 @@ const ActSchema = new Schema({
         required: true
     },
 
-    start_time: {
-        type: Number,
-        required: true
-    },
-
     duration: {
         type: Number,
         required: true
