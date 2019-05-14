@@ -24,7 +24,7 @@ class GroupIndex extends React.Component {
             )
           ));
           // Emulate long loading screen
-          // window.setTimeout(() => (this.setState({ loading: false })), 2000); 
+          // window.setTimeout(() => (this.setState({ loading: false })), 10000); 
           this.setState({ loading: false });
         }
       )

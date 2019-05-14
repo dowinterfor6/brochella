@@ -14,6 +14,12 @@ class GroupIndexItem extends React.Component {
       inFocusDisplay.innerHTML = '';
       inFocusDisplay.innerHTML = groupName;
       inFocusDisplay.classList.add('fadeIn');
+      let displayBackground = document.getElementsByClassName('in-focus-display')[0];
+      if (this.props.group.acts.length > 0) {
+        displayBackground.setAttribute("style", `background: white`);
+      } else {
+        displayBackground.setAttribute("style", `inherit`);
+      }
     }
   }
   
