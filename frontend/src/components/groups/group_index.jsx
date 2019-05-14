@@ -42,6 +42,7 @@ class GroupIndex extends React.Component {
       )
     };
 
+
     return (
       <div className='group-index-container'>
         { loading }
