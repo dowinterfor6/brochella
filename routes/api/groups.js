@@ -22,7 +22,8 @@ router.get('/:id', (req, res) => {
             res.json({
             members: group.members,
             owner: group.owner,
-            name: group.name
+            name: group.name,
+            acts: group.acts
             })
         })
         .catch((err) => res.status(404).json({ nogroupfound: "That group does not exist." }))
@@ -71,11 +72,14 @@ router.put('/:id', (req, res) => {
         .then((group) => res.send(group))
 });
 
-// router.get('./:id/acts', (req, res) => {
-//     res.json({
-//         acts: req.group.acts
-//     })
-// })
+router.get('/:id/acts', (req, res) => {
+    Group.findById(req.params.id)
+        .then((group) => {
+            res.json({
+                acts: group.acts
+            })
+    })
+})
 
 module.exports = router;
 
