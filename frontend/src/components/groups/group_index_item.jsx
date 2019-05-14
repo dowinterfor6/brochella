@@ -2,12 +2,12 @@ import React from 'react';
 
 const GroupIndexItem = (props) => {
   return (
-    <div> 
-      <div> {this.props.group.name} </div>
-      <div>{this.props.group.owner}</div>
-      <div>{this.props.group.members}</div>
-      <div>{this.props.group.acts}</div>
-    </div>
+    <li> 
+      <div>Name: {props.group.name}</div>
+      <div>Owner: {props.group.owner}</div>
+      <div>Members: {props.group.members}</div>
+      <div>Acts: {props.group.acts}</div>
+    </li>
   )
 };
 
