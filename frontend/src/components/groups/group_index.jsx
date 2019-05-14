@@ -35,12 +35,14 @@ class GroupIndex extends React.Component {
     let loading;
     if (Object.values(this.state).length !==1) {
       groups = Object.keys(this.state).map((group_id) => {
-        return (
-          <GroupIndexItem
-            key={group_id}
-            group={this.state[group_id]}
-          />
-        )
+        if (group_id !== 'loading') {
+          return (
+            <GroupIndexItem
+              key={group_id}
+              group={this.state[group_id]}
+            />
+          )
+        }
       });
     } 
     if (this.state.loading) {
