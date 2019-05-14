@@ -62,7 +62,7 @@
 
 .group-index-item {
   height: 100px;
-  min-width: 200px;
+  min-width: 162px;
   margin: 0px 10px;
   padding: 10px;
   box-sizing: border-box;
@@ -81,5 +81,9 @@
 .group-index-name {
   font-family: 'Raleway', sans-serif;
   text-align: center;
-  margin: 5px;
+  margin: auto;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

@@ -4,8 +4,8 @@
   margin: 50px auto;
   padding: 10px 10%;
   box-sizing: border-box;
-  border-top: 1px solid black;
-  border-bottom: 1px solid black;
+  /* border-top: 1px solid black;
+  border-bottom: 1px solid black; */
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -34,4 +34,8 @@
   width: 100%;
   display: flex;
   justify-content: space-between;
+}
+
+.group-index-name {
+  user-select: none;
 }
