@@ -26,7 +26,6 @@ router.post('/', passport.authenticate('jwt', { session: false }), (req, res) =>
     const newAct = new Act({
       name: req.body.name,
       stage: req.body.stage,
-      start_time: req.body.start_time,
       duration: req.body.duration,
       date: req.body.date,
       url: req.body.url
