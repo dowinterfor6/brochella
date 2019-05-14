@@ -1,7 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import GroupForm from './group_form';
 import { fetchGroup, updateGroup } from '../../../actions/group_actions';
+import { closeModal } from '../../../actions/modal_actions';
+import GroupForm from './group_form';
 
 class EditGroupForm extends React.Component {
   componentDidMount() {

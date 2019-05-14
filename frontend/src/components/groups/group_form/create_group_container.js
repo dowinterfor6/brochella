@@ -1,12 +1,13 @@
 import { connect } from 'react-redux';
-import GroupForm from './group_form';
 import { createGroup } from '../../../actions/group_actions';
+import { closeModal } from '../../../actions/modal_actions';
+import GroupForm from './group_form';
 
 const mapStateToProps = (state) => {
   return {
     group: {
       name: '',
-      // members: [],
+      // members: [], //members are added after group is created by owner
       acts: []
     },
     formType: 'Create Group', 

@@ -14,7 +14,7 @@ const mapDispatchToProps = (dispatch) => {
     fetchGroup: (groupId) => dispatch(fetchGroup(groupId)),
     updateGroup: (group) => dispatch(updateGroup(group)),
     deleteGroup: (id) => dispatch(deleteGroup(id)), 
-    openModal: (modalType) => dispatch(openModal(modalType))
+    openModal: (modal) => dispatch(openModal(modal))
   })
 }
 
