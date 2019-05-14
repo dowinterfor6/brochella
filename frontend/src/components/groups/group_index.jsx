@@ -2,6 +2,7 @@ import React from 'react';
 import GroupIndexItem from './group_index_item';
 import '../../assets/stylesheets/reset.css';
 import '../../assets/stylesheets/group_index.css';
+import Loading from '../loading/loading';
 
 class GroupIndex extends React.Component {
   constructor(props) {
@@ -22,14 +23,18 @@ class GroupIndex extends React.Component {
               }
             )
           ));
-          this.setState({ loading: false });
+          // Emulate long loading screen
+          // window.setTimeout(() => (this.setState({ loading: false })), 2000); 
+          this.setState({ loading: false })
         }
       )
   }
 
   render() {
+    if (this.state.loading) {
+      return <Loading />
+    };
     let groups = [];
-    let loading;
     if (Object.values(this.state).length !==1) {
       groups = Object.keys(this.state).map((group_id) => {
         if (group_id !== 'loading') {
@@ -42,32 +47,9 @@ class GroupIndex extends React.Component {
         }
       });
     } 
-    if (this.state.loading) {
-      loading = (
-        <div className="loading-screen">
-          <div className="loader">
-            <div className="loader--dot">
-            </div>
-            <div className="loader--dot">
-            </div>
-            <div className="loader--dot">
-            </div>
-            <div className="loader--dot">
-            </div>
-            <div className="loader--dot">
-            </div>
-            <div className="loader--dot">
-            </div>
-            <div className="loader--text">
-            </div>
-          </div>
-        </div>
-      )
-    };
 
     return (
       <div className='group-index-container'>
-        { loading }
         <div className='in-focus-display'>
           <div className="in-focus-header" onAnimationEnd={(e) => e.currentTarget.classList.remove('fadeIn')}>
             Browse through your groups and click to show details! 

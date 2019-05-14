@@ -7,7 +7,6 @@
   justify-content: space-between;
 }
 
-
 /* https://codepen.io/AsLittleDesign/pen/ZbVVwa by Dave McCarthy */
 .loading-screen {
   position: absolute;
@@ -17,7 +16,6 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background: white;
 }
 
 .loader {
