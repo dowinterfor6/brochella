@@ -1,4 +1,5 @@
-import { RECEIVE_OWN_GROUPS, RECEIVE_GROUP, REMOVE_GROUP } from '../actions/group_actions';
+import { RECEIVE_GROUP, REMOVE_GROUP } from '../actions/group_actions';
+import { RECEIVE_USER_GROUPS } from '../actions/user_actions';
 import merge from 'lodash/merge';
 
 const groupsReducer = (state={}, action) => {
@@ -6,8 +7,8 @@ const groupsReducer = (state={}, action) => {
   let nextState = merge({}, state);
 
   switch (action.type) {
-    case RECEIVE_OWN_GROUPS:
-      return action.payload.groups;
+    case RECEIVE_USER_GROUPS:
+      return action.groups;
     case RECEIVE_GROUP:
       nextState = merge({}, state, { [action.group.id]: action.group })
       return nextState;

@@ -13,7 +13,7 @@ router.get('/test', (req, res) => {
 router.get('/user/:user_id', (req, res) => {
     Group.find({ user: req.params.user_id })
       .then((groups) => res.json(groups))
-      .catch((err) => res.status(404).json({ notweetsfound: 'No groups found for this user.' }));
+      .catch((err) => res.status(404).json({ nouserfound: 'No groups found for this user.' }));
   });
 
 router.get('/:id', (req, res) => {
@@ -53,14 +53,8 @@ router.post('/', passport.authenticate('jwt', { session: false }), (req, res) =>
 });
 
 router.delete('/:id', passport.authenticate('jwt', { session: false }), (req, res) => {
-    const { errors, isValid } = validateGroupInput(req.body);
-
-    if(!isValid) {
-        return res.status(400).json(errors);
-    }
-
     Group.findByIdAndDelete(req.params.id)
-        .then((docs) => res.status(200).json({ msg: "That group does not exist." }))
+        .then((docs) => res.status(200).json({ msg: "Group sucessfully deleted." }))
         .catch((err) => res.status(400))
 });
 
