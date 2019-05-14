@@ -39,7 +39,9 @@ class GroupIndex extends React.Component {
     return (
       <div className='group-index-container'>
         <div className='loading-screen'>
-          { loading }
+          <div className="loading-status">
+            { loading }
+          </div>
         </div>
         <div className='in-focus-display'>
         
