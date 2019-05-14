@@ -41,6 +41,8 @@ class GroupIndex extends React.Component {
   }
 
   render() {
+    console.log(this.props);
+    console.log(this.state);
     if (this.state.loading) {
       return <Loading />
     };

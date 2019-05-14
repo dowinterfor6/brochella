@@ -16,3 +16,7 @@ const receiveAct = (act) => ({
 export const fetchAct = (actId) => (dispatch) => (
   actsApiUtil.fetchAct(actId).then((act) => dispatch(receiveAct(act)))
 );
+
+// export const fecthGroupActs = (groupId) => (dispatch) => (
+//   actsApiUtil.fetchGroupActs(groupId).then((acts) => dispatch(receiveGroupActs(acts)))
+// );
