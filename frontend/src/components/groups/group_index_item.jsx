@@ -13,8 +13,8 @@ class GroupIndexItem extends React.Component {
     if (!inFocusDisplay.innerHTML.includes(groupName)) {
       inFocusDisplay.innerHTML = '';
       inFocusDisplay.innerHTML = groupName;
+      inFocusDisplay.classList.add('fadeIn');
     }
-    inFocusDisplay.classList.add('fadeIn');
   }
   
   render() {
