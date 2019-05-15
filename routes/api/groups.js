@@ -53,7 +53,6 @@ router.post('/', passport.authenticate('jwt', { session: false }), (req, res) =>
                 return group
             })
         })
-        //async await???
         .then((group) => {
             const { name, owner } = group
             res.json({ name: name, owner: owner.id, id: group.id })
