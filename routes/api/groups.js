@@ -84,24 +84,43 @@ router.post('/', passport.authenticate('jwt', { session: false }), (req, res) =>
 //     // .catch((err) => res.status(400))
 // });
 
+// KEVINS VERSION BELOW
 
+// router.delete('/:id', passport.authenticate('jwt', { session: false }), (req, res) => {
+//         Group.findOneAndDelete( { _id: req.params.id } )
+//             .then((group) => {
+//                 group.members.forEach((member) => {
+//                     const newGroups = {};
+//                     for(let i = 0; i < member.groups.length; i++) {
+//                         if(member.groups[i] !== req.params.id) {
+//                             newGroups[i] = member.groups[i]
+//                         };
+//                     };
+//                     member.groups = newGroups;
+//                 })
+//             })
+        
+//         // .then((docs) => res.status(200).json({ msg: "Group sucessfully deleted." }))
+//         // .catch((err) => res.status(400))
+// });
+
+// ANDREWS AWESOME VERSION
 
 router.delete('/:id', passport.authenticate('jwt', { session: false }), (req, res) => {
-        Group.findOneAndDelete( { _id: req.params.id } )
-            .then((group) => {
-                group.members.forEach((member) => {
-                    const newGroups = {};
-                    for(let i = 0; i < member.groups.length; i++) {
-                        if(member.groups[i] !== req.params.id) {
-                            newGroups[i] = member.groups[i]
-                        };
-                    };
-                    member.groups = newGroups;
-                })
-            })
-        
-        // .then((docs) => res.status(200).json({ msg: "Group sucessfully deleted." }))
-        // .catch((err) => res.status(400))
+    Group.findById(req.params.id).then(
+        (group) => {
+            group.members.forEach((memberId) => {
+                User.findById(memberId).then(
+                    (user) => {
+                        let newGroups = user.groups;
+                        user.groups = newGroups.filter((groupId) => groupId !== group.id);
+                        user.save();
+                    }
+                )
+            });
+        }
+    )
+    Group.findOneAndDelete({ _id: req.params.id })
 });
 
 router.put('/:id', (req, res) => {

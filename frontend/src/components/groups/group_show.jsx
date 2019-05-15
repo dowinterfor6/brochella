@@ -19,7 +19,6 @@ class GroupShow extends React.Component {
   }
 
   render() {
-    console.log(this.props);
     let memberList;
     let owner;
     let acts;
