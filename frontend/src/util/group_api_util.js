@@ -9,7 +9,7 @@ export const createGroup = (group) => {
 }
 
 export const updateGroup = (group) => {
-  return axios.patch(`/api/group/${group.id}`, group)
+  return axios.put(`/api/groups/${group.id}`, group)
 }
 
 export const deleteGroup = (id) => {

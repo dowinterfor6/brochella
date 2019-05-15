@@ -1,29 +1,74 @@
+import React from 'react';
 import { connect } from 'react-redux';
-import { createGroup } from '../../../actions/group_actions';
 import { closeModal } from '../../../actions/modal_actions';
-import GroupForm from './group_form';
+import { createGroup } from '../../../actions/group_actions';
+import { Redirect } from 'react-router-dom';
 
-const mapStateToProps = (state) => {
-  return {
-    group: {
+
+class CreateGroupContainer extends React.Component {
+  
+  constructor(props) {
+    super(props);
+    this.state ={
       name: '',
-      // members: [], //members are added after group is created by owner
-      acts: []
-    },
-    formType: 'Create Group', 
-    //add key-value to show errors
-  };
-};
+      owner: this.props.currentUser,
+      members: [this.props.currentUser]
+    }
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+  
+  handleSubmit(e) {
+    e.preventDefault();
+    const group = Object.assign({}, this.state)
+    this.props.createGroup(group)
+      .then(this.props.closeModal)
+      .then(() => {(
+        <Redirect to={`/groups/${group.id}`} />
+      )});
+  }
+  
+  update(field) {
+    return e => this.setState({
+        [field]: e.currentTarget.value
+    });
+  }
 
-const mapDispatchToProps = (dispatch) => {
+  render() {
+
+    return (
+      <div className="session-form-modal"
+        onClick={(e) => e.stopPropagation() }
+        >
+        <form>
+          <label>Name
+            <input type="text"
+                  value={this.state.name}
+                  onChange={this.update('name')}
+                  maxLength="30"  />
+          </label>
+          <input type="submit"
+                onClick={this.handleSubmit}
+                />
+        </form>
+      </div>
+    );
+
+  }
+}
+
+
+
+const mstp = state => {
   return {
-    createGroup: (group) => dispatch(createGroup(group)),
-    closeModal: () => dispatch(closeModal()),
-    //add deleteErrors for creating groups
+    currentUser: state.session.user
   };
 };
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(GroupForm);
+const mdtp = dispatch => {
+  return {
+    createGroup: group => dispatch(createGroup(group)),
+    closeModal: () => dispatch(closeModal())
+  }
+}
+
+export default connect(mstp, mdtp)(CreateGroupContainer);
