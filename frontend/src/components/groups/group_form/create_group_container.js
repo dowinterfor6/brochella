@@ -42,9 +42,9 @@ class CreateGroupContainer extends React.Component {
                   onChange={this.update('name')}
                   maxLength="30"  />
           </label>
-          <input type="submit"
-                onClick={this.handleSubmit}
-                />
+          <button onClick={this.handleSubmit}> 
+            Create group
+          </button>
         </form>
       </div>
     );

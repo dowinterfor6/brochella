@@ -14,7 +14,6 @@ function DeleteForm(props) {
         onClick={(e) => e.stopPropagation() }
       >
         <button 
-          type="submit"
           onClick={
             (e) => {
               deleteGroup(group.id);
