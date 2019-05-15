@@ -35,6 +35,10 @@ class GroupShow extends React.Component {
   }
 
   render() {
+    let groupName = this.state.group.name;
+    if (groupName && document.title !== groupName) {
+      document.title = `${groupName}`;
+    }
     let memberList;
     let owner;
     let acts;
