@@ -39,5 +39,3 @@ const mdtp = dispatch => {
 }
 
 export default withRouter(connect(mstp, mdtp)(DeleteForm));
-
-// http://localhost:3000/#/groups/5cdb762f124b584c13a44e49
