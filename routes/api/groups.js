@@ -61,10 +61,48 @@ router.post('/', passport.authenticate('jwt', { session: false }), (req, res) =>
         })
 });
 
+
+
+
+
+// router.delete('/:id', passport.authenticate('jwt', { session: false }), (req, res) => {
+//     Group.findById(req.params.id)
+//     .then((group) => {
+//             group.members.forEach((member) => {
+//             const newGroups = {};
+//             for(let i = 0; i < member.groups.length; i++) {
+//                 if(member.groups[i] !== req.params.id) {
+//                     newGroups[i] = member.groups[i]
+//                 };
+//             };
+//             member.groups = newGroups;
+//         })
+//     });
+    
+//     Group.findOneAndDelete( { _id: req.params.id } )
+//     // .then((docs) => res.status(200).json({ msg: "Group sucessfully deleted." }))
+//     // .catch((err) => res.status(400))
+// });
+
+
+
 router.delete('/:id', passport.authenticate('jwt', { session: false }), (req, res) => {
-    Group.findByIdAndDelete(req.params.id)
-        .then((docs) => res.status(200).json({ msg: "Group sucessfully deleted." }))
-        .catch((err) => res.status(400))
+        debugger
+        Group.findOneAndDelete( { _id: req.params.id } )
+            .then((group) => {
+                group.members.forEach((member) => {
+                    const newGroups = {};
+                    for(let i = 0; i < member.groups.length; i++) {
+                        if(member.groups[i] !== req.params.id) {
+                            newGroups[i] = member.groups[i]
+                        };
+                    };
+                    member.groups = newGroups;
+                })
+            })
+        
+        // .then((docs) => res.status(200).json({ msg: "Group sucessfully deleted." }))
+        // .catch((err) => res.status(400))
 });
 
 router.put('/:id', (req, res) => {
