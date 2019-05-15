@@ -95,6 +95,11 @@
   border: 1px solid red;
 }
 
+.session-form-modal form a {
+  width: fit-content;
+  padding-bottom: 10px;
+}
+
 /* ANIMATIONS */
 
 @keyframes fadeIn {
