@@ -17,6 +17,7 @@ class GroupIndexDisplay extends React.Component {
       this.props.deleteActs().then(
         () => {
           this.setState({ acts: {} });
+          this.setState({ currentBackground: {} });
           this.setState({ activeGroup: nextProps.activeGroup });
           let acts = nextProps.activeGroup.acts;
           acts.map((actId) => (
@@ -26,17 +27,40 @@ class GroupIndexDisplay extends React.Component {
                 let nextState = merge({}, prevState, { [res.act.data._id]: res.act.data });
                 this.setState({ acts: nextState });
               }
+            ).then(
+              // () => {
+              //   if (Object.keys(this.state.acts).length === this.state.activeGroup.acts.length) {
+              //     let background = Object.values(this.state.acts)[0].url;
+              //     console.log(background);
+              //     let display = document.getElementsByClassName('in-focus-display')[0];
+              //     if (background) {
+              //       display.setAttribute('style', 
+              //         `background: url('${background}');
+              //         background-position: center;
+              //         background-size: cover;`
+              //       );
+              //       this.setState({ currentBackground: background });
+              //     } else {
+              //       display.setAttribute('style', 
+              //         `background: url('https://cdn.pixabay.com/photo/2015/07/10/17/53/cheers-839865_960_720.jpg');
+              //         background-position: center;
+              //         background-size: cover;`
+              //       );
+              //       this.setState({ currentBackground: '' });
+              //     }
+              //   }
+              // }
             )
           ))
           document.getElementsByClassName('in-focus-header')[0].classList.add('fadeIn');
           document.getElementsByClassName('act-list-container')[0].classList.add('fadeIn');
         }
-      ).then(
-        () => {
-          
-        }
       )
     }
+  }
+
+  componentWillUnmount() {
+    window.clearInterval(window);
   }
 
   render() {
