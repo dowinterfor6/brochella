@@ -46,11 +46,11 @@ class GroupShow extends React.Component {
         <div className="group-member-list-container">
           <h3>Member List:</h3>
           <ul className="group-member-list">
-            {Object.keys(this.state).map((keys, idx) => {
-              if(keys !== 'group') {
+            {this.state.group.members.map((key, idx) => {
+              if(this.state[key]) {
               return (
               <li key={idx}>
-                {this.state[keys].username}
+                {this.state[key].username}
               </li>
               )
             }
@@ -71,11 +71,15 @@ class GroupShow extends React.Component {
         <div className="group-acts-container">
           <h3>Acts List:</h3>
           <ul className="group-acts-list">
-            {this.state.group.acts.map((act, idx) => (
+            {this.state.group.acts.map((act, idx) => {
+              if(this.state[act]) {
+              return (
               <li key={idx}>
-                {act}
+                {this.state[act].name}
               </li>
-            ))}
+              )
+              }
+            })}
           </ul>
         </div>
       )

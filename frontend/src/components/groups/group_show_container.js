@@ -14,6 +14,7 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = (dispatch) => { 
   return ({
+    fetchActs: () => dispatch(fetchActs()),
     fetchAllUsers: () => dispatch(fetchAllUsers()),
     fetchGroup: (id) => dispatch(fetchGroup(id)),
     updateGroup: (group) => dispatch(updateGroup(group)),
