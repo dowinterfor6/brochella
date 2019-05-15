@@ -11,6 +11,7 @@ class GroupShow extends React.Component {
       group: {}
     };
   }
+
   componentDidMount() {
     this.props.fetchGroup(this.props.match.params.id).then(
       (res) => { this.setState({ group: res.group.data })}
@@ -18,9 +19,11 @@ class GroupShow extends React.Component {
   }
 
   render() {
+    console.log(this.props);
     let memberList;
     let owner;
     let acts;
+    let permButtons;
     if (this.state.group.members) {
       memberList = (
         <div className="group-member-list-container">
@@ -56,6 +59,19 @@ class GroupShow extends React.Component {
         </div>
       )
     }
+    if (this.props.currentUser.id === this.state.group.owner) {
+      permButtons = (
+        <div className="group-show-nav-container">
+          <button onClick={() => this.props.openModal('Edit Group')}>
+            Edit Group
+            </button>
+
+          <button onClick={() => this.props.openModal('Delete Confirmation')}>
+            Delete Group
+            </button>
+        </div>
+      );
+    }
 
     return(
       <div className='group-show-container'> 
@@ -66,15 +82,7 @@ class GroupShow extends React.Component {
           {owner}
           {memberList}
           {acts}
-          <div className="group-show-nav-container">
-            <button onClick={() => this.props.openModal('Edit Group')}>
-              Edit Group
-            </button>
-
-            <button onClick={() => this.props.openModal('Delete Confirmation')}>
-              Delete Group
-            </button>
-          </div>
+          {permButtons}
         </div>
 
         <aside className="map-container">

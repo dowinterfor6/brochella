@@ -6,6 +6,7 @@ import GroupShow from './group_show';
 const mapStateToProps = (state, ownProps) => {
   return ({
     group: state.groups.data,
+    currentUser: state.session.user
   })
 };
 
