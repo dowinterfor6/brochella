@@ -1,6 +1,7 @@
 import { createGroup } from '../../actions/group_actions';
 import { openModal, closeModal } from '../../actions/modal_actions';
 import { connect } from 'react-redux';
+import '../../assets/stylesheets/reset.css';
 import '../../assets/stylesheets/discover.css';
 import React from 'react';
 import { fetchActs } from '../../actions/act_actions';
@@ -47,11 +48,13 @@ class DiscoverPage extends React.Component {
     return (
       <div className='discovery-container'>
         <div className="discovery-header">
-          <h1>This is the discovery page!</h1>
+          <h1>Browse Coachella events!</h1>
           <button onClick={() => {
-              this.props.openModal(this.props.formType)
+            this.props.openModal(this.props.formType)
           }
-          }>Create a Group</button>
+          }>
+            Create a Group
+          </button>
         </div>
         
         <ul className="act-list">
