@@ -5,24 +5,17 @@ import { connect } from 'react-redux';
 
 import React from 'react';
 
-class DiscoverPage extends React.Component {
-    constructor(props) {
-        super(props);
-    }
+function DiscoverPage(props) {
 
-    render() {
-
-        return (
-            <div>
-                <h1>This is the discovery page!</h1>
-                <button onClick={() => {
-                    this.props.openModal(this.props.formType)
-                }
-                }>Create a Group</button>
-            </div>
-        );
-
-    }
+    return (
+        <div>
+            <h1>This is the discovery page!</h1>
+            <button onClick={() => {
+                this.props.openModal(this.props.formType)
+            }
+            }>Create a Group</button>
+        </div>
+    );
 
 }
 

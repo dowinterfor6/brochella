@@ -16,7 +16,7 @@ class GroupShow extends React.Component {
           Edit Group
         </button>
 
-        <button onClick={() => this.props.deleteGroup(this.props.group.id)}>
+        <button onClick={() => this.props.openModal('Delete Confirmation')}>
           Delete Group
         </button>
 
