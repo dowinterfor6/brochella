@@ -15,3 +15,4 @@ export const updateGroup = (group) => {
 export const deleteGroup = (id) => {
   return axios.delete(`/api/groups/${id}`)
 }
+
