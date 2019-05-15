@@ -14,16 +14,16 @@ class NavBar extends React.Component {
     if (this.props.loggedIn) {
       return (
         <ul className='nav-bar-items-after-login'>
-          <li>
+          <li className='hvr-underline-from-center' >
             <Link to={'/dashboard'}>Dashboard</Link>
           </li>
-          <li>
+          <li className='hvr-underline-from-center' >
             <Link to={'/discover'}>Discover</Link>
           </li>
-          <li>
+          <li className='hvr-underline-from-center' >
             <Link to={'/profile'}>Profile</Link>
           </li>
-          <li>
+          <li className='hvr-underline-from-center' >
             <Link to={'/'} onClick={this.props.logout}>Logout</Link>
           </li>
         </ul>
@@ -31,14 +31,14 @@ class NavBar extends React.Component {
     } else {
       return (
         <ul className='nav-bar-items-before-login'>
-          <li>
+          <li className='hvr-underline-from-center' >
             <a
               onClick={() => this.props.openModal('signup')}
             >
               Signup
             </a>
           </li>
-          <li>
+          <li className='hvr-underline-from-center' >
             <a
               onClick={() => this.props.openModal('login')}
             >
