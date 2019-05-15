@@ -3,17 +3,20 @@ import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { closeModal } from '../../../actions/modal_actions';
 import { deleteGroup } from '../../../actions/group_actions';
-
+import '../../../assets/stylesheets/modal.css';
 
 function DeleteForm(props) {
 
     const { deleteGroup, group } = props;
     
     return (
-      <div className="session-form-modal"
+      <div className="delete-form-modal"
         onClick={(e) => e.stopPropagation() }
-      >
+        >
+        <h1 className="delete-header">Warning!</h1>
+        <p className="delete-message">Once you click 'Delete', this action cannot be undone!</p>
         <button 
+          className="delete-button"
           onClick={
             (e) => {
               deleteGroup(group.id);
@@ -22,7 +25,7 @@ function DeleteForm(props) {
             }
           }
         >
-        Delete
+        Confirm & Delete
         </button>
       </div>
     );
