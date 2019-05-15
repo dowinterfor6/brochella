@@ -19,6 +19,44 @@ class GroupShow extends React.Component {
 
   render() {
     console.log(this.state);
+    let memberList;
+    let owner;
+    let acts;
+    if (this.state.group.members) {
+      memberList = (
+        <div className="group-member-list-container">
+          <h3>Member List:</h3>
+          <ul className="group-member-list">
+            {this.state.group.members.map((member, idx) => (
+              <li key={idx}>
+                {member}
+              </li>
+            ))}
+          </ul>
+        </div>
+      );
+    }
+    if (this.state.group.owner) {
+      owner = (
+        <div className="owner-display">
+          <h2>Created by: {this.state.group.owner}</h2>
+        </div>
+      )
+    }
+    if (this.state.group.acts && this.state.group.acts.length > 0) {
+      acts = (
+        <div className="group-acts-container">
+          <h3>Acts List:</h3>
+          <ul className="group-acts-list">
+            {this.state.group.acts.map((act, idx) => (
+              <li key={idx}>
+                {act}
+              </li>
+            ))}
+          </ul>
+        </div>
+      )
+    }
 
     return(
       <div className='group-show-container'> 
@@ -26,13 +64,9 @@ class GroupShow extends React.Component {
           <div className="group-show-header">
             <h1>{this.state.group.name}</h1>
           </div>
-
-          <div className="group-member-list-container">
-            <ul className="group-member-list">
-              
-            </ul>
-          </div>
-
+          {owner}
+          {memberList}
+          {acts}
           <div className="group-show-nav-container">
             <button onClick={() => this.props.openModal('Edit Group')}>
               Edit Group
