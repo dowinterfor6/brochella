@@ -104,11 +104,11 @@ class GroupIndexDisplay extends React.Component {
           </div>
           <div className="in-focus-acts">
             <ul className="act-list-container" onAnimationEnd={(e) => e.currentTarget.classList.remove('fadeIn')}>
-              {Object.values(this.state.acts).map((act) => (
+              {Object.keys(this.state.acts).sort().map((key) => (
                 <li
-                  key={act._id}
+                  key={key}
                 >
-                  {act.name}
+                  {this.state.acts[key].name}
                 </li>
               ))}
             </ul>
