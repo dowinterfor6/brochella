@@ -38,18 +38,22 @@ class CreateGroupContainer extends React.Component {
   render() {
 
     return (
-      <div className="session-form-modal"
+      <div className="delete-form-modal"
         onClick={(e) => e.stopPropagation() }
         >
+        <h2 className="delete-header">Give Your Group a Name</h2>
+        <p className="create-message">Make sure it is something that you and your friends agree on!</p>
         <form>
           <label>Name
             <input type="text"
+                  className="create-input"
                   value={this.state.name}
                   onChange={this.update('name')}
                   maxLength="30"  />
           </label>
-          <button onClick={this.handleSubmit}> 
-            Create group
+          <br />
+          <button className="create-button" onClick={this.handleSubmit}> 
+            Create New Group
           </button>
         </form>
       </div>
