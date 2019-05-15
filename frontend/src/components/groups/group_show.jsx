@@ -52,12 +52,13 @@ class GroupShow extends React.Component {
           <ul className="group-member-list">
             {this.state.group.members.map((key, idx) => {
               if(this.state[key]) {
-              return (
-              <li key={idx}>
-                {this.state[key].username}
-              </li>
-              )
-            }
+                return (
+                  <li key={idx}>
+                    {this.state[key].username}
+                  </li>
+                )
+              }
+              return null;
             })}
           </ul>
         </div>
@@ -77,12 +78,13 @@ class GroupShow extends React.Component {
           <ul className="group-acts-list">
             {this.state.group.acts.map((act, idx) => {
               if(this.state[act]) {
-              return (
-              <li key={idx}>
-                {this.state[act].name}
-              </li>
-              )
+                return (
+                  <li key={idx}>
+                    {this.state[act].name}
+                  </li>
+                )
               }
+              return null;
             })}
           </ul>
         </div>
