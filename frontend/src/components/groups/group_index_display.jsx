@@ -60,7 +60,7 @@ class GroupIndexDisplay extends React.Component {
 
   handleNavigation(e) {
     if (this.props.activeGroup) {
-      this.props.history.push(`/groups/${this.props.activeGroup._id}`);
+      this.props.history.push(`/groups/${this.props.activeGroup.id}`);
     }
   }
 
