@@ -8,54 +8,50 @@ class GroupIndexDisplay extends React.Component {
 
     this.state = {
       acts: {},
-      activeGroup: null
+      activeGroup: null,
+      backgroundUrl: ''
     };
 
     this.handleNavigation = this.handleNavigation.bind(this);
+  }
+
+  componentDidMount() {
+    this.setState(
+      { backgroundUrl: 'https://cdn.pixabay.com/photo/2015/07/10/17/53/cheers-839865_960_720.jpg'}
+    );
   }
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.activeGroup) {
       this.props.deleteActs().then(
         () => {
-          this.setState({ acts: {} });
           this.setState({ activeGroup: nextProps.activeGroup });
+          this.setState({ acts: {} });
           let acts = nextProps.activeGroup.acts;
-          let display = document.getElementsByClassName('in-focus-display')[0];
-          display.setAttribute('style',
-            `background: url('https://cdn.pixabay.com/photo/2015/07/10/17/53/cheers-839865_960_720.jpg')
-            background - position: center;
-            background - size: cover;`
-          );
-          display.classList.add('fadeIn');
-          acts.map((actId) => (
-            this.props.fetchAct(actId).then(
-              (res) => {
-                let prevState = this.state.acts;
-                let nextState = merge({}, prevState, { [res.act.data._id]: res.act.data });
-                if (Object.keys(this.state.acts).length > 0) {
-                  let display = document.getElementsByClassName('in-focus-display')[0];
-                  let background = Object.values(this.state.acts)[0].url;
-                  display.setAttribute('style', 
-                    `background: url('${background}');
-                    background-position: center;
-                    background-size: cover;`
-                  );
-                  display.classList.add('fadeIn');
+          if (acts.length > 0) {
+            acts.map((actId) => (
+              this.props.fetchAct(actId).then(
+                (res) => {
+                  // console.log(res);
+                  let prevState = this.state.acts;
+                  let nextState = merge({}, prevState, { [res.act.data._id]: res.act.data });
+                  this.setState({
+                    backgroundUrl: res.act.data.url,
+                    acts: nextState
+                  })
                 }
-                this.setState({ acts: nextState });
-              }
-            )
-          ))
+              )
+            ));
+          } else {
+            this.setState({ 
+              backgroundUrl: 'https://cdn.pixabay.com/photo/2015/07/10/17/53/cheers-839865_960_720.jpg' 
+            });
+          }
           document.getElementsByClassName('in-focus-header')[0].classList.add('fadeIn');
           document.getElementsByClassName('act-list-container')[0].classList.add('fadeIn');
         }
       )
     }
-  }
-
-  componentWillUnmount() {
-    window.clearInterval(window);
   }
 
   handleNavigation(e) {
@@ -67,7 +63,7 @@ class GroupIndexDisplay extends React.Component {
   render() {
     let display = (
       <div 
-        className='in-focus-display' 
+        className='in-focus-display fadeIn' 
         onAnimationEnd={(e) => e.currentTarget.classList.remove('fadeIn')}
         onClick={this.handleNavigation}
       >
@@ -87,7 +83,7 @@ class GroupIndexDisplay extends React.Component {
     if (this.state.activeGroup) {
       display = (
         <div 
-          className='in-focus-display active' 
+          className='in-focus-display active fadeIn' 
           onAnimationEnd={(e) => e.currentTarget.classList.remove('fadeIn')}
           onClick={this.handleNavigation}
         >
@@ -109,6 +105,14 @@ class GroupIndexDisplay extends React.Component {
       )
     }
 
+    let displayElement = document.getElementsByClassName('in-focus-display')[0];
+    if (displayElement) {
+      displayElement.setAttribute('style',
+        `background: url('${this.state.backgroundUrl}');
+        background-position: center;
+        background-size: cover;`
+      );
+    }
     return (
       display
     )
