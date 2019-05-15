@@ -83,7 +83,6 @@ class GroupShow extends React.Component {
           {memberList}
           {acts}
           {permButtons}
-          {/* { member} */}
         </div>
 
         <aside className="map-container">
