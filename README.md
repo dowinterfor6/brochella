@@ -43,7 +43,7 @@ A temporary discover page that shows all the available acts and basic details:
 # Code Highlights
 
 ### Cross-Document Referencing
-```
+```Javascript
 /routes/api/group.js
 
 router.post('/', passport.authenticate('jwt', { session: false }), (req, res) => {
@@ -77,6 +77,41 @@ router.post('/', passport.authenticate('jwt', { session: false }), (req, res) =>
 ```
 Creating groups and simultaneously pushing groups into a user's Groups array proved to be something of a challenge.
 We were able to use promises and Mongoose's populate() method to achieve both of these desired results, and to return to the api only the information that would be relevant upon a successful group creation.
+
+### Handle Large Display of group
+```Javascript
+/components/groups/group_index_display.jsx
+
+componentWillReceiveProps(nextProps) {
+    if (nextProps.activeGroup) {
+      this.props.deleteActs().then(
+        () => {
+          this.setState({ activeGroup: nextProps.activeGroup });
+          this.setState({ acts: {} });
+          let acts = nextProps.activeGroup.acts;
+          if (acts.length > 0) {
+            acts.map((actId) => (
+              this.props.fetchAct(actId).then(
+                (res) => {
+                  let prevState = this.state.acts;
+                  let nextState = merge({}, prevState, { 
+                    [Date.parse(res.act.data.date)]: res.act.data 
+                  });
+                  this.setState({
+                    acts: nextState
+                  })
+                }
+              )
+            ));
+          };
+          document.getElementsByClassName('in-focus-header')[0].classList.add('fadeIn');
+          document.getElementsByClassName('act-list-container')[0].classList.add('fadeIn');
+        }
+      )
+    }
+  }
+```
+Without using any external libraries or api, coding the carousel with a large display for the in focus group proved to be a little tougher than expected. By having the local state keep track of the active group, and sorting the group's acts by date, the acts were ordered by date and would appear in chronological order, as opposed to whichever loads first. As the background image is determined by the first act, this is crucial to keep some form of consistency when updating this component. For future purposes, the background image could cycle through the images of the acts on a set interval, and could have a indicator of which act's background is being displayed
 
 ## UI/UX
 
