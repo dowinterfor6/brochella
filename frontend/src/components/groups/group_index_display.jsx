@@ -7,7 +7,8 @@ class GroupIndexDisplay extends React.Component {
 
     this.state = {
       acts: {},
-      activeGroup: null
+      activeGroup: null,
+      currentBackground: []
     }
   }
 
@@ -27,11 +28,15 @@ class GroupIndexDisplay extends React.Component {
               }
             )
           ))
+          document.getElementsByClassName('in-focus-header')[0].classList.add('fadeIn');
+          document.getElementsByClassName('act-list-container')[0].classList.add('fadeIn');
+        }
+      ).then(
+        () => {
+          
         }
       )
     }
-    document.getElementsByClassName('in-focus-header')[0].classList.add('fadeIn');
-    document.getElementsByClassName('act-list-container')[0].classList.add('fadeIn');
   }
 
   render() {
@@ -70,8 +75,6 @@ class GroupIndexDisplay extends React.Component {
         </div>
       )
     }
-
-    console.log(this.state);
 
     return (
       display
