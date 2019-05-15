@@ -8,14 +8,15 @@ import { deleteGroup } from '../../../actions/group_actions';
 function DeleteForm(props) {
 
     const { deleteGroup, group } = props;
-    debugger
     return (
       <div className="session-form-modal"
         onClick={(e) => e.stopPropagation() }
         >
         <form>
           <input type="submit"
-                onClick={() => deleteGroup(group.id).then(closeModal).then(() => props.history.push('/dashboard'))}
+                onClick={() => deleteGroup(group.id)
+                    .then(() => props.closeModal())
+                    .then(() => props.history.push('/dashboard'))}
                 ></input>
         </form>
       </div>
