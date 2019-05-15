@@ -96,8 +96,14 @@
 }
 
 .session-form-modal form a {
+  height: 2em;
   width: fit-content;
+  box-sizing: border-box;
+  padding-top: 10px;
   padding-bottom: 10px;
+  display: flex;
+  justify-content: flex-start;
+  align-content: center;
 }
 
 /* ANIMATIONS */

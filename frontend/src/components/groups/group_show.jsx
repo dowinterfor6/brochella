@@ -35,6 +35,10 @@ class GroupShow extends React.Component {
   }
 
   render() {
+    let groupName = this.state.group.name;
+    if (groupName && document.title !== groupName) {
+      document.title = `${groupName}`;
+    }
     let memberList;
     let owner;
     let acts;
@@ -44,41 +48,50 @@ class GroupShow extends React.Component {
     if (this.state.group.members) {
       memberList = (
         <div className="group-member-list-container">
-          <h3>Member List:</h3>
+          <h2>Member List:</h2>
           <ul className="group-member-list">
             {this.state.group.members.map((key, idx) => {
               if(this.state[key]) {
-              return (
-              <li key={idx}>
-                {this.state[key].username}
-              </li>
-              )
-            }
+                return (
+                  <li key={idx}>
+                    <p>
+                      {this.state[key].username}
+                    </p>
+                  </li>
+                )
+              }
+              return null;
             })}
           </ul>
         </div>
       );
     }
     if (this.state.group.owner) {
-      owner = (
-        <div className="owner-display">
-          <h2>Created by: {this.state.group.owner}</h2>
-        </div>
-      )
+      let ownerUser = this.state[this.state.group.owner];
+      if (ownerUser) {
+        owner = (
+          <div className="owner-display">
+            <h2>Created by: {ownerUser.username}</h2>
+          </div>
+        )
+      };
     }
     if (this.state.group.acts && this.state.group.acts.length > 0) {
       acts = (
         <div className="group-acts-container">
-          <h3>Acts List:</h3>
+          <h2>Acts List:</h2>
           <ul className="group-acts-list">
             {this.state.group.acts.map((act, idx) => {
               if(this.state[act]) {
-              return (
-              <li key={idx}>
-                {this.state[act].name}
-              </li>
-              )
+                return (
+                  <li key={idx}>
+                    <p>
+                      {this.state[act].name}
+                    </p>
+                  </li>
+                )
               }
+              return null;
             })}
           </ul>
         </div>
