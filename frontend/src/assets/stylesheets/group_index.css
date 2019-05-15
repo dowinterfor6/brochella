@@ -138,6 +138,13 @@
   font-size: 20px;
   cursor: pointer;
   background-color: rgba(205, 205, 205, 0.25);
+
+  font-family: 'Raleway', sans-serif;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  user-select: none;
 }
 
 .group-index-item:hover {
@@ -146,16 +153,6 @@
 
 .group-index-item:first-of-type {
   margin-left: 0;
-}
-
-.group-index-name {
-  font-family: 'Raleway', sans-serif;
-  text-align: center;
-  margin: auto;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 
 .in-focus-display {
@@ -184,6 +181,28 @@
   justify-content: center;
   align-items: center;
   user-select: none;
+}
+
+.in-focus-acts {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.act-list-container {
+  height: 100%;
+  width: 100%;
+  padding: 20px;
+  box-sizing: border-box;
+  font-size: 32px;
+  color: rgb(255, 255, 255);
+  -webkit-text-stroke: 0.5px black;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
 }
 
 /* ANIMATIONS */
