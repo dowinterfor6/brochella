@@ -101,6 +101,7 @@
   box-sizing: border-box;
   margin: auto;
   display: flex;
+  justify-content: space-between;
   overflow: auto;
   overflow-y: auto;
 }
@@ -130,7 +131,8 @@
 
 .group-index-item {
   height: 100px;
-  width: 162px;
+  min-width: 162px;
+  max-width: 162px;
   margin: 10px;
   margin-top: 0;
   padding: 10px;
