@@ -12,14 +12,18 @@ function DeleteForm(props) {
     return (
       <div className="session-form-modal"
         onClick={(e) => e.stopPropagation() }
+      >
+        <button 
+          onClick={
+            (e) => {
+              deleteGroup(group.id);
+              props.closeModal();
+              props.history.push('/dashboard');
+            }
+          }
         >
-        <form>
-          <input type="submit"
-                onClick={() => deleteGroup(group.id)
-                    .then(() => props.closeModal())
-                    .then(() => props.history.push('/dashboard'))}
-                ></input>
-        </form>
+        Delete
+        </button>
       </div>
     );
 
@@ -39,4 +43,4 @@ const mdtp = dispatch => {
   }
 }
 
-export default withRouter(connect(mstp, mdtp)(DeleteForm));
+export default connect(mstp, mdtp)(withRouter(DeleteForm));
