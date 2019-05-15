@@ -8,54 +8,42 @@ class GroupIndexDisplay extends React.Component {
 
     this.state = {
       acts: {},
-      activeGroup: null
+      activeGroup: null,
+      backgroundUrl: ''
     };
 
     this.handleNavigation = this.handleNavigation.bind(this);
+  }
+
+  componentDidMount() {
+    this.setBackgroundUrl();
   }
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.activeGroup) {
       this.props.deleteActs().then(
         () => {
-          this.setState({ acts: {} });
           this.setState({ activeGroup: nextProps.activeGroup });
+          this.setState({ acts: {} });
           let acts = nextProps.activeGroup.acts;
-          let display = document.getElementsByClassName('in-focus-display')[0];
-          display.setAttribute('style',
-            `background: url('https://cdn.pixabay.com/photo/2015/07/10/17/53/cheers-839865_960_720.jpg')
-            background - position: center;
-            background - size: cover;`
-          );
-          display.classList.add('fadeIn');
-          acts.map((actId) => (
-            this.props.fetchAct(actId).then(
-              (res) => {
-                let prevState = this.state.acts;
-                let nextState = merge({}, prevState, { [res.act.data._id]: res.act.data });
-                if (Object.keys(this.state.acts).length > 0) {
-                  let display = document.getElementsByClassName('in-focus-display')[0];
-                  let background = Object.values(this.state.acts)[0].url;
-                  display.setAttribute('style', 
-                    `background: url('${background}');
-                    background-position: center;
-                    background-size: cover;`
-                  );
-                  display.classList.add('fadeIn');
+          if (acts.length > 0) {
+            acts.map((actId) => (
+              this.props.fetchAct(actId).then(
+                (res) => {
+                  let prevState = this.state.acts;
+                  let nextState = merge({}, prevState, { [Date.parse(res.act.data.date)]: res.act.data });
+                  this.setState({
+                    acts: nextState
+                  })
                 }
-                this.setState({ acts: nextState });
-              }
-            )
-          ))
+              )
+            ));
+          };
           document.getElementsByClassName('in-focus-header')[0].classList.add('fadeIn');
           document.getElementsByClassName('act-list-container')[0].classList.add('fadeIn');
         }
       )
     }
-  }
-
-  componentWillUnmount() {
-    window.clearInterval(window);
   }
 
   handleNavigation(e) {
@@ -64,10 +52,30 @@ class GroupIndexDisplay extends React.Component {
     }
   }
 
+  setBackgroundUrl(firstActId) {
+    let displayElement = document.getElementsByClassName('in-focus-display')[0];
+    if (displayElement) {
+      if (firstActId) {
+        displayElement.setAttribute('style',
+          `background: url('${this.state.acts[firstActId].url}');
+          background-position: center;
+          background-size: cover;`
+        );
+      } else {
+        displayElement.setAttribute('style',
+          `background: url('https://cdn.pixabay.com/photo/2015/07/10/17/53/cheers-839865_960_720.jpg');
+          background-position: center;
+          background-size: cover;`
+        );
+      }
+    }
+    
+  }
+
   render() {
     let display = (
       <div 
-        className='in-focus-display' 
+        className='in-focus-display fadeIn' 
         onAnimationEnd={(e) => e.currentTarget.classList.remove('fadeIn')}
         onClick={this.handleNavigation}
       >
@@ -87,7 +95,7 @@ class GroupIndexDisplay extends React.Component {
     if (this.state.activeGroup) {
       display = (
         <div 
-          className='in-focus-display active' 
+          className='in-focus-display active fadeIn' 
           onAnimationEnd={(e) => e.currentTarget.classList.remove('fadeIn')}
           onClick={this.handleNavigation}
         >
@@ -96,11 +104,11 @@ class GroupIndexDisplay extends React.Component {
           </div>
           <div className="in-focus-acts">
             <ul className="act-list-container" onAnimationEnd={(e) => e.currentTarget.classList.remove('fadeIn')}>
-              {Object.values(this.state.acts).map((act) => (
+              {Object.keys(this.state.acts).sort().map((key) => (
                 <li
-                  key={act._id}
+                  key={key}
                 >
-                  {act.name}
+                  {this.state.acts[key].name}
                 </li>
               ))}
             </ul>
@@ -108,6 +116,13 @@ class GroupIndexDisplay extends React.Component {
         </div>
       )
     }
+
+    if (Object.keys(this.state.acts).length > 0) {
+      let firstActId = Object.keys(this.state.acts).sort()[0];
+      this.setBackgroundUrl(firstActId);
+    } else {
+      this.setBackgroundUrl();
+    };
 
     return (
       display
