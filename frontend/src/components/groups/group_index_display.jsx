@@ -16,9 +16,7 @@ class GroupIndexDisplay extends React.Component {
   }
 
   componentDidMount() {
-    this.setState(
-      { backgroundUrl: 'https://cdn.pixabay.com/photo/2015/07/10/17/53/cheers-839865_960_720.jpg'}
-    );
+    this.setBackgroundUrl();
   }
 
   componentWillReceiveProps(nextProps) {
@@ -32,21 +30,15 @@ class GroupIndexDisplay extends React.Component {
             acts.map((actId) => (
               this.props.fetchAct(actId).then(
                 (res) => {
-                  // console.log(res);
                   let prevState = this.state.acts;
-                  let nextState = merge({}, prevState, { [res.act.data._id]: res.act.data });
+                  let nextState = merge({}, prevState, { [Date.parse(res.act.data.date)]: res.act.data });
                   this.setState({
-                    backgroundUrl: res.act.data.url,
                     acts: nextState
                   })
                 }
               )
             ));
-          } else {
-            this.setState({ 
-              backgroundUrl: 'https://cdn.pixabay.com/photo/2015/07/10/17/53/cheers-839865_960_720.jpg' 
-            });
-          }
+          };
           document.getElementsByClassName('in-focus-header')[0].classList.add('fadeIn');
           document.getElementsByClassName('act-list-container')[0].classList.add('fadeIn');
         }
@@ -58,6 +50,26 @@ class GroupIndexDisplay extends React.Component {
     if (this.props.activeGroup) {
       this.props.history.push(`/groups/${this.props.activeGroup.id}`);
     }
+  }
+
+  setBackgroundUrl(firstActId) {
+    let displayElement = document.getElementsByClassName('in-focus-display')[0];
+    if (displayElement) {
+      if (firstActId) {
+        displayElement.setAttribute('style',
+          `background: url('${this.state.acts[firstActId].url}');
+          background-position: center;
+          background-size: cover;`
+        );
+      } else {
+        displayElement.setAttribute('style',
+          `background: url('https://cdn.pixabay.com/photo/2015/07/10/17/53/cheers-839865_960_720.jpg');
+          background-position: center;
+          background-size: cover;`
+        );
+      }
+    }
+    
   }
 
   render() {
@@ -105,14 +117,13 @@ class GroupIndexDisplay extends React.Component {
       )
     }
 
-    let displayElement = document.getElementsByClassName('in-focus-display')[0];
-    if (displayElement) {
-      displayElement.setAttribute('style',
-        `background: url('${this.state.backgroundUrl}');
-        background-position: center;
-        background-size: cover;`
-      );
-    }
+    if (Object.keys(this.state.acts).length > 0) {
+      let firstActId = Object.keys(this.state.acts).sort()[0];
+      this.setBackgroundUrl(firstActId);
+    } else {
+      this.setBackgroundUrl();
+    };
+
     return (
       display
     )
