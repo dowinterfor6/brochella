@@ -61,13 +61,7 @@ class GroupIndexDisplay extends React.Component {
           background-position: center;
           background-size: cover;`
         );
-      } else {
-        displayElement.setAttribute('style',
-          `background: url('https://cdn.pixabay.com/photo/2015/07/10/17/53/cheers-839865_960_720.jpg');
-          background-position: center;
-          background-size: cover;`
-        );
-      }
+      };
     } 
   }
 
