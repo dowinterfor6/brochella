@@ -12,21 +12,19 @@ function DeleteForm(props) {
     return (
       <div className="session-form-modal"
         onClick={(e) => e.stopPropagation() }
+      >
+        <button 
+          type="submit"
+          onClick={
+            (e) => {
+              deleteGroup(group.id);
+              props.closeModal();
+              props.history.push('/dashboard');
+            }
+          }
         >
-        <form>
-          <input type="submit"
-                // onClick={() => deleteGroup(group.id)
-                //     .then(() => props.closeModal())
-                //     .then(() => props.history.push('/dashboard'))}
-                onClick={
-                  () => {
-                    deleteGroup(group.id);
-                    props.closeModal();
-                    props.history.push('/dashboard');
-                  }
-                }
-                ></input>
-        </form>
+        Delete
+        </button>
       </div>
     );
 
