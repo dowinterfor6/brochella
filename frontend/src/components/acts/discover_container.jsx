@@ -15,6 +15,7 @@ class DiscoverPage extends React.Component {
   }
 
   componentDidMount() {
+    document.title = 'Discover';
     this.props.fetchActs().then(
       (res) => {
         res.acts.map((act) => (

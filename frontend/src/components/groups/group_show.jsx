@@ -14,11 +14,17 @@ class GroupShow extends React.Component {
 
   componentDidMount() {
     this.props.fetchGroup(this.props.match.params.id).then(
-      (res) => { this.setState({ group: res.group.data })}
+      (res) => { 
+        this.setState({ group: res.group.data });
+      }
     );
   }
 
   render() {
+    let groupName = this.state.group.name;
+    if (groupName && document.title !== groupName) {
+      document.title = `${groupName}`;
+    }
     let memberList;
     let owner;
     let acts;
