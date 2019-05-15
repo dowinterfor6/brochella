@@ -2,7 +2,6 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { closeModal } from '../../../actions/modal_actions';
 import { createGroup } from '../../../actions/group_actions';
-import { Redirect } from 'react-router-dom';
 
 
 class CreateGroupContainer extends React.Component {
@@ -22,9 +21,6 @@ class CreateGroupContainer extends React.Component {
     const group = Object.assign({}, this.state)
     this.props.createGroup(group)
       .then(this.props.closeModal)
-      .then(() => {(
-        <Redirect to={`/groups/${group.id}`} />
-      )});
   }
   
   update(field) {
