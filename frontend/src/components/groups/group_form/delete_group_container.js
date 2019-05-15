@@ -8,6 +8,7 @@ import { deleteGroup } from '../../../actions/group_actions';
 function DeleteForm(props) {
 
     const { deleteGroup, group } = props;
+    
     return (
       <div className="session-form-modal"
         onClick={(e) => e.stopPropagation() }
