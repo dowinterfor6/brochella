@@ -1,32 +1,71 @@
-Bro-chella
+# Bro-chella
 A social planning application for the Coachella event. 
 
-Background and Overview
+## Background and Overview
 Bro-chella is an application that allows users to create groups based on acts from Coachella. Within a group,users can join through invites and plan the details of their activities, such as whereabouts and location meetup. Lastly, users can also discover related acts either through their group discover page.
 
-Building Bro-chella will involve:
-- Build database to store users, and event-groups information
-- Create form group creation
+## Building Bro-chella involved:
+- Building and implementing a thorough database schema with backend routes to store users, event-groups, and acts
+- Full CRUD functionality, allowing users to create, update, and delete groups with their friends
 - Allow users to interact with a planning module when on the group show page
 - View map location of area-site
 
-Functionality & MVP
+## Functionality & MVPs
 - Splash page of some bros(probably ronilAndFriends)
-- User Auth: sign up and login 
-- Dashboard of groups a user has created or joined
-- Group show page 
+- User Auth: sign up and login, complete with demo user
+- Dashboard of groups that a user has created or joined, including a preview of upcoming acts for that group
+- Group show page, containing a map of the surrounding area, members of that group, and acts that that group has subscribed to attend
 - Acts discovery and search
 - Render Google Maps API on the group show page
 
-Bonus Features
+### Bonus Features - Upcoming!
 - Chat within the group show page
 - Allow users to pin their current location during the event
 
-Technologies & Technical Challenges 
-- Backend: Node, Express, MongoDBAtlas 
+### Technologies & Technical Challenges 
+- Backend: Node, Express, MongoDB 
 - Frontend: React, Redux
 
-UI/UX
+# Code Highlights
+
+### Cross-Document Referencing
+```
+/routes/api/group.js
+
+router.post('/', passport.authenticate('jwt', { session: false }), (req, res) => {
+    const { errors, isValid } = validateGroupInput(req.body);
+
+    if(!isValid) {
+        return res.status(400).json(errors);
+    }
+
+    const newGroup = new Group({
+        name: req.body.name,
+        owner: req.user.id,
+        members: [req.user.id]
+    });
+
+    newGroup.save()
+        .then((group) => group.populate('owner').execPopulate())
+        .then((group) => {
+            group.owner.groups.push(group.id)
+            return group.owner.save()
+            .then(() => {
+                return group
+            })
+        })
+        .then((group) => {
+            const { name, owner } = group
+            res.json({ name: name, owner: owner.id, id: group.id })
+            ;
+        })
+});
+```
+Creating groups and simultaneously pushing groups into a user's Groups array proved to be something of a challenge.
+We were able to use promises and Mongoose's populate() method to achieve both of these desired results, and to return to the api only the information that would be relevant upon a successful group creation.
+
+## UI/UX
+
 The goal is to maintain a minimalistic design that will allow users to create many groups, while sustaining an organized dashboard. 
 - The app will have a splash page with animations of pictures of past Coachella events, as well as buttons to allow users to Signup or Login through a modal
 - Upon Signing up or Logging in, the user's dashbaord will render with groups they are participating in.
@@ -41,24 +80,15 @@ The groups will render according to a chronological order starting with the next
 - The Discover Page will render a list of related events. 
   - Events will be sorted according to the most related tags based on their previosly created groups and acts.
 
-Things Accomplished Over the Weekend
-- Splash Page, User Auth
-- Dashboard
 
-Group Members and Work Breakdown
-- Monday:
-  - Andrew: UserAuth Backend/Frontend; Splash Page, Navbar, Modal CSS
-  - Kevin: Models, Routes, Modal Backend
-  - Karen: Dashboard Frontend, Group Show, Create/Edit Group Forms; 
+## Group Members & Responsibilities
 
-  ---Push to Heroku---
+### Andrew
+ - User Authentication, User Dashboard/Group Carousel Component Creation/Page Styling, Discovery Page Layout, Chief CSSer, General Squasher of Bugs/Fix'er Upper
 
-- Tuesday: 
-  - Andrew: Group Index and Show page CSS; Check Routes;
-  - Kevin: Seed Everything including Acts, Discovery Page; BE/FE routes are matching; (BE location column for event)
-  - Karen: Group Show CSS, Google Maps API(FE); 
-- Wednesday:
-  - Production README, Push to Heroku (seeded database)
-
-Plan for getting users and reviews 
+### Karen
+ - Built Out React Skeleton, Full Google Maps API Integration, Groups Show Page Components, Thorough Styling
+ 
+### Kevin
+ - Primary Backend Routes/API Architect, Implementor of Group CRUD Form Functionality, Small Styling of Delete/Create Modal, Provider of Pikachu Gif
 
