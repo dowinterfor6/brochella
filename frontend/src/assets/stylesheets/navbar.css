@@ -19,6 +19,7 @@
   text-transform: uppercase;
   letter-spacing: 5px;
   font-size: 48px;
+  user-select: none;
 }
 
 .nav-bar-container ul li {
