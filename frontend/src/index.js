@@ -11,8 +11,9 @@ import * as sessionApiUtil from './util/session_api_util';
 // import { fetchUsersGroups } from './util/user_api_util';
 import { fetchUserGroups } from './actions/user_actions';
 // import { fetchAct } from './util/acts_api_util';
-import { fetchAct, fetchGroupActs, deleteActs } from './actions/act_actions';
+import { fetchAct, fetchGroupActs, deleteActs, fetchActs } from './actions/act_actions';
 import { fetchGroup } from './actions/group_actions';
+// import { fetchActs } from './util/acts_api_util';
 // import { fetchGroupActs } from './util/acts_api_util';
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -52,4 +53,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // window.fetchGroupActs = fetchGroupActs;
   window.fetchGroupActs = fetchGroupActs;
   window.deleteActs = deleteActs;
+
+  // window.fetchActs = fetchActs;
+  window.fetchActs = fetchActs;
 });
