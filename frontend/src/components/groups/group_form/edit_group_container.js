@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { fetchGroup, updateGroup } from '../../../actions/group_actions';
 import { closeModal } from '../../../actions/modal_actions';
+import '../../../assets/stylesheets/modal.css'
 
 class GroupForm extends React.Component {
   constructor(props) {
@@ -41,13 +42,13 @@ class GroupForm extends React.Component {
         }}
       >
 
-        Hey Hi Ho ~this is the Group form :p 
+        <h1>This is the Group Form</h1>
         <form onSubmit={this.handleSubmit}>
           <label>
-            Name ya Group: 
-            <input type="text" value={this.state.name} onChange={this.update('name')} />
+            <p className="create-message">Name ya Group:</p> 
+            <input type="text" className="create-input" value={this.state.name} onChange={this.update('name')} />
           </label>
-          <input type="submit" value="Submit Group" />
+          <button className="create-button" type="submit" value="Submit Group">Edit Group</button>
         </form>
       </div>
     )
