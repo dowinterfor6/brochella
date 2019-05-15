@@ -1,5 +1,6 @@
 import React from 'react';
 import merge from 'lodash/merge';
+import {withRouter} from 'react-router-dom';
 
 class GroupIndexDisplay extends React.Component {
   constructor(props) {
@@ -8,7 +9,9 @@ class GroupIndexDisplay extends React.Component {
     this.state = {
       acts: {},
       activeGroup: null
-    }
+    };
+
+    this.handleNavigation = this.handleNavigation.bind(this);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -30,7 +33,6 @@ class GroupIndexDisplay extends React.Component {
               (res) => {
                 let prevState = this.state.acts;
                 let nextState = merge({}, prevState, { [res.act.data._id]: res.act.data });
-                console.log(this.state);
                 if (Object.keys(this.state.acts).length > 0) {
                   let display = document.getElementsByClassName('in-focus-display')[0];
                   let background = Object.values(this.state.acts)[0].url;
@@ -56,9 +58,19 @@ class GroupIndexDisplay extends React.Component {
     window.clearInterval(window);
   }
 
+  handleNavigation(e) {
+    if (this.props.activeGroup) {
+      this.props.history.push(`/groups/${this.props.activeGroup._id}`);
+    }
+  }
+
   render() {
     let display = (
-      <div className='in-focus-display' onAnimationEnd={(e) => e.currentTarget.classList.remove('fadeIn')}>
+      <div 
+        className='in-focus-display' 
+        onAnimationEnd={(e) => e.currentTarget.classList.remove('fadeIn')}
+        onClick={this.handleNavigation}
+      >
         <div className="in-focus-header fadeIn" onAnimationEnd={(e) => e.currentTarget.classList.remove('fadeIn')}>
           Browse through your groups and click to show details!
           Or, check out the discover page and
@@ -74,7 +86,11 @@ class GroupIndexDisplay extends React.Component {
 
     if (this.state.activeGroup) {
       display = (
-        <div className='in-focus-display' onAnimationEnd={(e) => e.currentTarget.classList.remove('fadeIn')}>
+        <div 
+          className='in-focus-display active' 
+          onAnimationEnd={(e) => e.currentTarget.classList.remove('fadeIn')}
+          onClick={this.handleNavigation}
+        >
           <div className="in-focus-header fadeIn" onAnimationEnd={(e) => e.currentTarget.classList.remove('fadeIn')}>
             {this.state.activeGroup.name}
           </div>
@@ -99,4 +115,4 @@ class GroupIndexDisplay extends React.Component {
   }
 }
 
-export default GroupIndexDisplay;
+export default withRouter(GroupIndexDisplay);
