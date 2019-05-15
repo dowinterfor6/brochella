@@ -1,4 +1,4 @@
-import { RECEIVE_ACT } from '../actions/act_actions';
+import { RECEIVE_ACT, REMOVE_ACTS } from '../actions/act_actions';
 import merge from 'lodash/merge';
 
 const actsReducer = (state = {}, action) => {
@@ -14,6 +14,8 @@ const actsReducer = (state = {}, action) => {
     //     nextState = merge({}, nextState, { [idx]: actId })
     //   ));
     //   return nextState;
+    case REMOVE_ACTS:
+      return {};
     default:
       return state;
   }
