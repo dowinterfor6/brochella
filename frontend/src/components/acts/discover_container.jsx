@@ -23,11 +23,22 @@ class DiscoverPage extends React.Component {
     )
   }
 
+  parseDate(date) {
+    let newDate;
+    let newTime;
+    let dateArr = date.split('T');
+    newDate = dateArr[0];
+    let timeArr = dateArr[1].split('Z');
+    newTime = timeArr[0].split('.')[0];
+    return newDate + ' ' + newTime
+  }
+
   render() {
     let acts = (
       Object.values(this.state).map((act, idx) => (
         <li className='discovery-index-item' key={idx}>
           <h3>{act.name}</h3>
+          <p>{this.parseDate(act.date)}</p>
           <img src={act.url} alt={act.name}/>
         </li>
       ))
