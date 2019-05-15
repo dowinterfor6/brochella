@@ -27,6 +27,29 @@
   overflow-x: hidden;
 }
 
+/* width */
+.act-list::-webkit-scrollbar {
+  position: relative;
+  width: 10px;
+  background: transparent;
+}
+
+/* Track */
+.act-list::-webkit-scrollbar-track {
+  background: transparent; 
+}
+
+/* Handle */
+.act-list::-webkit-scrollbar-thumb {
+  cursor: pointer;
+  background: rgb(165, 165, 165); 
+  border-radius: 5px;
+}
+
+.act-list::-webkit-scrollbar-thumb:hover {
+  background: rgb(95, 95, 95);
+}
+
 .discovery-index-item {
   display: flex;
   flex-direction: column;
