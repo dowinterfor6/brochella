@@ -65,24 +65,20 @@ class GroupShow extends React.Component {
       );
     }
     if (this.state.group.owner) {
-      owner = (
-        <div className="owner-display">
-          <h2>Created by: {this.state.group.owner} </h2>
-        </div>
-      )
+      let ownerUser = this.state[this.state.group.owner];
+      if (ownerUser) {
+        owner = (
+          <div className="owner-display">
+            <h2>Created by: {ownerUser.username}</h2>
+          </div>
+        )
+      };
     }
     if (this.state.group.acts && this.state.group.acts.length > 0) {
       acts = (
         <div className="group-acts-container">
           <h3>Acts List:</h3>
           <ul className="group-acts-list">
-<<<<<<< HEAD
-            {this.state.group.acts.map((act, idx) => (
-              <li key={idx} >
-                {act}
-              </li>
-            ))}
-=======
             {this.state.group.acts.map((act, idx) => {
               if(this.state[act]) {
                 return (
@@ -93,7 +89,6 @@ class GroupShow extends React.Component {
               }
               return null;
             })}
->>>>>>> master
           </ul>
         </div>
       )
