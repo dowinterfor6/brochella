@@ -13,9 +13,25 @@ class GroupShow extends React.Component {
   }
 
   componentDidMount() {
-    this.props.fetchGroup(this.props.match.params.id).then(
-      (res) => { this.setState({ group: res.group.data })}
-    );
+    this.props.fetchGroup(this.props.match.params.id)
+      .then((res) => { 
+        this.setState({ group: res.group.data })
+      })
+      .then(() => this.props.fetchAllUsers())
+      .then((res) => {
+        res.users.data.map((user) => (
+          this.setState({ [user._id]: user })
+        ))
+      })
+      .then(() => {
+        this.props.fetchActs().then(
+          (res) => {
+            res.acts.map((act) => (
+              this.setState({ [act._id]: act })
+            ))
+          }
+        )
+      })
   }
 
   render() {
@@ -23,16 +39,22 @@ class GroupShow extends React.Component {
     let owner;
     let acts;
     let permButtons;
+  
+
     if (this.state.group.members) {
       memberList = (
         <div className="group-member-list-container">
           <h3>Member List:</h3>
           <ul className="group-member-list">
-            {this.state.group.members.map((member, idx) => (
+            {Object.keys(this.state).map((keys, idx) => {
+              if(keys !== 'group') {
+              return (
               <li key={idx}>
-                {member}
+                {this.state[keys].username}
               </li>
-            ))}
+              )
+            }
+            })}
           </ul>
         </div>
       );
