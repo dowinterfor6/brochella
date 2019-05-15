@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 import { closeModal } from '../../../actions/modal_actions';
 import { createGroup } from '../../../actions/group_actions';
 
@@ -20,7 +21,12 @@ class CreateGroupContainer extends React.Component {
     e.preventDefault();
     const group = Object.assign({}, this.state)
     this.props.createGroup(group)
-      .then(this.props.closeModal)
+      .then(
+        (res) => {
+          this.props.closeModal();
+          this.props.history.push(`/groups/${res.group.data.id}`);
+        }
+      )
   }
   
   update(field) {
@@ -67,4 +73,4 @@ const mdtp = dispatch => {
   }
 }
 
-export default connect(mstp, mdtp)(CreateGroupContainer);
+export default connect(mstp, mdtp)(withRouter(CreateGroupContainer));
