@@ -20,7 +20,7 @@
   width: 100%;
   display: grid;
   grid-template-columns: repeat(auto-fit, 324px);
-  grid-template-rows: repeat(auto-fit, 200px);
+  grid-template-rows: repeat(auto-fit, 220px);
   grid-gap: 10px;
   justify-content: center;
   overflow: scroll;
@@ -55,7 +55,7 @@
   flex-direction: column;
   box-sizing: border-box;
   padding: 10px;
-  min-height: 200px;
+  min-height: 220px;
   justify-content: space-between;
   align-items: center;
 }

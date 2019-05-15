@@ -17,7 +17,7 @@ class DiscoverPage extends React.Component {
     this.props.fetchActs().then(
       (res) => {
         res.acts.map((act) => (
-          this.setState({ [act._id]: act })
+          this.setState({ [Date.parse(act.date)]: act })
         ))
       }
     )
@@ -30,16 +30,16 @@ class DiscoverPage extends React.Component {
     newDate = dateArr[0];
     let timeArr = dateArr[1].split('Z');
     newTime = timeArr[0].split('.')[0];
-    return newDate + ' ' + newTime
+    return { date: newDate, time: newTime }
   }
 
   render() {
     let acts = (
-      Object.values(this.state).map((act, idx) => (
+      Object.keys(this.state).sort().map((key, idx) => (
         <li className='discovery-index-item' key={idx}>
-          <h3>{act.name}</h3>
-          <p>{this.parseDate(act.date)}</p>
-          <img src={act.url} alt={act.name}/>
+          <h3>{this.state[key].name}</h3>
+          <h4>Date: {this.parseDate(this.state[key].date).date} Time: {this.parseDate(this.state[key].date).time}</h4>
+          <img src={this.state[key].url} alt={this.state[key].name}/>
         </li>
       ))
     )
