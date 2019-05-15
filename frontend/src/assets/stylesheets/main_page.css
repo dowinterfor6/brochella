@@ -1,3 +1,8 @@
+/* .main-landing {
+  background-image: url('https://www.ticketclub.com/blog/wp-content/uploads/2019/01/coachella-large-image-2000x1000.jpg');
+  background-position: sticky;
+} */
+
 .landing-page-container {
   height: calc(100vh - 200px);
   width: 100%;

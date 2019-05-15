@@ -34,6 +34,10 @@ body {
 ol, ul {
 	list-style: none;
 }
+li {
+	line-height: 150%;
+  font-family: 'Raleway', sans-serif;
+}
 blockquote, q {
 	quotes: none;
 }
@@ -76,6 +80,7 @@ h3,
 h4, 
 h5 {
 	font-family: 'Raleway', sans-serif;
+	font-weight: bolder;
 }
 
 h1 {

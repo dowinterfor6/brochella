@@ -23,6 +23,7 @@ class GroupShow extends React.Component {
     let owner;
     let acts;
     let permButtons;
+
     if (this.state.group.members) {
       memberList = (
         <div className="group-member-list-container">
@@ -40,7 +41,7 @@ class GroupShow extends React.Component {
     if (this.state.group.owner) {
       owner = (
         <div className="owner-display">
-          <h2>Created by: {this.state.group.owner}</h2>
+          <h2>Created by: {this.state.group.owner} </h2>
         </div>
       )
     }
@@ -50,7 +51,7 @@ class GroupShow extends React.Component {
           <h3>Acts List:</h3>
           <ul className="group-acts-list">
             {this.state.group.acts.map((act, idx) => (
-              <li key={idx}>
+              <li key={idx} >
                 {act}
               </li>
             ))}
@@ -82,6 +83,7 @@ class GroupShow extends React.Component {
           {memberList}
           {acts}
           {permButtons}
+          {/* { member} */}
         </div>
 
         <aside className="map-container">
