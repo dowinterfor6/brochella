@@ -59,11 +59,6 @@ a {
 	cursor: pointer;
 }
 
-a:hover {
-	color: grey;
-	text-decoration: underline;
-}
-
 #root {
 	/* background-image: url('http://i.imgur.com/kCUfqi1.jpg'); */
 	/* background-attachment: fixed; */
@@ -91,4 +86,12 @@ h1 {
 
 h2 {
 	font-size: 24px;
+}
+
+h3 {
+	font-size: 18px;
+}
+
+h4 {
+	font-size: 16px;
 }

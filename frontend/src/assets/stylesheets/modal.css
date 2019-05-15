@@ -1,0 +1,78 @@
+.delete-header {
+    text-align: center;
+    font-size: 30px;
+    font-style: italic;
+}
+
+.delete-message {
+    text-align: center;
+    font-size: 18px;
+    margin-top: 45px;
+    margin-bottom: 45px;
+}
+
+.delete-form-modal {
+    width: 475px;
+    box-sizing: border-box;
+    padding: 50px;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border-radius: 5px;
+    background-color: white;
+    border: 1px solid rgb(160, 160, 160);
+  }
+
+  .delete-button {
+      background-color: rgb(247, 101, 101);
+      width: 50%;
+      padding: 6px;
+      font-size: 14px;
+      border-radius: 6px;
+      margin: auto;
+      border: 1px solid white;
+  }
+
+  .delete-button:hover {
+      cursor: pointer;
+      background-color: rgb(255, 0, 0);
+      font-weight: 800;
+      color: white;
+      border: 1px solid rgb(255, 0, 0);
+  }
+
+  .create-button {
+    width: 50%;
+    padding: 6px;
+    font-size: 14px;
+    border-radius: 6px;
+    margin: auto;
+    border: 1px solid black;
+  }
+
+  .create-button:hover {
+      cursor: pointer;
+  }
+
+  .create-input {
+    display: flex;
+    width: 50%;
+    display: flex;
+    margin-top: 7px;
+    align-items: center;
+    border-radius: 5px;
+    box-sizing: border-box;
+    padding: 6px 10px;
+    box-shadow: none;
+    border: 1px solid #dfdfdf;
+    margin-bottom: 0;
+    justify-content: left;
+  }
+
+  .create-message {
+    text-align: left;
+    font-size: 18px;
+    margin-top: 45px;
+    margin-bottom: 45px;
+}

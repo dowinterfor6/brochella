@@ -13,27 +13,53 @@ class GroupShow extends React.Component {
   }
 
   componentDidMount() {
-    this.props.fetchGroup(this.props.match.params.id).then(
-      (res) => { this.setState({ group: res.group.data })}
-    );
+    this.props.fetchGroup(this.props.match.params.id)
+      .then((res) => { 
+        this.setState({ group: res.group.data })
+      })
+      .then(() => this.props.fetchAllUsers())
+      .then((res) => {
+        res.users.data.map((user) => (
+          this.setState({ [user._id]: user })
+        ))
+      })
+      .then(() => {
+        this.props.fetchActs().then(
+          (res) => {
+            res.acts.map((act) => (
+              this.setState({ [act._id]: act })
+            ))
+          }
+        )
+      })
   }
 
   render() {
+    let groupName = this.state.group.name;
+    if (groupName && document.title !== groupName) {
+      document.title = `${groupName}`;
+    }
     let memberList;
     let owner;
     let acts;
     let permButtons;
+  
 
     if (this.state.group.members) {
       memberList = (
         <div className="group-member-list-container">
           <h3>Member List:</h3>
           <ul className="group-member-list">
-            {this.state.group.members.map((member, idx) => (
-              <li key={idx}>
-                {member}
-              </li>
-            ))}
+            {this.state.group.members.map((key, idx) => {
+              if(this.state[key]) {
+                return (
+                  <li key={idx}>
+                    {this.state[key].username}
+                  </li>
+                )
+              }
+              return null;
+            })}
           </ul>
         </div>
       );
@@ -50,11 +76,24 @@ class GroupShow extends React.Component {
         <div className="group-acts-container">
           <h3>Acts List:</h3>
           <ul className="group-acts-list">
+<<<<<<< HEAD
             {this.state.group.acts.map((act, idx) => (
               <li key={idx} >
                 {act}
               </li>
             ))}
+=======
+            {this.state.group.acts.map((act, idx) => {
+              if(this.state[act]) {
+                return (
+                  <li key={idx}>
+                    {this.state[act].name}
+                  </li>
+                )
+              }
+              return null;
+            })}
+>>>>>>> master
           </ul>
         </div>
       )

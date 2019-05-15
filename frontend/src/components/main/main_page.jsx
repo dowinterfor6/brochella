@@ -3,6 +3,10 @@ import '../../assets/stylesheets/reset.css';
 import '../../assets/stylesheets/main_page.css';
 
 class MainPage extends React.Component {
+  
+  componentDidMount() {
+    document.title = 'Bro-chella';
+  };
 
   render() {
     return (

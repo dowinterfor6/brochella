@@ -16,6 +16,7 @@ class GroupIndex extends React.Component {
   }
 
   componentDidMount() {
+    document.title = 'Dashboard';
     this.props.fetchUserGroups(this.props.currentUser.id)
       .then(
         (res) => {

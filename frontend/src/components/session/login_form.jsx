@@ -126,7 +126,12 @@ class LoginForm extends React.Component {
               onChange={this.update('password')}
             />
           </label>
-          <a onClick={this.handleDemoLogin}>Forgot your password? (Demo Login)</a>
+          <a 
+            className='hvr-underline-from-center' 
+            onClick={this.handleDemoLogin}
+          >
+            Forgot your password? (Demo Login)
+          </a>
           <button>Submit</button>
         </form>
       </div>

@@ -130,4 +130,11 @@ router.get('/:user_id/groups', passport.authenticate('jwt', {session: false}), (
   });
 });
 
+router.get('/', passport.authenticate('jwt', {session: false}), (req, res) => {
+  User.find()
+    .sort({ data: -1 })
+    .then((users) => res.json(users))
+    .catch((err) => res.status(400).json({ nousersfound: 'No users found.' }))
+});
+
 module.exports = router;
