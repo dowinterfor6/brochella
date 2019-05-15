@@ -1,0 +1,11 @@
+import React from 'react';
+import '../../assets/stylesheets/reset.css';
+import '../../assets/stylesheets/profile.css';
+
+const Profile = () => (
+  <div className="profile-container">
+    <img src="https://media.giphy.com/media/S5JSwmQYHOGMo/giphy.gif" alt="Under Construction"/>
+  </div>
+);
+
+export default Profile;

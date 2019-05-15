@@ -7,12 +7,14 @@ import NavBarContainer from './nav/navbar_container';
 import GroupIndexContainer from './groups/group_index_container';
 import GroupShowContainer from './groups/group_show_container';
 import DiscoverContainer from './acts/discover_container';
+import Profile from './profile/profile';
 
 const App = () => (
   <div>
     <NavBarContainer />
     <Switch>
       <ProtectedRoute exact path='/groups/:id' component={GroupShowContainer} />
+      <ProtectedRoute exact path='/profile' component={Profile} />
       <ProtectedRoute exact path='/dashboard' component={GroupIndexContainer} />
       <ProtectedRoute exact path='/discover' component={DiscoverContainer} />
       <AuthRoute exact path='/' component={MainPage} />
