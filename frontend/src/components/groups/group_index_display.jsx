@@ -1,5 +1,6 @@
 import React from 'react';
 import merge from 'lodash/merge';
+import {withRouter} from 'react-router-dom';
 
 class GroupIndexDisplay extends React.Component {
   constructor(props) {
@@ -7,9 +8,10 @@ class GroupIndexDisplay extends React.Component {
 
     this.state = {
       acts: {},
-      activeGroup: null,
-      currentBackground: []
-    }
+      activeGroup: null
+    };
+
+    this.handleNavigation = this.handleNavigation.bind(this);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -17,39 +19,32 @@ class GroupIndexDisplay extends React.Component {
       this.props.deleteActs().then(
         () => {
           this.setState({ acts: {} });
-          this.setState({ currentBackground: {} });
           this.setState({ activeGroup: nextProps.activeGroup });
           let acts = nextProps.activeGroup.acts;
+          let display = document.getElementsByClassName('in-focus-display')[0];
+          display.setAttribute('style',
+            `background: url('https://cdn.pixabay.com/photo/2015/07/10/17/53/cheers-839865_960_720.jpg')
+            background - position: center;
+            background - size: cover;`
+          );
+          display.classList.add('fadeIn');
           acts.map((actId) => (
             this.props.fetchAct(actId).then(
               (res) => {
                 let prevState = this.state.acts;
                 let nextState = merge({}, prevState, { [res.act.data._id]: res.act.data });
+                if (Object.keys(this.state.acts).length > 0) {
+                  let display = document.getElementsByClassName('in-focus-display')[0];
+                  let background = Object.values(this.state.acts)[0].url;
+                  display.setAttribute('style', 
+                    `background: url('${background}');
+                    background-position: center;
+                    background-size: cover;`
+                  );
+                  display.classList.add('fadeIn');
+                }
                 this.setState({ acts: nextState });
               }
-            ).then(
-              // () => {
-              //   if (Object.keys(this.state.acts).length === this.state.activeGroup.acts.length) {
-              //     let background = Object.values(this.state.acts)[0].url;
-              //     console.log(background);
-              //     let display = document.getElementsByClassName('in-focus-display')[0];
-              //     if (background) {
-              //       display.setAttribute('style', 
-              //         `background: url('${background}');
-              //         background-position: center;
-              //         background-size: cover;`
-              //       );
-              //       this.setState({ currentBackground: background });
-              //     } else {
-              //       display.setAttribute('style', 
-              //         `background: url('https://cdn.pixabay.com/photo/2015/07/10/17/53/cheers-839865_960_720.jpg');
-              //         background-position: center;
-              //         background-size: cover;`
-              //       );
-              //       this.setState({ currentBackground: '' });
-              //     }
-              //   }
-              // }
             )
           ))
           document.getElementsByClassName('in-focus-header')[0].classList.add('fadeIn');
@@ -63,9 +58,19 @@ class GroupIndexDisplay extends React.Component {
     window.clearInterval(window);
   }
 
+  handleNavigation(e) {
+    if (this.props.activeGroup) {
+      this.props.history.push(`/groups/${this.props.activeGroup.id}`);
+    }
+  }
+
   render() {
     let display = (
-      <div className='in-focus-display'>
+      <div 
+        className='in-focus-display' 
+        onAnimationEnd={(e) => e.currentTarget.classList.remove('fadeIn')}
+        onClick={this.handleNavigation}
+      >
         <div className="in-focus-header fadeIn" onAnimationEnd={(e) => e.currentTarget.classList.remove('fadeIn')}>
           Browse through your groups and click to show details!
           Or, check out the discover page and
@@ -81,7 +86,11 @@ class GroupIndexDisplay extends React.Component {
 
     if (this.state.activeGroup) {
       display = (
-        <div className='in-focus-display'>
+        <div 
+          className='in-focus-display active' 
+          onAnimationEnd={(e) => e.currentTarget.classList.remove('fadeIn')}
+          onClick={this.handleNavigation}
+        >
           <div className="in-focus-header fadeIn" onAnimationEnd={(e) => e.currentTarget.classList.remove('fadeIn')}>
             {this.state.activeGroup.name}
           </div>
@@ -106,4 +115,4 @@ class GroupIndexDisplay extends React.Component {
   }
 }
 
-export default GroupIndexDisplay;
+export default withRouter(GroupIndexDisplay);
