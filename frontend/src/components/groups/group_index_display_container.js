@@ -1,10 +1,11 @@
 import { connect } from 'react-redux';
 import GroupIndexDisplay from './group_index_display';
+import { fetchAct, deleteActs } from '../../actions/act_actions';
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    fetchActs: (actId) => dispatch(fetchActs(actId)),
-    deleteActs: (actId) => dispatch(fetchActs(actId))
+    fetchAct: (actId) => dispatch(fetchAct(actId)),
+    deleteActs: () => dispatch(deleteActs())
   };
 };
 

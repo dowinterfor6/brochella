@@ -2,7 +2,7 @@ import React from 'react';
 import '../../assets/stylesheets/reset.css';
 import '../../assets/stylesheets/group_index.css';
 import Loading from '../loading/loading';
-import GroupIndexDisplay from './group_index_display';
+import GroupIndexDisplayContainer from './group_index_display_container';
 
 class GroupIndex extends React.Component {
   constructor(props) {
@@ -64,7 +64,7 @@ class GroupIndex extends React.Component {
 
     return (
       <div className='group-index-container'>
-        <GroupIndexDisplay activeGroup={this.state[this.state.activePanel]}/>
+        <GroupIndexDisplayContainer activeGroup={this.state[this.state.activePanel]}/>
         <ul className='group-index-viewer'> 
           { groups.reverse() }
         </ul>
