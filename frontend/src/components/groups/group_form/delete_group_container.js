@@ -15,9 +15,16 @@ function DeleteForm(props) {
         >
         <form>
           <input type="submit"
-                onClick={() => deleteGroup(group.id)
-                    .then(() => props.closeModal())
-                    .then(() => props.history.push('/dashboard'))}
+                // onClick={() => deleteGroup(group.id)
+                //     .then(() => props.closeModal())
+                //     .then(() => props.history.push('/dashboard'))}
+                onClick={
+                  () => {
+                    deleteGroup(group.id);
+                    props.closeModal();
+                    props.history.push('/dashboard');
+                  }
+                }
                 ></input>
         </form>
       </div>
@@ -39,4 +46,4 @@ const mdtp = dispatch => {
   }
 }
 
-export default withRouter(connect(mstp, mdtp)(DeleteForm));
+export default connect(mstp, mdtp)(withRouter(DeleteForm));
