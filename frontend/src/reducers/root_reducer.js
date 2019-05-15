@@ -4,9 +4,11 @@ import errors from './errors_reducer';
 import groups from './groups_reducer';
 import acts from './acts_reducer';
 import ui from './ui_reducer';
+import users from './user_reducer';
 
 const rootReducer = combineReducers({
   session,
+  users,
   errors, 
   groups,
   acts,

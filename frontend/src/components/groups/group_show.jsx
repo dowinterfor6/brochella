@@ -13,9 +13,25 @@ class GroupShow extends React.Component {
   }
 
   componentDidMount() {
-    this.props.fetchGroup(this.props.match.params.id).then(
-      (res) => { this.setState({ group: res.group.data })}
-    );
+    this.props.fetchGroup(this.props.match.params.id)
+      .then((res) => { 
+        this.setState({ group: res.group.data })
+      })
+      .then(() => this.props.fetchAllUsers())
+      .then((res) => {
+        res.users.data.map((user) => (
+          this.setState({ [user._id]: user })
+        ))
+      })
+      .then(() => {
+        this.props.fetchActs().then(
+          (res) => {
+            res.acts.map((act) => (
+              this.setState({ [act._id]: act })
+            ))
+          }
+        )
+      })
   }
 
   render() {
@@ -23,16 +39,22 @@ class GroupShow extends React.Component {
     let owner;
     let acts;
     let permButtons;
+  
+
     if (this.state.group.members) {
       memberList = (
         <div className="group-member-list-container">
           <h3>Member List:</h3>
           <ul className="group-member-list">
-            {this.state.group.members.map((member, idx) => (
+            {this.state.group.members.map((key, idx) => {
+              if(this.state[key]) {
+              return (
               <li key={idx}>
-                {member}
+                {this.state[key].username}
               </li>
-            ))}
+              )
+            }
+            })}
           </ul>
         </div>
       );
@@ -49,11 +71,15 @@ class GroupShow extends React.Component {
         <div className="group-acts-container">
           <h3>Acts List:</h3>
           <ul className="group-acts-list">
-            {this.state.group.acts.map((act, idx) => (
+            {this.state.group.acts.map((act, idx) => {
+              if(this.state[act]) {
+              return (
               <li key={idx}>
-                {act}
+                {this.state[act].name}
               </li>
-            ))}
+              )
+              }
+            })}
           </ul>
         </div>
       )
