@@ -1,0 +1,12 @@
+.discovery-container {
+  width: 100%;
+  height: calc(100vh - 200px);
+  box-sizing: border-box;
+  padding: 100px;
+  padding-top: 0;
+  padding-bottom: 76px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}

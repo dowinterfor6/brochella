@@ -1,6 +1,7 @@
 import { createGroup } from '../../actions/group_actions';
 import { openModal, closeModal } from '../../actions/modal_actions';
 import { connect } from 'react-redux';
+import '../../assets/stylesheets/discover.css';
 
 
 import React from 'react';
@@ -8,7 +9,7 @@ import React from 'react';
 function DiscoverPage(props) {
 
     return (
-        <div>
+        <div className='discovery-container'>
             <h1>This is the discovery page!</h1>
             <button onClick={() => {
                 props.openModal(props.formType)

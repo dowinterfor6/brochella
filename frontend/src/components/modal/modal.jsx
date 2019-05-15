@@ -19,22 +19,22 @@ class Modal extends React.Component {
     let component;
     switch (this.props.modal.modal) {
       case 'signup':
-      component = <SignupFormContainer />
-      break;
+        component = <SignupFormContainer />
+        break;
       case 'login':
-      component = <LoginFormContainer />
-      break;
+        component = <LoginFormContainer />
+        break;
       case 'Create Group':
-      component = <CreateGroupContainer />
-      break;
+        component = <CreateGroupContainer />
+        break;
       case 'Edit Group':
-      component = <EditGroupContainer />
-      break;
+        component = <EditGroupContainer />
+        break;
       case 'Delete Confirmation':
-      component = <DeleteGroupContainer />
-      break;
+        component = <DeleteGroupContainer />
+        break;
       default:
-      return null;
+        return null;
     }
 
     return (
