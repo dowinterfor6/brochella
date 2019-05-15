@@ -1,0 +1,19 @@
+.landing-page-container {
+  height: calc(100vh - 200px);
+  width: 100%;
+  box-sizing: border-box;
+  padding: 100px;
+  padding-top: 0;
+  padding-bottom: 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.why-brochella,
+.what-brochella,
+.beyond-brochella {
+  width: 100%;
+  line-height: 2em;
+}
