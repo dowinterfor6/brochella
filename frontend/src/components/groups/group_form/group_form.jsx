@@ -1,19 +1,25 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
 //file still needs to render errors
+
 class GroupForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {};
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.renderErrors = this.renderErrors.bind(this);
   }
 
   componentDidMount() {
     this.setState({ group: this.props.group }); 
   }
 
+  componentWillReceiveProps(nextProps) {
+    this.setState({ errors: nextProps.errors });
+  }
+
   componentWillUnmount() {
-    //delete errors
+    this.props.deleteGroupErrors();
     this.props.closeModal();
   }
 
@@ -25,8 +31,21 @@ class GroupForm extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
+    debugger
     this.props.createGroup(this.state);
   };
+
+  renderErrors() {
+    return (
+      <ul>
+        {Object.values(this.state.errors).map((error, idx) => (
+          <li key={`error-${idx}`}>
+            {error}
+          </li>
+        ))}
+      </ul>
+    );
+  }
 
   render() {
     return (
@@ -44,6 +63,10 @@ class GroupForm extends React.Component {
             Name ya Group: 
             <input type="text" value={this.state.name} onChange={this.update("name")} />
           </label>
+
+          {/* <div className="error-message"> */}
+            {this.props.errors ? ` - ${this.props.errors}` : ''}
+          {/* </div> */}
           {/* <label>
             Add some buds:
             <input type="text" value={this.state.members} onChange={this.update("members")} />
