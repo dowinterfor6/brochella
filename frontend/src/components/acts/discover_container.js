@@ -11,7 +11,7 @@ function DiscoverPage(props) {
         <div>
             <h1>This is the discovery page!</h1>
             <button onClick={() => {
-                this.props.openModal(this.props.formType)
+                props.openModal(props.formType)
             }
             }>Create a Group</button>
         </div>
