@@ -59,7 +59,8 @@ class GroupIndexDisplay extends React.Component {
         displayElement.setAttribute('style',
           `background: url('${this.state.acts[firstActId].url}');
           background-position: center;
-          background-size: cover;`
+          background-size: cover;
+          background-repeat: no-repeat;`
         );
       };
     } 
