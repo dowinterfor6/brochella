@@ -203,9 +203,9 @@
   padding: 20px;
   box-sizing: border-box;
   font-size: 32px;
-  font-weight: 600;
-  color: #72c727;
-  -webkit-text-stroke: 0.2px rgb(0, 0, 0);
+  font-weight: 700;
+  color: #7289DA;
+  -webkit-text-stroke: 0.75px rgb(0, 0, 0);
   text-align: center;
   display: flex;
   flex-direction: column;
