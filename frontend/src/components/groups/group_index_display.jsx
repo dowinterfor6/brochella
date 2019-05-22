@@ -9,10 +9,11 @@ class GroupIndexDisplay extends React.Component {
     this.state = {
       acts: {},
       activeGroup: null,
-      backgroundUrl: ''
+      backgroundUrl: 0
     };
 
     this.handleNavigation = this.handleNavigation.bind(this);
+    this.updateBackgroundUrl = this.updateBackgroundUrl.bind(this);
   }
 
   componentDidMount() {
@@ -33,7 +34,8 @@ class GroupIndexDisplay extends React.Component {
                   let prevState = this.state.acts;
                   let nextState = merge({}, prevState, { [Date.parse(res.act.data.date)]: res.act.data });
                   this.setState({
-                    acts: nextState
+                    acts: nextState,
+                    backgroundUrl: 0
                   })
                 }
               )
@@ -52,18 +54,24 @@ class GroupIndexDisplay extends React.Component {
     }
   }
 
-  setBackgroundUrl(firstActId) {
+  setBackgroundUrl(actId) {
     let displayElement = document.getElementsByClassName('in-focus-display')[0];
     if (displayElement) {
-      if (firstActId) {
+      if (actId) {
         displayElement.setAttribute('style',
-          `background: url('${this.state.acts[firstActId].url}');
+          `background: url('${this.state.acts[actId].url}');
           background-position: center;
           background-size: cover;
           background-repeat: no-repeat;`
         );
       };
     } 
+  }
+
+  updateBackgroundUrl(prevIdx) {
+    window.setTimeout(() => {
+      this.setState({ backgroundUrl: prevIdx + 1 });
+    }, 5000);
   }
 
   render() {
@@ -111,9 +119,17 @@ class GroupIndexDisplay extends React.Component {
       )
     }
 
+    // if (Object.keys(this.state.acts).length > 0) {
+    //   let firstActId = Object.keys(this.state.acts).sort()[0];
+    //   this.setBackgroundUrl(firstActId);
+    // } else {
+    //   this.setBackgroundUrl();
+    // };
+
     if (Object.keys(this.state.acts).length > 0) {
-      let firstActId = Object.keys(this.state.acts).sort()[0];
+      let firstActId = Object.keys(this.state.acts).sort()[this.state.backgroundUrl % Object.keys(this.state.acts).length];
       this.setBackgroundUrl(firstActId);
+      this.updateBackgroundUrl(this.state.backgroundUrl);
     } else {
       this.setBackgroundUrl();
     };
