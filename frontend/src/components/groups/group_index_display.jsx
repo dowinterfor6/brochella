@@ -12,25 +12,24 @@ class GroupIndexDisplay extends React.Component {
       backgroundUrl: 0
     };
 
+    this.currentActId = null;
+
     this.handleNavigation = this.handleNavigation.bind(this);
   }
 
   componentDidMount() {
     this.setBackgroundUrl();
-    this.interval = setInterval(() => {
-      this.setState({ backgroundUrl: this.state.backgroundUrl + 1 })
-    }, 5000);
   }
 
   componentWillUnmount() {
     clearInterval(this.interval);
   }
-
+  
   componentWillReceiveProps(nextProps) {
     if (nextProps.activeGroup) {
+      clearInterval(this.interval);
       this.props.deleteActs().then(
         () => {
-          this.setState({ activeGroup: nextProps.activeGroup, acts: {} });
           let acts = nextProps.activeGroup.acts;
           if (acts.length > 0) {
             let newActs = {};
@@ -41,9 +40,13 @@ class GroupIndexDisplay extends React.Component {
                   newActs = merge({}, prevActs, { [Date.parse(res.act.data.date)]: res.act.data })
                   if (Object.keys(newActs).length === acts.length) {
                     this.setState({
+                      activeGroup: nextProps.activeGroup,
                       acts: newActs,
                       backgroundUrl: 0
                     });
+                    this.interval = setInterval(() => {
+                      this.setState({ backgroundUrl: this.state.backgroundUrl + 1 })
+                    }, 5000);
                   };
                 }
               )
@@ -73,6 +76,7 @@ class GroupIndexDisplay extends React.Component {
           background-size: cover;
           background-repeat: no-repeat;`
         );
+        this.currentActId = actId;
       };
     } 
   }
@@ -91,7 +95,6 @@ class GroupIndexDisplay extends React.Component {
         </div>
         <div className="in-focus-act">
           <ul className="act-list-container" onAnimationEnd={(e) => e.currentTarget.classList.remove('fadeIn')}>
-          
           </ul>
         </div>
       </div>
@@ -122,18 +125,11 @@ class GroupIndexDisplay extends React.Component {
       )
     }
 
-    // if (Object.keys(this.state.acts).length > 0) {
-    //   let firstActId = Object.keys(this.state.acts).sort()[0];
-    //   this.setBackgroundUrl(firstActId);
-    // } else {
-    //   this.setBackgroundUrl();
-    // };
-
     if (Object.keys(this.state.acts).length > 0) {
       let actId = Object.keys(this.state.acts).sort()[this.state.backgroundUrl % Object.keys(this.state.acts).length];
-      this.setBackgroundUrl(actId);
-    } else {
-      this.setBackgroundUrl();
+      if (actId !== this.currentActId) {
+        this.setBackgroundUrl(actId);
+      }
     };
 
     return (
