@@ -47,13 +47,13 @@ class GroupIndexDisplay extends React.Component {
                     this.interval = setInterval(() => {
                       this.setState({ backgroundUrl: this.state.backgroundUrl + 1 })
                     }, 5000);
+                    document.getElementsByClassName('in-focus-header')[0].classList.add('fadeIn');
+                    document.getElementsByClassName('act-list-container')[0].classList.add('fadeIn');
                   };
                 }
               )
             ));
           };
-          document.getElementsByClassName('in-focus-header')[0].classList.add('fadeIn');
-          document.getElementsByClassName('act-list-container')[0].classList.add('fadeIn');
         }
       )
     }
