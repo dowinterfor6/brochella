@@ -114,6 +114,7 @@ class GroupIndexDisplay extends React.Component {
             <ul className="act-list-container" onAnimationEnd={(e) => e.currentTarget.classList.remove('fadeIn')}>
               {Object.keys(this.state.acts).sort().map((key) => (
                 <li
+                  className={this.state.acts[key].url}
                   key={key}
                 >
                   {this.state.acts[key].name}
