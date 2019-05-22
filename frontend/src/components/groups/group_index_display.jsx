@@ -9,7 +9,7 @@ class GroupIndexDisplay extends React.Component {
     this.state = {
       acts: {},
       activeGroup: null,
-      backgroundUrl: ''
+      backgroundUrl: 0
     };
 
     this.handleNavigation = this.handleNavigation.bind(this);
@@ -17,24 +17,34 @@ class GroupIndexDisplay extends React.Component {
 
   componentDidMount() {
     this.setBackgroundUrl();
+    this.interval = setInterval(() => {
+      this.setState({ backgroundUrl: this.state.backgroundUrl + 1 })
+    }, 5000);
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.interval);
   }
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.activeGroup) {
       this.props.deleteActs().then(
         () => {
-          this.setState({ activeGroup: nextProps.activeGroup });
-          this.setState({ acts: {} });
+          this.setState({ activeGroup: nextProps.activeGroup, acts: {} });
           let acts = nextProps.activeGroup.acts;
           if (acts.length > 0) {
+            let newActs = {};
             acts.map((actId) => (
               this.props.fetchAct(actId).then(
                 (res) => {
-                  let prevState = this.state.acts;
-                  let nextState = merge({}, prevState, { [Date.parse(res.act.data.date)]: res.act.data });
-                  this.setState({
-                    acts: nextState
-                  })
+                  let prevActs = newActs;
+                  newActs = merge({}, prevActs, { [Date.parse(res.act.data.date)]: res.act.data })
+                  if (Object.keys(newActs).length === acts.length) {
+                    this.setState({
+                      acts: newActs,
+                      backgroundUrl: 0
+                    });
+                  };
                 }
               )
             ));
@@ -52,12 +62,13 @@ class GroupIndexDisplay extends React.Component {
     }
   }
 
-  setBackgroundUrl(firstActId) {
+  setBackgroundUrl(actId) {
     let displayElement = document.getElementsByClassName('in-focus-display')[0];
     if (displayElement) {
-      if (firstActId) {
+      if (actId) {
+        displayElement.classList.add('fadeIn');
         displayElement.setAttribute('style',
-          `background: url('${this.state.acts[firstActId].url}');
+          `background: url('${this.state.acts[actId].url}');
           background-position: center;
           background-size: cover;
           background-repeat: no-repeat;`
@@ -111,9 +122,16 @@ class GroupIndexDisplay extends React.Component {
       )
     }
 
+    // if (Object.keys(this.state.acts).length > 0) {
+    //   let firstActId = Object.keys(this.state.acts).sort()[0];
+    //   this.setBackgroundUrl(firstActId);
+    // } else {
+    //   this.setBackgroundUrl();
+    // };
+
     if (Object.keys(this.state.acts).length > 0) {
-      let firstActId = Object.keys(this.state.acts).sort()[0];
-      this.setBackgroundUrl(firstActId);
+      let actId = Object.keys(this.state.acts).sort()[this.state.backgroundUrl % Object.keys(this.state.acts).length];
+      this.setBackgroundUrl(actId);
     } else {
       this.setBackgroundUrl();
     };
