@@ -34,7 +34,7 @@ class GroupForm extends React.Component {
 
   render() {
     return (
-      <div className="session-form-modal"
+      <div className="delete-form-modal"
         onClick={(e) => e.stopPropagation()}
         onAnimationEnd={(e) => {
           e.currentTarget.classList.remove('fadeInDown');
@@ -42,10 +42,10 @@ class GroupForm extends React.Component {
         }}
       >
 
-        <h1>This is the Group Form</h1>
+        <h1 className='delete-header'>Edit group</h1>
         <form onSubmit={this.handleSubmit}>
           <label>
-            <p className="create-message">Name ya Group:</p> 
+            <p className="create-message">Group name:</p> 
             <input type="text" className="create-input" value={this.state.name} onChange={this.update('name')} />
           </label>
           <button className="create-button" type="submit" value="Submit Group">Edit Group</button>

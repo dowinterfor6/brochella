@@ -24,7 +24,8 @@ class NavBar extends React.Component {
             <Link to={'/profile'}>Profile</Link>
           </li>
           <li className='hvr-underline-from-center' >
-            <Link to={'/'} onClick={this.props.logout}>Logout</Link>
+            {/* <Link to={'/'} onClick={this.props.logout}>Logout</Link> */}
+            <a onClick={() => this.props.openModal('logout')}>Logout</a>
           </li>
         </ul>
       );
