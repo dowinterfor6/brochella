@@ -39,7 +39,7 @@ class DiscoverPage extends React.Component {
     let acts = (
       Object.keys(this.state).sort().map((key, idx) => (
         <li className='discovery-index-item' key={idx}>
-          <h2>{this.state[key].name}</h2>
+          <h3>{this.state[key].name}</h3>
           <h4>Date: {this.parseDate(this.state[key].date).date} Time: {this.parseDate(this.state[key].date).time}</h4>
           <img src={this.state[key].url} alt={this.state[key].name}/>
         </li>
