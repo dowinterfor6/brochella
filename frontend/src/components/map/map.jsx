@@ -30,7 +30,7 @@ class Map extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className="map-display-container">
         <h1> COACHELLA GROUNDS </h1>
         <div id="map"></div>
       </div>
