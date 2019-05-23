@@ -37,6 +37,9 @@ class Modal extends React.Component {
       case 'logout': 
         component = <LogoutConfirmationContainer />
         break;
+      case 'invite':
+        component = <LogoutConfirmationContainer />
+        break;
       default:
         return null;
     }
