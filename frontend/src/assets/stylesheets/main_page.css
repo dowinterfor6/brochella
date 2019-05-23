@@ -2,7 +2,7 @@
   height: calc(100vh - 175px);
   width: 100%;
   box-sizing: border-box;
-  padding: 100px;
+  padding: 10%;
   padding-top: 0;
   padding-bottom: 50px;
   display: flex;
