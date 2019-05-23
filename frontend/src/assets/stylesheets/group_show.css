@@ -40,6 +40,20 @@
   box-sizing: border-box;
 }
 
+.link-display {
+  display: flex;
+  width: 100%;
+  display: flex;
+  margin: 20px 0;
+  align-items: center;
+  border-radius: 5px;
+  box-sizing: border-box;
+  padding: 6px 10px;
+  box-shadow: none;
+  border: 1px solid #dfdfdf;
+  justify-content: left;
+}
+
 /* HOVER */
 
 .hvr-underline-from-left {
