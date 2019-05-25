@@ -18,7 +18,7 @@ const App = () => (
       <ProtectedRoute exact path='/profile' component={Profile} />
       <ProtectedRoute exact path='/dashboard' component={GroupIndexContainer} />
       <ProtectedRoute exact path='/discover' component={DiscoverContainer} />
-      <ProtectedRoute exact path='acts/:actId' component={ActIndexItemContainer} />
+      <ProtectedRoute exact path='/acts/:actId' component={ActIndexItemContainer} />
       <AuthRoute exact path='/' component={MainPage} />
     </Switch>
   </div>
