@@ -41,7 +41,7 @@ class DiscoverPage extends React.Component {
         <li className='discovery-index-item' key={idx}>
           <h3>{this.state[key].name}</h3>
           <h4>Date: {this.parseDate(this.state[key].date).date} Time: {this.parseDate(this.state[key].date).time}</h4>
-          <img src={this.state[key].url} alt={this.state[key].name}/>
+          <img src={this.state[key].url} alt={this.state[key].name} />
         </li>
       ))
     )
