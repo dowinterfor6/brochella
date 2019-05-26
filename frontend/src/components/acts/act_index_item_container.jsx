@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { fetchAct } from '../../actions/act_actions';
 import '../../assets/stylesheets/reset.css';
+import '../../assets/stylesheets/acts_show.css';
 
 class ActIndexItem extends React.Component {
     constructor(props) {
@@ -16,9 +17,13 @@ class ActIndexItem extends React.Component {
 
     render() {
 
+        if(!this.props.act) {
+            return null;
+        }
+
         return (
-            <div>
-                This is the page for!
+            <div className="acts-show-container">
+                <h2>This is the page for <strong>{this.props.act.name}!</strong></h2>
             </div>
         )
 
@@ -27,7 +32,9 @@ class ActIndexItem extends React.Component {
 
 const mstp = (state, ownProps) => {
     let id = ownProps.match.params.actId;
+    let act = state.acts[ownProps.match.params.actId];
     return {
+        act,
         id
     };
 };
