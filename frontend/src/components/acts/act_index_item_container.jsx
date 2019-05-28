@@ -15,6 +15,16 @@ class ActIndexItem extends React.Component {
         this.props.fetchAct(this.props.id);
     }
 
+    parseDate(date) {
+        let newDate;
+        let newTime;
+        let dateArr = date.split('T');
+        newDate = dateArr[0];
+        let timeArr = dateArr[1].split('Z');
+        newTime = timeArr[0].split('.')[0];
+        return { date: newDate, time: newTime }
+      }
+
     render() {
 
         if(!this.props.act) {
@@ -24,6 +34,10 @@ class ActIndexItem extends React.Component {
         return (
             <div className="acts-show-container">
                 <h2>This is the page for <strong>{this.props.act.name}!</strong></h2>
+                <img src={this.props.act.url} alt="act-photo"/>
+                <span>
+                    <div>{this.parseDate(this.props.act.date).date}</div>
+                </span>
             </div>
         )
 

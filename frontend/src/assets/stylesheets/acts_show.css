@@ -11,3 +11,7 @@
 strong {
     font-weight: 600;
 }
+
+.acts-show-container > img {
+    margin-top: 35px;
+}
