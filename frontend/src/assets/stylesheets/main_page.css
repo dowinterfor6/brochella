@@ -88,3 +88,7 @@
 .background-splash img:nth-of-type(10) {
   grid-area: 3/6/3/span 2;
 }
+
+.hidden {
+  display: none;
+}
