@@ -18,16 +18,33 @@
   line-height: 2em;
 }
 
-.background-cover {
+.background-cover,
+.background-vertical-cover {
   position: absolute;
-  top: 150px;
+  top: 175px;
   left: 0;
   height: 600px;
   width: 100vw;
   z-index: -5;
   box-sizing: border-box;
-  /* background: rgba(255,255,255,0.3); */
-  background: radial-gradient(rgba(255,255,255,0.3),rgba(255,255,255,1) 600px);
+}
+
+.background-cover {
+    background: linear-gradient(
+    to right, 
+    rgba(255,255,255,1) 10%,
+    rgba(255,255,255,0.2) 50%, 
+    rgba(255,255,255,1) 90%
+  );
+}
+
+.background-vertical-cover {
+    background: linear-gradient(
+    to bottom, 
+    rgba(255,255,255,1) 5%,
+    rgba(255,255,255,0.2) 50%, 
+    rgba(255,255,255,1) 95%
+  );
 }
 
 .background-splash img {
@@ -37,7 +54,7 @@
 
 .background-splash {
   position: absolute;
-  top: 150px;
+  top: 175px;
   left: 0;
   height: 600px;
   width: 100vw;

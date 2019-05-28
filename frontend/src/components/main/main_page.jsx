@@ -65,6 +65,9 @@ class MainPage extends React.Component {
         <div className="background-cover">
 
         </div>
+        <div className="background-vertical-cover">
+          
+        </div>
         <div 
           className="background-splash hidden" 
           onAnimationEnd={(e) => e.currentTarget.classList.remove('fadeIn')}
