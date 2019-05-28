@@ -26,8 +26,8 @@
   width: 100vw;
   z-index: -5;
   box-sizing: border-box;
-  /* background: rgba(255,255,255,0.7); */
-  background: radial-gradient(rgba(255,255,255,0.3),rgba(255,255,255,1) 500px);
+  /* background: rgba(255,255,255,0.3); */
+  background: radial-gradient(rgba(255,255,255,0.3),rgba(255,255,255,1) 600px);
 }
 
 .background-splash img {
