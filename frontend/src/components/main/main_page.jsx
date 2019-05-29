@@ -3,9 +3,28 @@ import '../../assets/stylesheets/reset.css';
 import '../../assets/stylesheets/main_page.css';
 
 class MainPage extends React.Component {
+  constructor(props){
+    super(props);
+    this.imgLoadCount = 0;
+    this.state = {
+      loaded: false
+    };
+
+    this.addLoadedImage = this.addLoadedImage.bind(this);
+  }
   
   componentDidMount() {
     document.title = 'Bro-chella';
+  };
+
+  addLoadedImage() {
+    this.imgLoadCount++;
+    if (document.querySelectorAll('img').length === this.imgLoadCount) {
+      let component = document.getElementsByClassName('background-splash')[0];
+      component.classList.remove('hidden');
+      component.classList.add('fadeIn');
+      this.setState({loaded: true});
+    };
   };
 
   render() {
@@ -42,6 +61,27 @@ class MainPage extends React.Component {
               an idea that could potentially become a real app once fully completed.
             </p>
           </section>
+        </div>
+        <div className="background-cover">
+
+        </div>
+        <div className="background-vertical-cover">
+          
+        </div>
+        <div 
+          className="background-splash hidden" 
+          onAnimationEnd={(e) => e.currentTarget.classList.remove('fadeIn')}
+        >
+          <img onLoad={() => this.addLoadedImage()}src="https://images.pexels.com/photos/534031/pexels-photo-534031.jpeg" alt=""/>
+          <img onLoad={() => this.addLoadedImage()}src="https://images.pexels.com/photos/1049622/pexels-photo-1049622.jpeg" alt=""/>
+          <img onLoad={() => this.addLoadedImage()}src="https://images.pexels.com/photos/1105666/pexels-photo-1105666.jpeg" alt=""/>
+          <img onLoad={() => this.addLoadedImage()}src="https://images.pexels.com/photos/144429/pexels-photo-144429.jpeg" alt=""/>
+          <img onLoad={() => this.addLoadedImage()}src="https://images.pexels.com/photos/1047442/pexels-photo-1047442.jpeg" alt=""/>
+          <img onLoad={() => this.addLoadedImage()}src="https://images.pexels.com/photos/1540338/pexels-photo-1540338.jpeg" alt=""/>
+          <img onLoad={() => this.addLoadedImage()}src="https://images.pexels.com/photos/1190298/pexels-photo-1190298.jpeg" alt=""/>
+          <img onLoad={() => this.addLoadedImage()}src="https://images.pexels.com/photos/1799249/pexels-photo-1799249.jpeg" alt=""/>
+          <img onLoad={() => this.addLoadedImage()}src="https://images.pexels.com/photos/354305/pexels-photo-354305.jpeg" alt=""/>
+          <img onLoad={() => this.addLoadedImage()}src="https://images.pexels.com/photos/1684187/pexels-photo-1684187.jpeg" alt=""/>
         </div>
       </div> 
     )
